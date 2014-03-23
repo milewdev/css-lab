@@ -11,7 +11,7 @@
       
       var specs = extract_setting_specs(this);
 
-      var attributeLabel = $("<label>" + specs.attributeLabel + ":</label>");
+      var attributeLabel = create_attribute_label(specs);
       var input = $("<input type='text' readonly />");
       var unitsLabel = $("<label>em;</label>");
       var range = $("<input type='range' min='" + specs.min + "' max='" + specs.max + "' />");
@@ -56,6 +56,10 @@
       defaultValue:   obj.dataset.defaultValue || 0,
       presetValue:    obj.dataset.presetValue || 0
     };
+  }
+  
+  function create_attribute_label(setting_specs) {
+    return $("<label>" + setting_specs.attributeLabel + ":</label>");
   }
   
   function initialize_page() {
