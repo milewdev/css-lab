@@ -2,16 +2,6 @@
 
 $settings-whitespace: 1em;
 
-
-/* http://css-tricks.com/snippets/css/clear-fix/ */
-.clearfix:after {
-  visibility: hidden;
-  display: block;
-  content: "";
-  clear: both;
-  height: 0; 
-}
-
 body {
   font-family: "Optima", sans-serif;
   font-size: 90%;
@@ -92,8 +82,8 @@ body {
     margin-top: 1em;
     width: 49%;
   
-    div {
-      border: 1px solid white;            /* needed to force li margins to not push this div down */
+    div {                                 /* a div is used to emulate a <body> element */
+      border: 1px solid white;            /* needed to force li margins to not push the div down */
       box-shadow: 0px 0px 14px #666;
   
       ul {
