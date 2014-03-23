@@ -19,7 +19,7 @@
     
     $(this).append(attributeLabel).append(input).append(unitsLabel).append(range);
     
-    range.on('change', function() {
+    range.on('input change', function() {
       f(this.value);
     });
     
