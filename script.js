@@ -7,7 +7,7 @@
   
   function create_css_settings_controls() {
   
-    $('div[data-type="range"]').each( function() {
+    $('div[data-element]').each( function() {
 
       var element = this.dataset.element;
       var attribute = this.dataset.attribute;
