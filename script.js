@@ -14,11 +14,11 @@
       var attributeLabel = create_attribute_label(specs);
       var inputControl = create_input_control();
       var unitsLabel = create_units_label();
-      var range = create_range_control(specs);
+      var rangeControl = create_range_control(specs);
     
-      $(this).append(attributeLabel).append(inputControl).append(unitsLabel).append(range);
+      $(this).append(attributeLabel).append(inputControl).append(unitsLabel).append(rangeControl);
     
-      range.on('input change', function() {
+      rangeControl.on('input change', function() {
         f(this.value);
       });
     
@@ -33,7 +33,7 @@
       var that = $(this);
       var f = function(value) {
         inputControl.val(value);
-        range.val(value);
+        rangeControl.val(value);
         $('section[id="example"] ' + specs.element).css(specs.attribute, value + 'em');
       
         if (value == specs.defaultValue) {
