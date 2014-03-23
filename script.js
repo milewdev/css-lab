@@ -1,5 +1,7 @@
 (function($){
   
+  // TODO: not yet refactored
+  
   $('div[data-type="range"]').each( function() {
 
     var element = this.dataset.element;
