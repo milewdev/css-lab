@@ -1,6 +1,9 @@
 (function($){
   
-  // TODO: not yet refactored
+  create_css_settings_controls();
+  initialize_page();
+  
+  // TODO: refactoring in progress
   
   function create_css_settings_controls() {
   
@@ -25,11 +28,11 @@
         f(this.value);
       });
     
-      $('#preset-button').on('click', function() {
+      preset_button().on('click', function() {
         f(presetValue);
       });
     
-      $('#reset-button').on('click', function() {
+      reset_button().on('click', function() {
         f(defaultValue);
       });
     
@@ -50,11 +53,15 @@
   }
   
   function initialize_page() {
-    $('#reset-button').click();
+    reset_button().click();
   }
   
-  // 'program emtry point'
-  create_css_settings_controls();
-  initialize_page();
+  function preset_button() {
+    return $('#preset-button');
+  }
+  
+  function reset_button() {
+    return $('#reset-button');
+  }
 
 })(jQuery);
