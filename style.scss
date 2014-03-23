@@ -1,0 +1,126 @@
+@import url(reset.css);
+
+$settings-whitespace: 1em;
+
+
+/* http://css-tricks.com/snippets/css/clear-fix/ */
+.clearfix:after {
+  visibility: hidden;
+  display: block;
+  content: "";
+  clear: both;
+  height: 0; 
+}
+
+body {
+  font-family: "Optima", sans-serif;
+  font-size: 90%;
+  font-weight: 100; 
+  margin: 0 auto;
+  width: 880px;
+
+  header {
+    padding: 2em; 
+    padding-top: 3em;
+    text-align: center;
+  
+    h1 {
+      font-family: "Palatino", serif;
+      font-size: 150%;
+      font-weight: bold;
+    }
+  }
+
+  section[id="css-settings"] {
+    float: left;
+    font-family: monospace;
+    padding-top: $settings-whitespace;
+    width: 49%;
+  
+    article {
+      margin: 0 auto;
+      margin-bottom: $settings-whitespace;
+      width: 24em;
+  
+      div {
+        color: #999;
+        margin-left: 2em;
+    
+        label {
+          color: inherit;
+          display: inline-block;
+          vertical-align: middle;
+        }
+    
+        label:nth-child(1) {
+          width: 9.5em;
+        };
+    
+        input[type="text"] {
+          color: inherit;
+          border: none;
+          text-align: right;
+          vertical-align: middle;
+          width: 1.6em;
+        }
+    
+        input[type="range"] {
+          margin-left: 3em;
+          vertical-align: middle;
+          width: 5em;
+        }
+      }
+    }
+  
+    article[class="buttons"] {
+      padding-top: $settings-whitespace;
+      text-align: center;
+    }
+  
+    .non-default-value {
+      color: black;
+      font-weight: bold;
+    }
+  
+    input[type="button"] {
+      width: 6em;
+    }
+  }
+
+  section[id="example"] {
+    float: right;
+    margin-top: 1em;
+    width: 49%;
+  
+    div {
+      border: 1px solid white;            /* needed to force li margins to not push this div down */
+      box-shadow: 0px 0px 14px #666;
+  
+      ul {
+        list-style-type: disc;
+        list-style-position: outside;
+
+        li {
+          aside {
+            border: 1px solid #999;
+            font-family: monospace;
+            margin-top: 0.6em;
+            margin-bottom: 0.6em;
+            padding: 0.4em;
+            vertical-align: middle;
+          }
+        }
+      }
+    }
+  }
+
+  footer {
+    clear: both;
+    padding-top: 2em;
+    text-align: center;
+    
+    span[class="copyright"] {
+      font-size: 70%;
+    }
+  }
+}

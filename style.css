@@ -1,0 +1,83 @@
+@import url(reset.css);
+/* http://css-tricks.com/snippets/css/clear-fix/ */
+.clearfix:after {
+  visibility: hidden;
+  display: block;
+  content: "";
+  clear: both;
+  height: 0; }
+
+body {
+  font-family: "Optima", sans-serif;
+  font-size: 90%;
+  font-weight: 100;
+  margin: 0 auto;
+  width: 880px; }
+  body header {
+    padding: 2em;
+    padding-top: 3em;
+    text-align: center; }
+    body header h1 {
+      font-family: "Palatino", serif;
+      font-size: 150%;
+      font-weight: bold; }
+  body section[id="css-settings"] {
+    float: left;
+    font-family: monospace;
+    padding-top: 1em;
+    width: 49%; }
+    body section[id="css-settings"] article {
+      margin: 0 auto;
+      margin-bottom: 1em;
+      width: 24em; }
+      body section[id="css-settings"] article div {
+        color: #999;
+        margin-left: 2em; }
+        body section[id="css-settings"] article div label {
+          color: inherit;
+          display: inline-block;
+          vertical-align: middle; }
+        body section[id="css-settings"] article div label:nth-child(1) {
+          width: 9.5em; }
+        body section[id="css-settings"] article div input[type="text"] {
+          color: inherit;
+          border: none;
+          text-align: right;
+          vertical-align: middle;
+          width: 1.6em; }
+        body section[id="css-settings"] article div input[type="range"] {
+          margin-left: 3em;
+          vertical-align: middle;
+          width: 5em; }
+    body section[id="css-settings"] article[class="buttons"] {
+      padding-top: 1em;
+      text-align: center; }
+    body section[id="css-settings"] .non-default-value {
+      color: black;
+      font-weight: bold; }
+    body section[id="css-settings"] input[type="button"] {
+      width: 6em; }
+  body section[id="example"] {
+    float: right;
+    margin-top: 1em;
+    width: 49%; }
+    body section[id="example"] div {
+      border: 1px solid white;
+      /* needed to force li margins to not push this div down */
+      box-shadow: 0px 0px 14px #666; }
+      body section[id="example"] div ul {
+        list-style-type: disc;
+        list-style-position: outside; }
+        body section[id="example"] div ul li aside {
+          border: 1px solid #999;
+          font-family: monospace;
+          margin-top: 0.6em;
+          margin-bottom: 0.6em;
+          padding: 0.4em;
+          vertical-align: middle; }
+  body footer {
+    clear: both;
+    padding-top: 2em;
+    text-align: center; }
+    body footer span[class="copyright"] {
+      font-size: 70%; }
