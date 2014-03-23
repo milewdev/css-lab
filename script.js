@@ -14,7 +14,7 @@
       var attributeLabel = create_attribute_label(specs);
       var input = create_input_control();
       var unitsLabel = create_units_label();
-      var range = $("<input type='range' min='" + specs.min + "' max='" + specs.max + "' />");
+      var range = create_range_control(specs);
     
       $(this).append(attributeLabel).append(input).append(unitsLabel).append(range);
     
@@ -68,6 +68,10 @@
   
   function create_units_label() {
     return $("<label>em;</label>");
+  }
+  
+  function create_range_control(setting_specs) {
+    return $("<input type='range' min='" + setting_specs.min + "' max='" + setting_specs.max + "' />");
   }
   
   function initialize_page() {
