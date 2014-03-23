@@ -7,7 +7,7 @@
   
   function create_css_settings_controls() {
   
-    $('div[data-element]').each( function() {
+    settings_controls().each( function() {
 
       var element = this.dataset.element;
       var attribute = this.dataset.attribute;
@@ -54,6 +54,10 @@
   
   function initialize_page() {
     reset_button().click();
+  }
+  
+  function settings_controls() {
+    return $('div[data-element]');
   }
   
   function preset_button() {
