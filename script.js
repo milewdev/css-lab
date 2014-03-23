@@ -12,7 +12,7 @@
       var specs = extract_setting_specs(this);
 
       var attributeLabel = create_attribute_label(specs);
-      var input = $("<input type='text' readonly />");
+      var input = create_input_control();
       var unitsLabel = $("<label>em;</label>");
       var range = $("<input type='range' min='" + specs.min + "' max='" + specs.max + "' />");
     
@@ -60,6 +60,10 @@
   
   function create_attribute_label(setting_specs) {
     return $("<label>" + setting_specs.attributeLabel + ":</label>");
+  }
+  
+  function create_input_control() {
+    return $("<input type='text' readonly />");
   }
   
   function initialize_page() {
