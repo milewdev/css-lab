@@ -9,37 +9,38 @@
   
     settings_controls().each( function() {
       
+      var that = $(this);
+      
       var specs = extract_setting_specs(this);
 
-      var attributeLabel = create_attribute_label(specs);
-      var inputControl = create_input_control();
-      var unitsLabel = create_units_label();
-      var rangeControl = create_range_control(specs);
+      var attribute_label = create_attribute_label(specs);
+      var input_control = create_input_control();
+      var units_label = create_units_label();
+      var range_control = create_range_control(specs);
     
-      $(this).append(attributeLabel).append(inputControl).append(unitsLabel).append(rangeControl);
+      $(this).append(attribute_label).append(input_control).append(units_label).append(range_control);
     
-      rangeControl.on('input change', function() {
-        f(this.value);
+      range_control.on('input change', function() {
+        f(that, input_control, range_control, specs, this.value);
       });
     
       preset_button().on('click', function() {
-        f(specs.presetValue);
+        f(that, input_control, range_control, specs, specs.preset_value);
       });
     
       reset_button().on('click', function() {
-        f(specs.defaultValue);
+        f(that, input_control, range_control, specs, specs.default_value);
       });
     
-      var that = $(this);
-      var f = function(value) {
-        inputControl.val(value);
-        rangeControl.val(value);
-        $('section[id="example"] ' + specs.element).css(specs.attribute, value + 'em');
+      var f = function(setting_control, input_control, range_control, setting_specs, value) {
+        input_control.val(value);
+        range_control.val(value);
+        $('section[id="example"] ' + setting_specs.element).css(setting_specs.attribute, value + 'em');
       
-        if (value == specs.defaultValue) {
-            that.removeClass("non-default-value");
+        if (value == setting_specs.default_value) {
+            setting_control.removeClass("non-default-value");
         } else {
-            that.addClass("non-default-value");
+            setting_control.addClass("non-default-value");
         }
       }
 
@@ -48,18 +49,18 @@
   
   function extract_setting_specs(obj) {
     return {
-      element:        obj.dataset.element,
-      attribute:      obj.dataset.attribute,
-      attributeLabel: obj.dataset.attributeLabel || obj.dataset.attribute, 
-      min:            obj.dataset.min || -4,
-      max:            obj.dataset.max || 4,
-      defaultValue:   obj.dataset.defaultValue || 0,
-      presetValue:    obj.dataset.presetValue || 0
+      element:          obj.dataset.element,
+      attribute:        obj.dataset.attribute,
+      attribute_label:  obj.dataset.attributeLabel || obj.dataset.attribute, 
+      min:              obj.dataset.min || -4,
+      max:              obj.dataset.max || 4,
+      default_value:    obj.dataset.defaultValue || 0,
+      preset_value:     obj.dataset.presetValue || 0
     };
   }
   
   function create_attribute_label(setting_specs) {
-    return $("<label>" + setting_specs.attributeLabel + ":</label>");
+    return $("<label>" + setting_specs.attribute_label + ":</label>");
   }
   
   function create_input_control() {
