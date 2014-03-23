@@ -8,19 +8,13 @@
   function create_css_settings_controls() {
   
     settings_controls().each( function() {
+      
+      var specs = extract_setting_specs(this);
 
-      var element = this.dataset.element;
-      var attribute = this.dataset.attribute;
-    
-      var min = this.dataset.min || -4;
-      var max = this.dataset.max || 4;
-      var defaultValue = this.dataset.defaultValue || 0;
-      var presetValue = this.dataset.presetValue || 0;
-    
-      var attributeLabel = $("<label>" + (this.dataset.attributeLabel || attribute) + ":</label>");
+      var attributeLabel = $("<label>" + specs.attributeLabel + ":</label>");
       var input = $("<input type='text' readonly />");
       var unitsLabel = $("<label>em;</label>");
-      var range = $("<input type='range' min='" + min + "' max='" + max + "' />");
+      var range = $("<input type='range' min='" + specs.min + "' max='" + specs.max + "' />");
     
       $(this).append(attributeLabel).append(input).append(unitsLabel).append(range);
     
@@ -29,20 +23,20 @@
       });
     
       preset_button().on('click', function() {
-        f(presetValue);
+        f(specs.presetValue);
       });
     
       reset_button().on('click', function() {
-        f(defaultValue);
+        f(specs.defaultValue);
       });
     
       var that = $(this);
       var f = function(value) {
         input.val(value);
         range.val(value);
-        $('section[id="example"] ' + element).css(attribute, value + 'em');
+        $('section[id="example"] ' + specs.element).css(specs.attribute, value + 'em');
       
-        if (value == defaultValue) {
+        if (value == specs.defaultValue) {
             that.removeClass("non-default-value");
         } else {
             that.addClass("non-default-value");
@@ -50,6 +44,18 @@
       }
 
     });
+  }
+  
+  function extract_setting_specs(obj) {
+    return {
+      element:        obj.dataset.element,
+      attribute:      obj.dataset.attribute,
+      attributeLabel: obj.dataset.attributeLabel || obj.dataset.attribute, 
+      min:            obj.dataset.min || -4,
+      max:            obj.dataset.max || 4,
+      defaultValue:   obj.dataset.defaultValue || 0,
+      presetValue:    obj.dataset.presetValue || 0
+    };
   }
   
   function initialize_page() {
