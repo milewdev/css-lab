@@ -2,6 +2,7 @@
   Fixed.  See http://stackoverflow.com/questions/18544890/onchange-event-on-input-type-range-is-not-triggering-in-firefox-while-dragging.
 
 - Refactor javascript.  In particular, a new set of functions is created for each control; try to eliminate this as much as possible.
+  Done.
 
 - Refactor scss; add variables, check that all elements are correctly nested (e.g. .non-default-value may belong inside article, but outside div?).
 
