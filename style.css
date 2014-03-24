@@ -58,7 +58,7 @@ body {
         body section[id="css-settings"] article div input[type="range"] {
           margin-left: 3em;
           vertical-align: middle;
-          width: 6em; }
+          width: 5.5em; }
       body section[id="css-settings"] article .non-default-value {
         /* the look of setting labels when the setting value is not the default (makes them stand out) */
         color: black;
