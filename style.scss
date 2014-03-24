@@ -36,13 +36,13 @@ body {
     float: left;
     font-family: monospace;
     padding-top: $settings-whitespace;
-    padding-right: 6em;
+    padding-right: 4em;
     width: 44%;
   
     article {                             /* each html element (e.g. ul, li, etc.) is contained in an article */
       margin: 0 auto;
       margin-bottom: $settings-whitespace;
-      width: 24em;
+      width: 25em;
   
       div {                               /* each css setting (e.g. padding-left, margin-top, etc.) is contained in a div */
         color: #999;

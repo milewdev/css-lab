@@ -30,13 +30,13 @@ body {
     float: left;
     font-family: monospace;
     padding-top: 1em;
-    padding-right: 6em;
+    padding-right: 4em;
     width: 44%; }
     body section[id="css-settings"] article {
       /* each html element (e.g. ul, li, etc.) is contained in an article */
       margin: 0 auto;
       margin-bottom: 1em;
-      width: 24em; }
+      width: 25em; }
       body section[id="css-settings"] article div {
         /* each css setting (e.g. padding-left, margin-top, etc.) is contained in a div */
         color: #999;
