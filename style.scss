@@ -37,7 +37,7 @@ body {
     font-family: monospace;
     padding-top: $settings-whitespace;
     padding-right: 6em;
-    width: 39%;
+    width: 44%;
   
     article {                             /* each html element (e.g. ul, li, etc.) is contained in an article */
       margin: 0 auto;
@@ -92,7 +92,7 @@ body {
   section[id="example"] {                 /* use a section to contain the example, placed on the right side of the page */
     float: left;
     margin-top: 1em;
-    width: 49%;
+    width: 44%;
   
     div {                                 /* a div is used to emulate a <body> element */
       border: 1px solid white;            /* needed to force li margins to not push the div down */

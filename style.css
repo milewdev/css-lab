@@ -31,7 +31,7 @@ body {
     font-family: monospace;
     padding-top: 1em;
     padding-right: 6em;
-    width: 39%; }
+    width: 44%; }
     body section[id="css-settings"] article {
       /* each html element (e.g. ul, li, etc.) is contained in an article */
       margin: 0 auto;
@@ -74,7 +74,7 @@ body {
     /* use a section to contain the example, placed on the right side of the page */
     float: left;
     margin-top: 1em;
-    width: 49%; }
+    width: 44%; }
     body section[id="example"] div {
       /* a div is used to emulate a <body> element */
       border: 1px solid white;
