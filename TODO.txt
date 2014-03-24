@@ -5,11 +5,16 @@
   Done.
 
 - Refactor scss; add variables, check that all elements are correctly nested (e.g. .non-default-value may belong inside article, but outside div?).
+  Done.
 
 - Add comments to scss.
+  Done.
 
 - Try reducing browser window size to see how the page layout behaves (note: not attempting to be responsive at this time).
 
 - Run html / css / javascript thru appropriate linters (add to build script?).
 
 - Run Safari in native OS (i.e. not in a VM), open the debug window, refresh the page, and see if there is still an infinite loop (page never loads).
+
+- Adjust page layout to look better on an iPad (font size, font family, increase width of example, add bottom margin to footer).
+  Done.
