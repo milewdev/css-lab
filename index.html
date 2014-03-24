@@ -17,6 +17,17 @@
     <section id="css-settings">
       <article>
         body {
+          <!--
+            Children are added to these setting placeholder divs at page load time (see script.js) so that they become:
+            
+              <div data-element="div" data-attribute="padding" data-preset-value="1">
+                <label>padding:</label>
+                <input type="text" readonly>
+                <label>em;</label>
+                <input type="range" min="-4" max="4">
+              </div>
+            
+          -->
           <div data-element="div" data-attribute="padding" data-preset-value="1"></div>
         }
       </article>
