@@ -13,10 +13,10 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
   install_gpg                     config  # needed in order to sign git commits
   install_git                     config
   install_git_gui                 config
-  #install_node                    config
+  install_bundler                 config
   install_editor                  config
   install_project_source_code     config, PROJECT_SOURCE_URL, PROJECT_VM_PATH
-  #install_project_dependencies    config, PROJECT_VM_PATH
+  install_project_dependencies    config, PROJECT_VM_PATH
   reboot                          config
 end
 
@@ -77,9 +77,9 @@ def install_git_gui(config)
 end
 
 
-def install_node(config)
-  say config, "Installing nodejs"
-  install_pkg config, 'http://nodejs.org/dist/v0.10.26/node-v0.10.26.pkg'
+def install_bundler(config)
+  say config, "Installing bundler"
+  run_script config, "sudo gem install bundler"
 end
 
 
@@ -97,7 +97,7 @@ end
 
 def install_project_dependencies(config, project_vm_path)
   say config, "Install project dependencies"
-  run_script config, "( cd #{project_vm_path} && exec npm install )"
+  run_script config, "( cd #{project_vm_path} && exec sudo bundle install )"
 end
 
 
