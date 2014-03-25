@@ -14,11 +14,12 @@
   Done - works fine.
 
 - Add VagrantFile.
-
-- Run html / css / javascript thru appropriate linters (add to build script?).
+  Done.
 
 - Adjust page layout to look better on an iPad (font size, font family, increase width of example, add bottom margin to footer).
   
 - Update screenshot image.
 
 - Run Safari in native OS (i.e. not in a VM), open the debug window, refresh the page, and see if there is still an infinite loop (page never loads).
+
+- Run html / css / javascript thru appropriate linters (add to build script?).
