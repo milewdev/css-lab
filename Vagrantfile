@@ -13,7 +13,7 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
   install_gpg                     config  # needed in order to sign git commits
   install_git                     config
   install_git_gui                 config
-  install_bundler                 config
+  install_bundler                 config  # recommended for gh-pages
   install_editor                  config
   install_project_source_code     config, PROJECT_SOURCE_URL, PROJECT_VM_PATH
   install_project_dependencies    config, PROJECT_VM_PATH
@@ -106,6 +106,10 @@ def reboot(config)
   run_script config, "sudo reboot"
 end
 
+
+#
+# general utilities
+#
 
 def install_dmg(config, url, path, pkg)
   path = '/Volumes/' + escape_shell_special_chars(path)
