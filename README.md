@@ -74,7 +74,7 @@ like http://192.168.1.123:4000.
 sure you use ./build instead otherwise the .css files will get out of sync with the .scss files.
   
 - If you wish to modify the Vagrantfile, it is best to do so on the host machine (~/work/css-lab/Vagrantfile) 
-so that you can easily test them with an edit/vagrant up/vagrant destroy cycle.  Once you have finished making 
+so that you can easily do an edit/vagrant up/vagrant destroy cycle.  Once you have finished making 
 changes, vagrant up and then in a terminal window on the vm do something like:
     ```
     $ cd ~/Documents/css-lab

@@ -48,7 +48,7 @@
     install_event_handlers(placeholder, specs, controls);    
   
     // The functions below are nested so that they can
-    // references the placeholder, specs, and controls
+    // reference the placeholder, specs, and controls
     // variables instead of passing them all over the 
     // place.  This means, however, that copies of such
     // functions will be created for each placeholder.
