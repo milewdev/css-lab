@@ -20,6 +20,9 @@
   Done.
   
 - Update screenshot image.
+  Done.
+
+- Write README.md
 
 - Run Safari in native OS (i.e. not in a VM), open the debug window, refresh the page, and see if there is still an infinite loop (page never loads).
 
