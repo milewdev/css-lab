@@ -10,33 +10,32 @@ a:hover {
 
 body {
   font-family: "Palatino", serif;
-  font-size: 90%;
+  font-size: 100%;
   font-weight: 100;
   margin: 0 auto;
   /* fixed width page, horizontally centered */
   width: 880px; }
   body header {
     /* page header */
-    padding: 2em;
-    padding-bottom: 3em;
+    padding-top: 1.5em;
+    padding-bottom: 1.2em;
     text-align: center; }
     body header h1 {
-      font-family: "Helvetica Neue", "sans-serif";
-      font-size: 180%;
-      font-weight: 100;
-      letter-spacing: 0.05em; }
+      font-family: "Lucida Sans Unicode", "Lucida Grande", sans-serif;
+      font-size: 130%;
+      font-weight: bold; }
   body section[id="css-settings"] {
     /* use a section to contain the list of settings, placed on the left side of the page */
     float: left;
-    font-family: monospace;
+    font-family: "Lucida Console", monospace;
+    font-size: 70%;
     padding-top: 1em;
-    padding-right: 4em;
-    width: 44%; }
+    width: 40%; }
     body section[id="css-settings"] article {
       /* each html element (e.g. ul, li, etc.) is contained in an article */
       margin: 0 auto;
       margin-bottom: 1em;
-      width: 25em; }
+      padding-left: 4em; }
       body section[id="css-settings"] article div {
         /* each css setting (e.g. padding-left, margin-top, etc.) is contained in a div */
         color: #999;
@@ -74,7 +73,9 @@ body {
     /* use a section to contain the example, placed on the right side of the page */
     float: left;
     margin-top: 1em;
-    width: 44%; }
+    padding-left: 3em;
+    width: 50%;
+    font-size: 90%; }
     body section[id="example"] div {
       /* a div is used to emulate a <body> element */
       border: 1px solid white;
@@ -93,7 +94,7 @@ body {
           vertical-align: middle; }
   body footer {
     clear: both;
-    padding-top: 2em;
+    padding-top: 1em;
     padding-bottom: 1em;
     text-align: center; }
     body footer span[class="source-link"] {

@@ -17,6 +17,7 @@
   Done.
 
 - Adjust page layout to look better on an iPad (font size, font family, increase width of example, add bottom margin to footer).
+  Done.
   
 - Update screenshot image.
 

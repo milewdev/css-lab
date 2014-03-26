@@ -14,50 +14,49 @@ a:hover {
 
 body {
   font-family: "Palatino", serif;
-  font-size: 90%;
-  font-weight: 100; 
+  font-size: 100%;
+  font-weight: 100;
   margin: 0 auto;                         /* fixed width page, horizontally centered */
   width: 880px;
 
   header {                                /* page header */
-    padding: 2em; 
-    padding-bottom: 3em;
+    padding-top: 1.5em;
+    padding-bottom: 1.2em;
     text-align: center;
-  
+
     h1 {
-      font-family: "Helvetica Neue", "sans-serif";
-      font-size: 180%;
-      font-weight: 100;
-      letter-spacing: 0.05em;
+      font-family: "Lucida Sans Unicode", "Lucida Grande", sans-serif;
+      font-size: 130%;
+      font-weight: bold;
     }
   }
 
   section[id="css-settings"] {            /* use a section to contain the list of settings, placed on the left side of the page */
     float: left;
-    font-family: monospace;
+    font-family: "Lucida Console", monospace;
+    font-size: 70%;
     padding-top: $settings-whitespace;
-    padding-right: 4em;
-    width: 44%;
-  
+    width: 40%;
+
     article {                             /* each html element (e.g. ul, li, etc.) is contained in an article */
       margin: 0 auto;
       margin-bottom: $settings-whitespace;
-      width: 25em;
-  
+      padding-left: 4em;
+
       div {                               /* each css setting (e.g. padding-left, margin-top, etc.) is contained in a div */
         color: #999;
         margin-left: 2em;
-    
+
         label {                           /* used for css setting name ('padding left:') and units ('em;') */
           color: inherit;
           display: inline-block;
           vertical-align: middle;
         }
-    
+
         label:nth-child(1) {              /* make the css setting names (the first label) the same width so they line up nicely */
           width: 9.5em;
         };
-    
+
         input[type="text"] {
           color: inherit;
           border: none;
@@ -65,7 +64,7 @@ body {
           vertical-align: middle;
           width: 1.6em;
         }
-    
+
         input[type="range"] {
           margin-left: 3em;
           vertical-align: middle;
@@ -76,13 +75,13 @@ body {
       .non-default-value {                /* the look of setting labels when the setting value is not the default (makes them stand out) */
         color: black;
         font-weight: bold;
-      }  
+      }
     }
-  
+
     article[class="buttons"] {            /* use an article to contain the preset and reset buttons below the settings */
       padding-top: $settings-whitespace;
       text-align: center;
-  
+
       input[type="button"] {              /* make the buttons the same width so they look better */
         width: 6em;
       }
@@ -92,12 +91,14 @@ body {
   section[id="example"] {                 /* use a section to contain the example, placed on the right side of the page */
     float: left;
     margin-top: 1em;
-    width: 44%;
-  
+    padding-left: 3em;
+    width: 50%;
+    font-size: 90%;
+
     div {                                 /* a div is used to emulate a <body> element */
       border: 1px solid white;            /* needed to force li margins to not push the div down */
       box-shadow: 0px 0px 14px #666;
-  
+
       ul {
         list-style-type: disc;
         list-style-position: outside;
@@ -118,10 +119,10 @@ body {
 
   footer {
     clear: both;
-    padding-top: 2em;
+    padding-top: 1em;
     padding-bottom: 1em;
     text-align: center;
-    
+
     span[class="source-link"] {
       font-size: 70%;
     }
