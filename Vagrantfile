@@ -1,7 +1,7 @@
 VAGRANTFILE_API_VERSION   = "2"
 PROJECT_SOURCE_URL        = "https://github.com/milewgit/css-lab.git"
 PROJECT_VM_PATH           = "/Users/vagrant/Documents/css-lab"
-FORWARDED_PORT            = { guest: 4000, host: 8080 }
+FORWARDED_PORT            = { guest: 4000, host: 4000 }
 PROVIDER                  = "vmware_fusion"
 BOX                       = "OSX109"
 
