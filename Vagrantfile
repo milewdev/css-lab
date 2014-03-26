@@ -1,39 +1,46 @@
 VAGRANTFILE_API_VERSION   = "2"
 PROJECT_SOURCE_URL        = "https://github.com/milewgit/css-lab.git"
 PROJECT_VM_PATH           = "/Users/vagrant/Documents/css-lab"
-PROVIDER                  = :vmware_fusion
+FORWARDED_PORT            = { guest: 4000, host: 8080 }
+PROVIDER                  = "vmware_fusion"
 BOX                       = "OSX109"
 
 
 Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
-  select_box                      config, BOX
-  configure_provider              config, PROVIDER
-  setup_synced_folders            config
+  setup_box                       config
+  setup_provider                  config
+  setup_forwarded_port            config  # access web server on vm via host port
+  setup_synced_folder             config  # easy way to copy gpg keys and git config from host to vm
   install_osx_command_line_tools  config  # needed by git
   install_gpg                     config  # needed in order to sign git commits
-  install_git                     config
-  install_git_gui                 config
+  install_git                     config  # source is on github
+  install_git_gui                 config  # sometimes gui diff is handy
   install_bundler                 config  # recommended for gh-pages
   install_editor                  config
-  install_project_source_code     config, PROJECT_SOURCE_URL, PROJECT_VM_PATH
-  install_project_dependencies    config, PROJECT_VM_PATH
-  reboot                          config
+  install_project_source_code     config
+  install_project_dependencies    config
+  reboot_vm                       config
 end
 
 
-def select_box(config, box)
-  config.vm.box = box
+def setup_box(config)
+  config.vm.box = BOX
 end
 
 
-def configure_provider(config, vm)
-  config.vm.provider(vm) do |vb|
+def setup_provider(config)
+  config.vm.provider(PROVIDER) do |vb|
     vb.gui = true
   end
 end
 
 
-def setup_synced_folders(config)
+def setup_forwarded_port(config)
+  config.vm.network "forwarded_port", guest: FORWARDED_PORT[:guest], host: FORWARDED_PORT[:host]
+end
+
+
+def setup_synced_folder(config)
   config.vm.synced_folder "~/", "/.vagrant_host_home"
 end
 
@@ -89,19 +96,19 @@ def install_editor(config)
 end
 
 
-def install_project_source_code(config, project_source_url, project_vm_path)
+def install_project_source_code(config)
   say config, "Installing project source code"
-  run_script config, "git clone #{project_source_url} #{project_vm_path}"
+  run_script config, "git clone #{PROJECT_SOURCE_URL} #{PROJECT_VM_PATH}"
 end
 
 
-def install_project_dependencies(config, project_vm_path)
+def install_project_dependencies(config)
   say config, "Install project dependencies"
-  run_script config, "( cd #{project_vm_path} && exec sudo bundle install )"
+  run_script config, "( cd #{PROJECT_VM_PATH} && exec sudo bundle install )"
 end
 
 
-def reboot(config)
+def reboot_vm(config)
   say config, "Rebooting"
   run_script config, "sudo reboot"
 end
