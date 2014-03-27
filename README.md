@@ -16,6 +16,7 @@ A very small interactive CSS playground (currently only ul & li margins and padd
 - [VMware Fusion](http://www.vmware.com/ca/en/products/fusion)
 - [Vagrant](http://www.vagrantup.com)
 - [Vagrant VMware provider](https://www.vagrantup.com/vmware)
+- An OS X Vagrant box named OSX109 (you can use a different name by changing the BOX variable near the top of the Vagrantfile downloaded in the Install step below)
 
 
 #####Install:
