@@ -5,8 +5,8 @@ A very small interactive CSS playground (currently only ul & li margins and padd
 
 
 ### Where is it?
-  
-[Here](http://milewgit.github.io/css-lab/).
+
+[Here](http://milewdev.github.io/css-lab/).
 
 
 ### Development Setup
@@ -25,7 +25,7 @@ In a terminal window on the host machine:
 ```
 $ mkdir -p ~/work/css-lab
 $ cd ~/work/css-lab
-$ curl -fsSL https://raw.github.com/milewgit/css-lab/gh-pages/Vagrantfile -o Vagrantfile
+$ curl -fsSL https://raw.github.com/milewdev/css-lab/gh-pages/Vagrantfile -o Vagrantfile
 $ vagrant up --provider=vmware_fusion
 ...
 ```
@@ -46,7 +46,7 @@ Open a browser on the vm and go to http://localhost:4000.
 
 #####Uninstall:
 
-**WARNING**: This will completely destroy the vm so you likely want to ensure that you have 
+**WARNING**: This will completely destroy the vm so you likely want to ensure that you have
 pushed any and all code changes to GitHub beforehand.
 
 In a terminal window on the host machine:
@@ -61,7 +61,7 @@ $ rm -r ~/work/css-lab    # and possibly rm -r ~/work if it is now empty
 #####Development Notes:
 
 - ./watch is a shell script that will launch both Sass and Jekyll in watch mode.  Run ./watch and
-launch a browser pointing to http://localhost:4000.  As you make and save changes to the source 
+launch a browser pointing to http://localhost:4000.  As you make and save changes to the source
 files (e.g. index.html, script.js, style.scss), simply refresh the browser (Command-R, etc.)
 to immediately see the results of your changes.
 
@@ -73,9 +73,9 @@ like http://192.168.1.123:4000.
 
 - ./build will invoke Sass to convert .scss files to .css files.  If you do not use ./watch, make
 sure you use ./build instead otherwise the .css files will get out of sync with the .scss files.
-  
-- If you wish to modify the Vagrantfile, it is best to do so on the host machine (~/work/css-lab/Vagrantfile) 
-so that you can easily do an edit/vagrant up/vagrant destroy cycle.  Once you have finished making 
+
+- If you wish to modify the Vagrantfile, it is best to do so on the host machine (~/work/css-lab/Vagrantfile)
+so that you can easily do an edit/vagrant up/vagrant destroy cycle.  Once you have finished making
 changes, vagrant up and then in a terminal window on the vm do something like:
     ```
     $ cd ~/Documents/css-lab
