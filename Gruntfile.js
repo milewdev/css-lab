@@ -1,0 +1,57 @@
+module.exports = function (grunt) {
+  grunt.initConfig({
+
+    sass: {
+      dist: {
+        files: {
+          '.tmp/style.css': 'scss/style.scss'
+        }
+      }
+    },
+
+    autoprefixer: {
+      dist: {
+        files: {
+          'stylesheets/style.css': '.tmp/style.css'
+        }
+      }
+    },
+
+    watch: {
+      options: {
+        livereload: '<%= connect.options.livereload %>'
+      },
+      html: {
+        files: ['index.html']   // so that it causes a livereload
+      },
+      styles: {
+        files: ['scss/style.scss'],
+        tasks: ['build']
+      }
+    },
+
+    connect: {
+      options: {
+        port: 8000,
+        livereload: 35729,
+        hostname: 'localhost'
+      },
+      livereload: {
+        options: {
+          base: ['.']
+        }
+      }
+    }
+
+  });
+
+  grunt.loadNpmTasks('grunt-contrib-sass');
+  grunt.loadNpmTasks('grunt-autoprefixer');
+  grunt.loadNpmTasks('grunt-contrib-watch');
+  grunt.loadNpmTasks('grunt-contrib-connect');
+
+  grunt.registerTask('build', ['sass', 'autoprefixer']);
+  grunt.registerTask('serve', function (target) {
+    grunt.task.run(['connect:livereload', 'watch']);
+  });
+};
