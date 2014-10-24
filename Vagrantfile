@@ -31,9 +31,11 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |vagrant_config|
     install_homebrew                                    # needed to install ruby
     install_ruby '2.1.2'
     install_bundler
+    install_node
     git_clone PROJECT_GITHUB_URL, PROJECT_VM_DIR
     cd PROJECT_VM_DIR do
       bundle_install
+      npm_install
     end
     add_to_path "#{PROJECT_VM_DIR}/node_modules/.bin"
     reboot_vm
