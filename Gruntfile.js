@@ -3,17 +3,25 @@ module.exports = function (grunt) {
 
     sass: {
       dist: {
-        files: {
-          '.tmp/style.css': 'scss/style.scss'
-        }
+        files: [{
+          expand: true,
+          cwd: 'scss/',
+          src: ['*.scss'],
+          dest: '.tmp/',
+          ext: '.css'
+        }]
       }
     },
 
     autoprefixer: {
       dist: {
-        files: {
-          'stylesheets/style.css': '.tmp/style.css'
-        }
+        files: [{
+          expand: true,
+          cwd: '.tmp/',
+          src: ['*.css'],
+          dest: 'stylesheets/',
+          ext: '.css'
+        }]
       }
     },
 
@@ -25,7 +33,7 @@ module.exports = function (grunt) {
         files: ['index.html']   // so that it causes a livereload
       },
       styles: {
-        files: ['scss/style.scss'],
+        files: ['scss/*.scss'],
         tasks: ['build']
       }
     },
