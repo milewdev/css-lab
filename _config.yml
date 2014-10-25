@@ -1,2 +1,4 @@
+# Configuration file for Jekyll
+# See http://jekyllrb.com/docs/configuration/
 safe: true
 exclude: [ "build", "Gemfile", "Gemfile.lock", "LICENSE", "style.scss", "watch" ]
