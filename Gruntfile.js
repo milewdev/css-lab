@@ -19,7 +19,7 @@ module.exports = function (grunt) {
           expand: true,
           cwd: '.tmp/',
           src: ['*.css'],
-          dest: 'stylesheets/',
+          dest: 'css/',
           ext: '.css'
         }]
       }
