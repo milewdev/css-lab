@@ -1,0 +1,50 @@
+.mockup-page {
+  box-shadow: 0 0 5px 0px #999;
+  padding: 0.001em;       // prevent t+b margin collapse
+  width: 14em;
+
+  & > * {
+    border: solid 1px #ccc;
+    color: #999;
+    font-family: serif;
+    font-size: 0.8em;
+    margin: 0.4em;
+    padding: 0.2em 0.4em; // t+b l+r
+  }
+
+  .above {
+    display: block;
+  }
+
+  .left {
+    display: block;
+    float: left;
+    margin-top: 0;        // See http://www.w3.org/TR/CSS21/box.html#collapsing-margins
+    width: 7em;
+  }
+
+  .right {
+    display: block;
+    overflow: hidden;
+  }
+
+  .below {
+    clear: left;
+    display: block;
+  }
+}
+
+.mockup-css {
+  pre {
+    border: 1px solid #eee;
+    font-size: 0.9em;
+    overflow: auto;
+    padding: 0.8em;
+  }
+
+  input {
+    left: 3em;
+    position: relative;
+    top: 0.5em;
+  }
+}
