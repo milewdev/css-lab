@@ -21,6 +21,7 @@ class Converters
 refresh = ->
   $('input').trigger('refresh')
 
+# Use 'input' and 'change'; see http://stackoverflow.com/a/19067260
 build_range_handler = (range) ->
   mockup = $(range.data('mockup'))
   css_attr_name = range.data('css-attr-name')
@@ -61,7 +62,6 @@ build_hidden = (hidden) ->
   hidden.before(display)
   mockup.css(css_attr_name, css_attr_value)
 
-# Use 'input' and 'change'; see http://stackoverflow.com/a/19067260
 install_range_handlers = ->
   $("input[type='range']").each ->
     $this = $(this)
