@@ -24,9 +24,11 @@ body {
     box-shadow: 0 0 5px 0px #999;
     margin: 0 auto;
     padding: 0.001em; }
-    .left-column .mockup-page > * {
+    .left-column .mockup-page section {
       border: solid 1px #ccc;
       color: #999;
+      font-family: serif;
+      font-size: 0.8em;
       margin: 0.4em;
       padding: 0.2em 0.4em; }
 

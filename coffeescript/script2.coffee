@@ -8,6 +8,7 @@ class Converters
     range_value + 'em'
 
   @range_to_width: @range_to_em
+  @range_to_margin: @range_to_em
   @range_to_margin_top: @range_to_em
 
   @range_to_display: (range_value) ->

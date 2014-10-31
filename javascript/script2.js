@@ -16,6 +16,8 @@
 
     Converters.range_to_width = Converters.range_to_em;
 
+    Converters.range_to_margin = Converters.range_to_em;
+
     Converters.range_to_margin_top = Converters.range_to_em;
 
     Converters.range_to_display = function(range_value) {
