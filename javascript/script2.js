@@ -1,5 +1,5 @@
 (function() {
-  var Converters, build_checkbox_handler, build_hidden, build_range_handler, install_button_handlers, install_checkbox_handlers, install_hidden_labels, install_range_handlers, reset, reset_checkboxes, reset_ranges;
+  var Converters, build_checkbox_handler, build_hidden, build_range_handler, install_button_handlers, install_checkbox_handlers, install_hidden_labels, install_range_handlers, refresh, reset, reset_checkboxes, reset_ranges;
 
   Converters = (function() {
     function Converters() {}
@@ -32,6 +32,10 @@
 
   })();
 
+  refresh = function() {
+    return $('input').trigger('refresh');
+  };
+
   build_range_handler = function(range) {
     var css_attr_name, css_attr_value, display, mockup;
     mockup = $(range.data('mockup'));
@@ -39,12 +43,15 @@
     css_attr_value = this.value;
     display = $("<span class='css-code'>" + css_attr_name + ": " + css_attr_value + ";</span>");
     range.before(display);
-    return function() {
+    range.on('input change', function() {
+      return refresh();
+    });
+    return range.on('refresh', function() {
       var css_value;
       css_value = Converters.convert(css_attr_name, this.value);
       mockup.css(css_attr_name, css_value);
       return display.text("" + css_attr_name + ": " + css_value + ";");
-    };
+    });
   };
 
   build_checkbox_handler = function(checkbox) {
@@ -54,17 +61,24 @@
     css_attr_value = checkbox.data('css-attr-value');
     display = $("<span class='css-code'>" + css_attr_name + ": " + css_attr_value + ";</span>");
     checkbox.before(display);
-    return function() {
+    checkbox.on('input change', function() {
       var checked;
       checked = $(this).prop('checked');
       if (checked) {
-        mockup.css(css_attr_name, css_attr_value);
-        return display.css('text-decoration', '');
+        display.css('text-decoration', '');
       } else {
         mockup.css(css_attr_name, '');
-        return display.css('text-decoration', 'line-through');
+        display.css('text-decoration', 'line-through');
       }
-    };
+      return refresh();
+    });
+    return checkbox.on('refresh', function() {
+      var checked;
+      checked = $(this).prop('checked');
+      if (checked) {
+        return mockup.css(css_attr_name, css_attr_value);
+      }
+    });
   };
 
   build_hidden = function(hidden) {
@@ -81,7 +95,7 @@
     return $("input[type='range']").each(function() {
       var $this;
       $this = $(this);
-      return $this.on('input change', build_range_handler($this));
+      return build_range_handler($this);
     });
   };
 
@@ -89,7 +103,7 @@
     return $("input[type='checkbox']").each(function() {
       var $this;
       $this = $(this);
-      return $this.on('input change', build_checkbox_handler($this));
+      return build_checkbox_handler($this);
     });
   };
 

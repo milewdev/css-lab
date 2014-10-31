@@ -18,13 +18,18 @@ class Converters
     ['none', 'left', 'right'][range_value]
 
 
+refresh = ->
+  $('input').trigger('refresh')
+
 build_range_handler = (range) ->
   mockup = $(range.data('mockup'))
   css_attr_name = range.data('css-attr-name')
   css_attr_value = this.value
   display = $("<span class='css-code'>#{css_attr_name}: #{css_attr_value};</span>")
   range.before(display)
-  ->
+  range.on 'input change', ->
+    refresh()
+  range.on 'refresh', ->
     css_value = Converters.convert(css_attr_name, this.value)
     mockup.css(css_attr_name, css_value)
     display.text("#{css_attr_name}: #{css_value};")
@@ -35,14 +40,18 @@ build_checkbox_handler = (checkbox) ->
   css_attr_value = checkbox.data('css-attr-value')
   display = $("<span class='css-code'>#{css_attr_name}: #{css_attr_value};</span>")
   checkbox.before(display)
-  ->
+  checkbox.on 'input change', ->
     checked = $(this).prop('checked')
     if checked
-      mockup.css(css_attr_name, css_attr_value)
       display.css('text-decoration', '')
     else
       mockup.css(css_attr_name, '')
       display.css('text-decoration', 'line-through')
+    refresh()
+  checkbox.on 'refresh', ->
+    checked = $(this).prop('checked')
+    if checked
+      mockup.css(css_attr_name, css_attr_value)
 
 build_hidden = (hidden) ->
   mockup = $(hidden.data('mockup'))
@@ -56,12 +65,12 @@ build_hidden = (hidden) ->
 install_range_handlers = ->
   $("input[type='range']").each ->
     $this = $(this)
-    $this.on 'input change', build_range_handler($this)
+    build_range_handler($this)
 
 install_checkbox_handlers = ->
   $("input[type='checkbox']").each ->
     $this = $(this)
-    $this.on 'input change', build_checkbox_handler($this)
+    build_checkbox_handler($this)
 
 install_hidden_labels = ->
   $("input[type='hidden']").each ->
