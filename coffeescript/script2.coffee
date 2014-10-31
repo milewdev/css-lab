@@ -1,7 +1,7 @@
-class Converters
+class RangeConverters
 
   @convert: (css_attr_name, range_value) ->
-    convert = Converters["range_to_#{css_attr_name.replace('-', '_')}"]
+    convert = RangeConverters["range_to_#{css_attr_name.replace('-', '_')}"]
     convert(range_value)
 
   @range_to_em: (range_value) ->
@@ -31,7 +31,7 @@ build_range_handler = (range) ->
   range.on 'input change', ->
     refresh()
   range.on 'refresh', ->
-    css_value = Converters.convert(css_attr_name, this.value)
+    css_value = RangeConverters.convert(css_attr_name, this.value)
     mockup.css(css_attr_name, css_value)
     display.text("#{css_attr_name}: #{css_value};")
 

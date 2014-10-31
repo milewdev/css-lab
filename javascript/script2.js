@@ -1,34 +1,34 @@
 (function() {
-  var Converters, build_checkbox_handler, build_hidden, build_range_handler, install_button_handlers, install_checkbox_handlers, install_hidden_labels, install_range_handlers, refresh, reset, reset_checkboxes, reset_ranges;
+  var RangeConverters, build_checkbox_handler, build_hidden, build_range_handler, install_button_handlers, install_checkbox_handlers, install_hidden_labels, install_range_handlers, refresh, reset, reset_checkboxes, reset_ranges;
 
-  Converters = (function() {
-    function Converters() {}
+  RangeConverters = (function() {
+    function RangeConverters() {}
 
-    Converters.convert = function(css_attr_name, range_value) {
+    RangeConverters.convert = function(css_attr_name, range_value) {
       var convert;
-      convert = Converters["range_to_" + (css_attr_name.replace('-', '_'))];
+      convert = RangeConverters["range_to_" + (css_attr_name.replace('-', '_'))];
       return convert(range_value);
     };
 
-    Converters.range_to_em = function(range_value) {
+    RangeConverters.range_to_em = function(range_value) {
       return range_value + 'em';
     };
 
-    Converters.range_to_width = Converters.range_to_em;
+    RangeConverters.range_to_width = RangeConverters.range_to_em;
 
-    Converters.range_to_margin = Converters.range_to_em;
+    RangeConverters.range_to_margin = RangeConverters.range_to_em;
 
-    Converters.range_to_margin_top = Converters.range_to_em;
+    RangeConverters.range_to_margin_top = RangeConverters.range_to_em;
 
-    Converters.range_to_display = function(range_value) {
+    RangeConverters.range_to_display = function(range_value) {
       return ['none', 'inline', 'inline-block', 'block'][range_value];
     };
 
-    Converters.range_to_float = function(range_value) {
+    RangeConverters.range_to_float = function(range_value) {
       return ['none', 'left', 'right'][range_value];
     };
 
-    return Converters;
+    return RangeConverters;
 
   })();
 
@@ -48,7 +48,7 @@
     });
     return range.on('refresh', function() {
       var css_value;
-      css_value = Converters.convert(css_attr_name, this.value);
+      css_value = RangeConverters.convert(css_attr_name, this.value);
       mockup.css(css_attr_name, css_value);
       return display.text("" + css_attr_name + ": " + css_value + ";");
     });
