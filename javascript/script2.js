@@ -1,6 +1,10 @@
 (function() {
   var RangeConverters, build_checkbox_handler, build_hidden, build_range_handler, install_button_handlers, install_checkbox_handlers, install_hidden_labels, install_range_handlers, refresh, reset, reset_checkboxes, reset_ranges;
 
+  refresh = function() {
+    return $('input').trigger('refresh');
+  };
+
   RangeConverters = (function() {
     function RangeConverters() {}
 
@@ -10,16 +14,6 @@
       return convert(range_value);
     };
 
-    RangeConverters.range_to_em = function(range_value) {
-      return range_value + 'em';
-    };
-
-    RangeConverters.range_to_width = RangeConverters.range_to_em;
-
-    RangeConverters.range_to_margin = RangeConverters.range_to_em;
-
-    RangeConverters.range_to_margin_top = RangeConverters.range_to_em;
-
     RangeConverters.range_to_display = function(range_value) {
       return ['none', 'inline', 'inline-block', 'block'][range_value];
     };
@@ -28,13 +22,19 @@
       return ['none', 'left', 'right'][range_value];
     };
 
+    RangeConverters.range_to_em = function(range_value) {
+      return range_value + 'em';
+    };
+
+    RangeConverters.range_to_margin = RangeConverters.range_to_em;
+
+    RangeConverters.range_to_margin_top = RangeConverters.range_to_em;
+
+    RangeConverters.range_to_width = RangeConverters.range_to_em;
+
     return RangeConverters;
 
   })();
-
-  refresh = function() {
-    return $('input').trigger('refresh');
-  };
 
   build_range_handler = function(range) {
     var css_attr_name, css_attr_value, display, mockup;
@@ -51,6 +51,14 @@
       css_value = RangeConverters.convert(css_attr_name, this.value);
       mockup.css(css_attr_name, css_value);
       return display.text("" + css_attr_name + ": " + css_value + ";");
+    });
+  };
+
+  install_range_handlers = function() {
+    return $("input[type='range']").each(function() {
+      var $this;
+      $this = $(this);
+      return build_range_handler($this);
     });
   };
 
@@ -81,6 +89,14 @@
     });
   };
 
+  install_checkbox_handlers = function() {
+    return $("input[type='checkbox']").each(function() {
+      var $this;
+      $this = $(this);
+      return build_checkbox_handler($this);
+    });
+  };
+
   build_hidden = function(hidden) {
     var css_attr_name, css_attr_value, display, mockup;
     mockup = $(hidden.data('mockup'));
@@ -89,22 +105,6 @@
     display = $("<span class='css-code'>" + css_attr_name + ": " + css_attr_value + ";</span>");
     hidden.before(display);
     return mockup.css(css_attr_name, css_attr_value);
-  };
-
-  install_range_handlers = function() {
-    return $("input[type='range']").each(function() {
-      var $this;
-      $this = $(this);
-      return build_range_handler($this);
-    });
-  };
-
-  install_checkbox_handlers = function() {
-    return $("input[type='checkbox']").each(function() {
-      var $this;
-      $this = $(this);
-      return build_checkbox_handler($this);
-    });
   };
 
   install_hidden_labels = function() {

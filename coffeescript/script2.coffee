@@ -1,15 +1,17 @@
+refresh = ->
+  $('input').trigger('refresh')
+
+
+#
+# CSS attribute ranges - these are attributes where we allow the user
+# to select a value from a range via a range bar.
+#
+
 class RangeConverters
 
   @convert: (css_attr_name, range_value) ->
     convert = RangeConverters["range_to_#{css_attr_name.replace('-', '_')}"]
     convert(range_value)
-
-  @range_to_em: (range_value) ->
-    range_value + 'em'
-
-  @range_to_width: @range_to_em
-  @range_to_margin: @range_to_em
-  @range_to_margin_top: @range_to_em
 
   @range_to_display: (range_value) ->
     ['none', 'inline', 'inline-block', 'block'][range_value]
@@ -17,9 +19,12 @@ class RangeConverters
   @range_to_float: (range_value) ->
     ['none', 'left', 'right'][range_value]
 
+  @range_to_em: (range_value) ->
+    range_value + 'em'
 
-refresh = ->
-  $('input').trigger('refresh')
+  @range_to_margin: @range_to_em
+  @range_to_margin_top: @range_to_em
+  @range_to_width: @range_to_em
 
 # Use 'input' and 'change'; see http://stackoverflow.com/a/19067260
 build_range_handler = (range) ->
@@ -34,6 +39,17 @@ build_range_handler = (range) ->
     css_value = RangeConverters.convert(css_attr_name, this.value)
     mockup.css(css_attr_name, css_value)
     display.text("#{css_attr_name}: #{css_value};")
+
+install_range_handlers = ->
+  $("input[type='range']").each ->
+    $this = $(this)
+    build_range_handler($this)
+
+
+#
+# CSS attribute switches - these are attributes that we allow the
+# user to turn on and off rather than setting a particular value.
+#
 
 build_checkbox_handler = (checkbox) ->
   mockup = $(checkbox.data('mockup'))
@@ -54,6 +70,16 @@ build_checkbox_handler = (checkbox) ->
     if checked
       mockup.css(css_attr_name, css_attr_value)
 
+install_checkbox_handlers = ->
+  $("input[type='checkbox']").each ->
+    $this = $(this)
+    build_checkbox_handler($this)
+
+
+#
+# Readonly css attributes.
+#
+
 build_hidden = (hidden) ->
   mockup = $(hidden.data('mockup'))
   css_attr_name = hidden.data('css-attr-name')
@@ -62,24 +88,24 @@ build_hidden = (hidden) ->
   hidden.before(display)
   mockup.css(css_attr_name, css_attr_value)
 
-install_range_handlers = ->
-  $("input[type='range']").each ->
-    $this = $(this)
-    build_range_handler($this)
-
-install_checkbox_handlers = ->
-  $("input[type='checkbox']").each ->
-    $this = $(this)
-    build_checkbox_handler($this)
-
 install_hidden_labels = ->
   $("input[type='hidden']").each ->
     $this = $(this)
     build_hidden($this)
 
+
+#
+# Handlers for button click events.
+#
+
 install_button_handlers = ->
   $('#reset').on 'click', ->
     reset()
+
+
+#
+# Provide the means to reset all controls to their initial values.
+#
 
 reset_ranges = ->
   $('input[data-default-value]').each ->
@@ -96,6 +122,11 @@ reset_checkboxes = ->
 reset = ->
   reset_ranges()
   reset_checkboxes()
+
+
+#
+# Code that runs when this script is loaded.
+#
 
 install_range_handlers()
 install_checkbox_handlers()
