@@ -1,3 +1,9 @@
+build_display_text = (css_attr_name, css_attr_value) ->
+  "#{css_attr_name}: #{css_attr_value};"
+
+build_display_element = (css_attr_name, css_attr_value) ->
+  $("<span class='css-code'>#{build_display_text(css_attr_name, css_attr_value)}</span>")
+
 refresh = ->
   $('input').trigger('refresh')
 
@@ -26,19 +32,20 @@ class RangeConverters
   @range_to_margin_top: @range_to_em
   @range_to_width: @range_to_em
 
+
 # Use 'input' and 'change'; see http://stackoverflow.com/a/19067260
 build_range_handler = (range) ->
   mockup = $(range.data('mockup'))
   css_attr_name = range.data('css-attr-name')
   css_attr_value = this.value
-  display = $("<span class='css-code'>#{css_attr_name}: #{css_attr_value};</span>")
+  display = build_display_element(css_attr_name, css_attr_value)
   range.before(display)
   range.on 'input change', ->
     refresh()
   range.on 'refresh', ->
     css_value = RangeConverters.convert(css_attr_name, this.value)
     mockup.css(css_attr_name, css_value)
-    display.text("#{css_attr_name}: #{css_value};")
+    display.text(build_display_text(css_attr_name, css_value))
 
 install_range_handlers = ->
   $("input[type='range']").each ->
@@ -55,7 +62,7 @@ build_checkbox_handler = (checkbox) ->
   mockup = $(checkbox.data('mockup'))
   css_attr_name = checkbox.data('css-attr-name')
   css_attr_value = checkbox.data('css-attr-value')
-  display = $("<span class='css-code'>#{css_attr_name}: #{css_attr_value};</span>")
+  display = build_display_element(css_attr_name, css_attr_value)
   checkbox.before(display)
   checkbox.on 'input change', ->
     checked = $(this).prop('checked')
@@ -84,7 +91,7 @@ build_hidden = (hidden) ->
   mockup = $(hidden.data('mockup'))
   css_attr_name = hidden.data('css-attr-name')
   css_attr_value = hidden.data('css-attr-value')
-  display = $("<span class='css-code'>#{css_attr_name}: #{css_attr_value};</span>")
+  display = build_display_element(css_attr_name, css_attr_value)
   hidden.before(display)
   mockup.css(css_attr_name, css_attr_value)
 

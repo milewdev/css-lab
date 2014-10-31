@@ -1,5 +1,13 @@
 (function() {
-  var RangeConverters, build_checkbox_handler, build_hidden, build_range_handler, install_button_handlers, install_checkbox_handlers, install_hidden_labels, install_range_handlers, refresh, reset, reset_checkboxes, reset_ranges;
+  var RangeConverters, build_checkbox_handler, build_display_element, build_display_text, build_hidden, build_range_handler, install_button_handlers, install_checkbox_handlers, install_hidden_labels, install_range_handlers, refresh, reset, reset_checkboxes, reset_ranges;
+
+  build_display_text = function(css_attr_name, css_attr_value) {
+    return "" + css_attr_name + ": " + css_attr_value + ";";
+  };
+
+  build_display_element = function(css_attr_name, css_attr_value) {
+    return $("<span class='css-code'>" + (build_display_text(css_attr_name, css_attr_value)) + "</span>");
+  };
 
   refresh = function() {
     return $('input').trigger('refresh');
@@ -41,7 +49,7 @@
     mockup = $(range.data('mockup'));
     css_attr_name = range.data('css-attr-name');
     css_attr_value = this.value;
-    display = $("<span class='css-code'>" + css_attr_name + ": " + css_attr_value + ";</span>");
+    display = build_display_element(css_attr_name, css_attr_value);
     range.before(display);
     range.on('input change', function() {
       return refresh();
@@ -50,7 +58,7 @@
       var css_value;
       css_value = RangeConverters.convert(css_attr_name, this.value);
       mockup.css(css_attr_name, css_value);
-      return display.text("" + css_attr_name + ": " + css_value + ";");
+      return display.text(build_display_text(css_attr_name, css_value));
     });
   };
 
@@ -67,7 +75,7 @@
     mockup = $(checkbox.data('mockup'));
     css_attr_name = checkbox.data('css-attr-name');
     css_attr_value = checkbox.data('css-attr-value');
-    display = $("<span class='css-code'>" + css_attr_name + ": " + css_attr_value + ";</span>");
+    display = build_display_element(css_attr_name, css_attr_value);
     checkbox.before(display);
     checkbox.on('input change', function() {
       var checked;
@@ -102,7 +110,7 @@
     mockup = $(hidden.data('mockup'));
     css_attr_name = hidden.data('css-attr-name');
     css_attr_value = hidden.data('css-attr-value');
-    display = $("<span class='css-code'>" + css_attr_name + ": " + css_attr_value + ";</span>");
+    display = build_display_element(css_attr_name, css_attr_value);
     hidden.before(display);
     return mockup.css(css_attr_name, css_attr_value);
   };
