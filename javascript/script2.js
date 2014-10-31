@@ -1,5 +1,5 @@
 (function() {
-  var RangeConverters, build_checkbox_handler, build_display_element, build_display_text, build_hidden, build_range_handler, install_button_handlers, install_checkbox_handlers, install_hidden_labels, install_range_handlers, refresh, reset, reset_checkboxes, reset_ranges;
+  var RangeConverters, build_checkbox_handler, build_display_element, build_display_text, build_hidden, build_range_handler, install_button_handlers, install_checkbox_handlers, install_hidden_labels, install_range_handlers, mock_element_for, refresh, reset, reset_checkboxes, reset_ranges;
 
   build_display_text = function(css_attr_name, css_attr_value) {
     return "" + css_attr_name + ": " + css_attr_value + ";";
@@ -7,6 +7,10 @@
 
   build_display_element = function(css_attr_name, css_attr_value) {
     return $("<span class='css-code'>" + (build_display_text(css_attr_name, css_attr_value)) + "</span>");
+  };
+
+  mock_element_for = function(element) {
+    return $(element.data('mockup'));
   };
 
   refresh = function() {
@@ -46,7 +50,7 @@
 
   build_range_handler = function(range) {
     var css_attr_name, css_attr_value, display, mockup;
-    mockup = $(range.data('mockup'));
+    mockup = mock_element_for(range);
     css_attr_name = range.data('css-attr-name');
     css_attr_value = this.value;
     display = build_display_element(css_attr_name, css_attr_value);
@@ -72,7 +76,7 @@
 
   build_checkbox_handler = function(checkbox) {
     var css_attr_name, css_attr_value, display, mockup;
-    mockup = $(checkbox.data('mockup'));
+    mockup = mock_element_for(checkbox);
     css_attr_name = checkbox.data('css-attr-name');
     css_attr_value = checkbox.data('css-attr-value');
     display = build_display_element(css_attr_name, css_attr_value);
@@ -107,7 +111,7 @@
 
   build_hidden = function(hidden) {
     var css_attr_name, css_attr_value, display, mockup;
-    mockup = $(hidden.data('mockup'));
+    mockup = mock_element_for(hidden);
     css_attr_name = hidden.data('css-attr-name');
     css_attr_value = hidden.data('css-attr-value');
     display = build_display_element(css_attr_name, css_attr_value);
