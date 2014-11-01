@@ -13,6 +13,12 @@
     return $('input').trigger('refresh');
   };
 
+  reset = function() {
+    return $('input').each(function() {
+      return typeof this.reset === "function" ? this.reset() : void 0;
+    });
+  };
+
   $.fn.extend({
     mockup_element: function() {
       return $(this.data('mockup-element'));
@@ -148,12 +154,6 @@
   install_button_handlers = function() {
     return $('#reset').on('click', function() {
       return reset();
-    });
-  };
-
-  reset = function() {
-    return $('input').each(function() {
-      return typeof this.reset === "function" ? this.reset() : void 0;
     });
   };
 

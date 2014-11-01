@@ -7,6 +7,10 @@ build_display_element = (css_attr_name, css_attr_value) ->
 refresh = ->
   $('input').trigger('refresh')
 
+reset = ->
+  $('input').each ->
+    this.reset?()
+
 $.fn.extend
   mockup_element: -> $(this.data('mockup-element'))
   css_name: -> this.data('css-attr-name')
@@ -121,15 +125,6 @@ install_hidden_labels = ->
 install_button_handlers = ->
   $('#reset').on 'click', ->
     reset()
-
-
-#
-# Provide the means to reset all controls to their initial values.
-#
-
-reset = ->
-  $('input').each ->
-    this.reset?()
 
 
 #
