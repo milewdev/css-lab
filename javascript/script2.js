@@ -1,5 +1,5 @@
 (function() {
-  var RangeConverters, build_checkbox_handler, build_display_element, build_display_text, build_hidden, build_range_handler, install_button_handlers, install_checkbox_handlers, install_hidden_labels, install_range_handlers, refresh, reset;
+  var RangeConverters, build_checkbox_handler, build_display_element, build_display_text, build_hidden, build_range_handler, build_range_refresh_function, install_button_handlers, install_checkbox_handlers, install_hidden_labels, install_range_handlers, refresh, reset;
 
   build_display_text = function(css_attr_name, css_attr_value) {
     return "" + css_attr_name + ": " + css_attr_value + ";";
@@ -67,6 +67,16 @@
 
   })();
 
+  build_range_refresh_function = function(mockup_element, display) {
+    return function() {
+      var $this, css_value;
+      $this = $(this);
+      css_value = RangeConverters.convert($this.css_name(), this.value);
+      mockup_element.css($this.css_name(), css_value);
+      return display.text(build_display_text($this.css_name(), css_value));
+    };
+  };
+
   build_range_handler = function(range) {
     var $range, css_attr_name, css_attr_value, display, mockup_element;
     $range = $(range);
@@ -78,13 +88,7 @@
     $range.on('input change', function() {
       return refresh();
     });
-    range.refresh = function() {
-      var $this, css_value;
-      $this = $(this);
-      css_value = RangeConverters.convert($this.css_name(), this.value);
-      mockup_element.css($this.css_name(), css_value);
-      return display.text(build_display_text($this.css_name(), css_value));
-    };
+    range.refresh = build_range_refresh_function(mockup_element, display);
     return range.reset = function() {
       var $this;
       $this = $(this);
