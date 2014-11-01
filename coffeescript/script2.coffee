@@ -86,6 +86,10 @@ install_checkbox_handlers = ->
   $("input[type='checkbox']").each ->
     $this = $(this)
     build_checkbox_handler($this)
+    this.reset = ->
+      $this = $(this)
+      $this.prop('checked', true)
+      $this.trigger('change')
 
 
 #
@@ -128,8 +132,7 @@ reset_ranges = ->
 reset_checkboxes = ->
   $("input[type='checkbox']").each ->
     $this = $(this)
-    $this.prop('checked', true)
-    $this.trigger('change')
+    this.reset()
 
 reset = ->
   reset_ranges()

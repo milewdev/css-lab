@@ -113,7 +113,12 @@
     return $("input[type='checkbox']").each(function() {
       var $this;
       $this = $(this);
-      return build_checkbox_handler($this);
+      build_checkbox_handler($this);
+      return this.reset = function() {
+        $this = $(this);
+        $this.prop('checked', true);
+        return $this.trigger('change');
+      };
     });
   };
 
@@ -154,8 +159,7 @@
     return $("input[type='checkbox']").each(function() {
       var $this;
       $this = $(this);
-      $this.prop('checked', true);
-      return $this.trigger('change');
+      return this.reset();
     });
   };
 
