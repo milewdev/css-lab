@@ -16,6 +16,7 @@ $.fn.extend
   mockup_element: -> $(this.data('mockup-element'))
   css_name: -> this.data('css-attr-name')
   css_value: -> this.data('css-attr-value')
+  css_default_value: -> this.data('default-value')
 
 
 #
@@ -60,7 +61,7 @@ build_range_handler = (range) ->
     display.text(build_display_text($this.css_name(), css_value))
   range.reset = ->
     $this = $(this)
-    $this.val($this.data('default-value'))
+    $this.val($this.css_default_value())
     $this.trigger('change')
 
 install_range_handlers = ->

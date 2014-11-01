@@ -30,6 +30,9 @@
     },
     css_value: function() {
       return this.data('css-attr-value');
+    },
+    css_default_value: function() {
+      return this.data('default-value');
     }
   });
 
@@ -85,7 +88,7 @@
     return range.reset = function() {
       var $this;
       $this = $(this);
-      $this.val($this.data('default-value'));
+      $this.val($this.css_default_value());
       return $this.trigger('change');
     };
   };
