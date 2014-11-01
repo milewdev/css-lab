@@ -62,8 +62,9 @@
 
   })();
 
-  build_range_handler = function($range) {
-    var css_attr_name, css_attr_value, display, mockup_element;
+  build_range_handler = function(range) {
+    var $range, css_attr_name, css_attr_value, display, mockup_element;
+    $range = $(range);
     mockup_element = $range.mockup_element();
     css_attr_name = $range.css_name();
     css_attr_value = this.value;
@@ -82,10 +83,9 @@
 
   install_range_handlers = function() {
     return $("input[type='range']").each(function() {
-      var $this;
-      $this = $(this);
-      build_range_handler($this);
+      build_range_handler(this);
       return this.reset = function() {
+        var $this;
         $this = $(this);
         $this.val($this.data('default-value'));
         return $this.trigger('change');

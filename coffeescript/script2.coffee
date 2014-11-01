@@ -43,7 +43,8 @@ class RangeConverters
 
 
 # Use 'input' and 'change'; see http://stackoverflow.com/a/19067260
-build_range_handler = ($range) ->
+build_range_handler = (range) ->
+  $range = $(range)
   mockup_element = $range.mockup_element()
   css_attr_name = $range.css_name()
   css_attr_value = this.value
@@ -58,8 +59,7 @@ build_range_handler = ($range) ->
 
 install_range_handlers = ->
   $("input[type='range']").each ->
-    $this = $(this)
-    build_range_handler($this)
+    build_range_handler(this)
     this.reset = ->
       $this = $(this)
       $this.val($this.data('default-value'))
