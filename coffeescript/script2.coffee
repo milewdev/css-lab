@@ -4,7 +4,7 @@ build_display_text = (css_attr_name, css_attr_value) ->
 build_display_element = (css_attr_name, css_attr_value) ->
   $("<span class='css-code'>#{build_display_text(css_attr_name, css_attr_value)}</span>")
 
-mock_element_for = (element) ->
+mockup_element_for = (element) ->
   $(element.data('mockup'))
 
 css_name_for = (element) ->
@@ -44,7 +44,7 @@ class RangeConverters
 
 # Use 'input' and 'change'; see http://stackoverflow.com/a/19067260
 build_range_handler = (range) ->
-  mockup = mock_element_for(range)
+  mockup = mockup_element_for(range)
   css_attr_name = css_name_for(range)
   css_attr_value = this.value
   display = build_display_element(css_attr_name, css_attr_value)
@@ -68,7 +68,7 @@ install_range_handlers = ->
 #
 
 build_checkbox_handler = (checkbox) ->
-  mockup = mock_element_for(checkbox)
+  mockup = mockup_element_for(checkbox)
   css_attr_name = css_name_for(checkbox)
   css_attr_value = css_value_for(checkbox)
   display = build_display_element(css_attr_name, css_attr_value)
@@ -97,7 +97,7 @@ install_checkbox_handlers = ->
 #
 
 build_hidden = (hidden) ->
-  mockup = mock_element_for(hidden)
+  mockup = mockup_element_for(hidden)
   css_attr_name = css_name_for(hidden)
   css_attr_value = css_value_for(hidden)
   display = build_display_element(css_attr_name, css_attr_value)
