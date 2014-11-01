@@ -10,7 +10,9 @@
   };
 
   refresh = function() {
-    return $('input').trigger('refresh');
+    return $('input').each(function() {
+      return typeof this.refresh === "function" ? this.refresh() : void 0;
+    });
   };
 
   reset = function() {
@@ -73,12 +75,12 @@
     $range.on('input change', function() {
       return refresh();
     });
-    $range.on('refresh', function() {
+    range.refresh = function() {
       var css_value;
       css_value = RangeConverters.convert(css_attr_name, this.value);
       mockup_element.css(css_attr_name, css_value);
       return display.text(build_display_text(css_attr_name, css_value));
-    });
+    };
     return range.reset = function() {
       var $this;
       $this = $(this);
@@ -112,13 +114,13 @@
       }
       return refresh();
     });
-    $checkbox.on('refresh', function() {
+    checkbox.refresh = function() {
       var checked;
       checked = $(this).prop('checked');
       if (checked) {
         return mockup_element.css(css_attr_name, css_attr_value);
       }
-    });
+    };
     return checkbox.reset = function() {
       var $this;
       $this = $(this);

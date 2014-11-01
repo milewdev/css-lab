@@ -5,7 +5,8 @@ build_display_element = (css_attr_name, css_attr_value) ->
   $("<span class='css-code'>#{build_display_text(css_attr_name, css_attr_value)}</span>")
 
 refresh = ->
-  $('input').trigger('refresh')
+  $('input').each ->
+    this.refresh?()
 
 reset = ->
   $('input').each ->
@@ -52,7 +53,7 @@ build_range_handler = (range) ->
   $range.before(display)
   $range.on 'input change', ->
     refresh()
-  $range.on 'refresh', ->
+  range.refresh = ->
     css_value = RangeConverters.convert(css_attr_name, this.value)
     mockup_element.css(css_attr_name, css_value)
     display.text(build_display_text(css_attr_name, css_value))
@@ -86,7 +87,7 @@ build_checkbox_handler = (checkbox) ->
       mockup_element.css(css_attr_name, '')
       display.css('text-decoration', 'line-through')
     refresh()
-  $checkbox.on 'refresh', ->
+  checkbox.refresh = ->
     checked = $(this).prop('checked')
     if checked
       mockup_element.css(css_attr_name, css_attr_value)
