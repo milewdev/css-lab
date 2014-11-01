@@ -1,5 +1,5 @@
 (function() {
-  var RangeConverters, build_checkbox_handler, build_display_element, build_display_text, build_hidden, build_range_handler, build_range_refresh_function, build_range_reset_function, install_button_handlers, install_checkbox_handlers, install_hidden_labels, install_range_handlers, refresh, reset;
+  var RangeConverters, build_checkbox_handler, build_display_element, build_display_text, build_hidden, build_range_handler, build_range_refresh_function, build_range_reset_function, extract_and_save_range_attributes, install_button_handlers, install_checkbox_handlers, install_hidden_labels, install_range_handlers, refresh, reset;
 
   build_display_text = function(css_attr_name, css_attr_value) {
     return "" + css_attr_name + ": " + css_attr_value + ";";
@@ -67,12 +67,18 @@
 
   })();
 
+  extract_and_save_range_attributes = function(range) {
+    var $range;
+    $range = $(range);
+    return range.mockup_element = $($range.data('mockup-element'));
+  };
+
   build_range_refresh_function = function(display) {
     return function() {
       var $this, css_value;
       $this = $(this);
       css_value = RangeConverters.convert($this.css_name(), this.value);
-      $this.mockup_element().css($this.css_name(), css_value);
+      this.mockup_element.css($this.css_name(), css_value);
       return display.text(build_display_text($this.css_name(), css_value));
     };
   };
@@ -87,9 +93,9 @@
   };
 
   build_range_handler = function(range) {
-    var $range, css_attr_name, css_attr_value, display, mockup_element;
+    var $range, css_attr_name, css_attr_value, display;
     $range = $(range);
-    mockup_element = $range.mockup_element();
+    extract_and_save_range_attributes(range);
     css_attr_name = $range.css_name();
     css_attr_value = this.value;
     display = build_display_element(css_attr_name, css_attr_value);
