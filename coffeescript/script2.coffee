@@ -1,5 +1,5 @@
 build_display_text = (css_attr_name, css_attr_value) ->
-  "#{css_attr_name}: #{css_attr_value};"
+  "#{css_attr_name}: #{css_attr_value ? ''};"
 
 build_display_element = (css_attr_name, css_attr_value) ->
   $("<span class='css-code'>#{build_display_text(css_attr_name, css_attr_value)}</span>")
@@ -66,8 +66,7 @@ build_range_reset_function = ->
 build_range_handler = (range) ->
   $range = $(range)
   extract_and_save_range_attributes(range)
-  css_attr_value = this.value
-  display = build_display_element(range.css_name, css_attr_value)
+  display = build_display_element(range.css_name)
   $range.before(display)
   $range.on 'input change', ->
     refresh()
