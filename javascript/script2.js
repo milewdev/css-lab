@@ -112,24 +112,24 @@
       }
       return refresh();
     });
-    return $checkbox.on('refresh', function() {
+    $checkbox.on('refresh', function() {
       var checked;
       checked = $(this).prop('checked');
       if (checked) {
         return mockup_element.css(css_attr_name, css_attr_value);
       }
     });
+    return checkbox.reset = function() {
+      var $this;
+      $this = $(this);
+      $this.prop('checked', true);
+      return $this.trigger('change');
+    };
   };
 
   install_checkbox_handlers = function() {
     return $("input[type='checkbox']").each(function() {
-      build_checkbox_handler(this);
-      return this.reset = function() {
-        var $this;
-        $this = $(this);
-        $this.prop('checked', true);
-        return $this.trigger('change');
-      };
+      return build_checkbox_handler(this);
     });
   };
 

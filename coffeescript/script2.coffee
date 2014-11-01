@@ -90,14 +90,14 @@ build_checkbox_handler = (checkbox) ->
     checked = $(this).prop('checked')
     if checked
       mockup_element.css(css_attr_name, css_attr_value)
+  checkbox.reset = ->
+    $this = $(this)
+    $this.prop('checked', true)
+    $this.trigger('change')
 
 install_checkbox_handlers = ->
   $("input[type='checkbox']").each ->
     build_checkbox_handler(this)
-    this.reset = ->
-      $this = $(this)
-      $this.prop('checked', true)
-      $this.trigger('change')
 
 
 #
