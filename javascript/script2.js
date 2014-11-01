@@ -70,16 +70,17 @@
   extract_and_save_range_attributes = function(range) {
     var $range;
     $range = $(range);
-    return range.mockup_element = $($range.data('mockup-element'));
+    range.mockup_element = $($range.data('mockup-element'));
+    return range.css_name = $range.data('css-attr-name');
   };
 
   build_range_refresh_function = function(display) {
     return function() {
       var $this, css_value;
       $this = $(this);
-      css_value = RangeConverters.convert($this.css_name(), this.value);
-      this.mockup_element.css($this.css_name(), css_value);
-      return display.text(build_display_text($this.css_name(), css_value));
+      css_value = RangeConverters.convert(this.css_name, this.value);
+      this.mockup_element.css(this.css_name, css_value);
+      return display.text(build_display_text(this.css_name, css_value));
     };
   };
 
@@ -93,12 +94,11 @@
   };
 
   build_range_handler = function(range) {
-    var $range, css_attr_name, css_attr_value, display;
+    var $range, css_attr_value, display;
     $range = $(range);
     extract_and_save_range_attributes(range);
-    css_attr_name = $range.css_name();
     css_attr_value = this.value;
-    display = build_display_element(css_attr_name, css_attr_value);
+    display = build_display_element(range.css_name, css_attr_value);
     $range.before(display);
     $range.on('input change', function() {
       return refresh();
