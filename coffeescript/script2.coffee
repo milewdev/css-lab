@@ -44,11 +44,11 @@ class RangeConverters
   @range_to_width: @range_to_em
 
 
-build_range_refresh_function = (mockup_element, display) ->
+build_range_refresh_function = (display) ->
   ->
     $this = $(this)
     css_value = RangeConverters.convert($this.css_name(), this.value)
-    mockup_element.css($this.css_name(), css_value)
+    $this.mockup_element().css($this.css_name(), css_value)
     display.text(build_display_text($this.css_name(), css_value))
 
 build_range_reset_function = ->
@@ -67,7 +67,7 @@ build_range_handler = (range) ->
   $range.before(display)
   $range.on 'input change', ->
     refresh()
-  range.refresh = build_range_refresh_function(mockup_element, display)
+  range.refresh = build_range_refresh_function(display)
   range.reset = build_range_reset_function()
 
 install_range_handlers = ->

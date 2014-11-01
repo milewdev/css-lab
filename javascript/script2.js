@@ -67,12 +67,12 @@
 
   })();
 
-  build_range_refresh_function = function(mockup_element, display) {
+  build_range_refresh_function = function(display) {
     return function() {
       var $this, css_value;
       $this = $(this);
       css_value = RangeConverters.convert($this.css_name(), this.value);
-      mockup_element.css($this.css_name(), css_value);
+      $this.mockup_element().css($this.css_name(), css_value);
       return display.text(build_display_text($this.css_name(), css_value));
     };
   };
@@ -97,7 +97,7 @@
     $range.on('input change', function() {
       return refresh();
     });
-    range.refresh = build_range_refresh_function(mockup_element, display);
+    range.refresh = build_range_refresh_function(display);
     return range.reset = build_range_reset_function();
   };
 
