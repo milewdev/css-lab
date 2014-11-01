@@ -15,7 +15,7 @@
 
   $.fn.extend({
     mockup_element: function() {
-      return $(this.data('mockup'));
+      return $(this.data('mockup-element'));
     },
     css_name: function() {
       return this.data('css-attr-name');
@@ -57,8 +57,8 @@
   })();
 
   build_range_handler = function(range) {
-    var css_attr_name, css_attr_value, display, mockup;
-    mockup = range.mockup_element();
+    var css_attr_name, css_attr_value, display, mockup_element;
+    mockup_element = range.mockup_element();
     css_attr_name = range.css_name();
     css_attr_value = this.value;
     display = build_display_element(css_attr_name, css_attr_value);
@@ -69,7 +69,7 @@
     return range.on('refresh', function() {
       var css_value;
       css_value = RangeConverters.convert(css_attr_name, this.value);
-      mockup.css(css_attr_name, css_value);
+      mockup_element.css(css_attr_name, css_value);
       return display.text(build_display_text(css_attr_name, css_value));
     });
   };
@@ -83,8 +83,8 @@
   };
 
   build_checkbox_handler = function(checkbox) {
-    var css_attr_name, css_attr_value, display, mockup;
-    mockup = checkbox.mockup_element();
+    var css_attr_name, css_attr_value, display, mockup_element;
+    mockup_element = checkbox.mockup_element();
     css_attr_name = checkbox.css_name();
     css_attr_value = checkbox.css_value();
     display = build_display_element(css_attr_name, css_attr_value);
@@ -95,7 +95,7 @@
       if (checked) {
         display.css('text-decoration', '');
       } else {
-        mockup.css(css_attr_name, '');
+        mockup_element.css(css_attr_name, '');
         display.css('text-decoration', 'line-through');
       }
       return refresh();
@@ -104,7 +104,7 @@
       var checked;
       checked = $(this).prop('checked');
       if (checked) {
-        return mockup.css(css_attr_name, css_attr_value);
+        return mockup_element.css(css_attr_name, css_attr_value);
       }
     });
   };
@@ -118,13 +118,13 @@
   };
 
   build_hidden = function(hidden) {
-    var css_attr_name, css_attr_value, display, mockup;
-    mockup = hidden.mockup_element();
+    var css_attr_name, css_attr_value, display, mockup_element;
+    mockup_element = hidden.mockup_element();
     css_attr_name = hidden.css_name();
     css_attr_value = hidden.css_value();
     display = build_display_element(css_attr_name, css_attr_value);
     hidden.before(display);
-    return mockup.css(css_attr_name, css_attr_value);
+    return mockup_element.css(css_attr_name, css_attr_value);
   };
 
   install_hidden_labels = function() {

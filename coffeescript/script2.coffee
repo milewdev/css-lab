@@ -8,7 +8,7 @@ refresh = ->
   $('input').trigger('refresh')
 
 $.fn.extend
-  mockup_element: -> $(this.data('mockup'))
+  mockup_element: -> $(this.data('mockup-element'))
   css_name: -> this.data('css-attr-name')
   css_value: -> this.data('css-attr-value')
 
@@ -40,7 +40,7 @@ class RangeConverters
 
 # Use 'input' and 'change'; see http://stackoverflow.com/a/19067260
 build_range_handler = (range) ->
-  mockup = range.mockup_element()
+  mockup_element = range.mockup_element()
   css_attr_name = range.css_name()
   css_attr_value = this.value
   display = build_display_element(css_attr_name, css_attr_value)
@@ -49,7 +49,7 @@ build_range_handler = (range) ->
     refresh()
   range.on 'refresh', ->
     css_value = RangeConverters.convert(css_attr_name, this.value)
-    mockup.css(css_attr_name, css_value)
+    mockup_element.css(css_attr_name, css_value)
     display.text(build_display_text(css_attr_name, css_value))
 
 install_range_handlers = ->
@@ -64,7 +64,7 @@ install_range_handlers = ->
 #
 
 build_checkbox_handler = (checkbox) ->
-  mockup = checkbox.mockup_element()
+  mockup_element = checkbox.mockup_element()
   css_attr_name = checkbox.css_name()
   css_attr_value = checkbox.css_value()
   display = build_display_element(css_attr_name, css_attr_value)
@@ -74,13 +74,13 @@ build_checkbox_handler = (checkbox) ->
     if checked
       display.css('text-decoration', '')
     else
-      mockup.css(css_attr_name, '')
+      mockup_element.css(css_attr_name, '')
       display.css('text-decoration', 'line-through')
     refresh()
   checkbox.on 'refresh', ->
     checked = $(this).prop('checked')
     if checked
-      mockup.css(css_attr_name, css_attr_value)
+      mockup_element.css(css_attr_name, css_attr_value)
 
 install_checkbox_handlers = ->
   $("input[type='checkbox']").each ->
@@ -93,12 +93,12 @@ install_checkbox_handlers = ->
 #
 
 build_hidden = (hidden) ->
-  mockup = hidden.mockup_element()
+  mockup_element = hidden.mockup_element()
   css_attr_name = hidden.css_name()
   css_attr_value = hidden.css_value()
   display = build_display_element(css_attr_name, css_attr_value)
   hidden.before(display)
-  mockup.css(css_attr_name, css_attr_value)
+  mockup_element.css(css_attr_name, css_attr_value)
 
 install_hidden_labels = ->
   $("input[type='hidden']").each ->
