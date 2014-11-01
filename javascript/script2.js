@@ -75,13 +75,13 @@
     return range.css_default_value = $range.data('default-value');
   };
 
-  build_range_refresh_function = function(display) {
+  build_range_refresh_function = function() {
     return function() {
       var $this, css_value;
       $this = $(this);
       css_value = RangeConverters.convert(this.css_name, this.value);
       this.mockup_element.css(this.css_name, css_value);
-      return display.text(build_display_text(this.css_name, css_value));
+      return this.display.text(build_display_text(this.css_name, css_value));
     };
   };
 
@@ -95,15 +95,15 @@
   };
 
   build_range_handler = function(range) {
-    var $range, display;
+    var $range;
     $range = $(range);
     extract_and_save_range_attributes(range);
-    display = build_display_element(range.css_name);
-    $range.before(display);
+    range.display = build_display_element(range.css_name);
+    $range.before(range.display);
     $range.on('input change', function() {
       return refresh();
     });
-    range.refresh = build_range_refresh_function(display);
+    range.refresh = build_range_refresh_function();
     return range.reset = build_range_reset_function();
   };
 

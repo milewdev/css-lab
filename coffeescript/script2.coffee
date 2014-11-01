@@ -50,12 +50,12 @@ extract_and_save_range_attributes = (range) ->
   range.css_name = $range.data('css-attr-name')
   range.css_default_value = $range.data('default-value')
 
-build_range_refresh_function = (display) ->
+build_range_refresh_function = ->
   ->
     $this = $(this)
     css_value = RangeConverters.convert(this.css_name, this.value)
     this.mockup_element.css(this.css_name, css_value)
-    display.text(build_display_text(this.css_name, css_value))
+    this.display.text(build_display_text(this.css_name, css_value))
 
 build_range_reset_function = ->
   ->
@@ -67,11 +67,11 @@ build_range_reset_function = ->
 build_range_handler = (range) ->
   $range = $(range)
   extract_and_save_range_attributes(range)
-  display = build_display_element(range.css_name)
-  $range.before(display)
+  range.display = build_display_element(range.css_name)
+  $range.before(range.display)
   $range.on 'input change', ->
     refresh()
-  range.refresh = build_range_refresh_function(display)
+  range.refresh = build_range_refresh_function()
   range.reset = build_range_reset_function()
 
 install_range_handlers = ->
