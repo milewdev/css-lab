@@ -7,6 +7,9 @@ build_display_element = (css_attr_name, css_attr_value) ->
 mock_element_for = (element) ->
   $(element.data('mockup'))
 
+css_name_for = (element) ->
+  element.data('css-attr-name')
+
 refresh = ->
   $('input').trigger('refresh')
 
@@ -39,7 +42,7 @@ class RangeConverters
 # Use 'input' and 'change'; see http://stackoverflow.com/a/19067260
 build_range_handler = (range) ->
   mockup = mock_element_for(range)
-  css_attr_name = range.data('css-attr-name')
+  css_attr_name = css_name_for(range)
   css_attr_value = this.value
   display = build_display_element(css_attr_name, css_attr_value)
   range.before(display)
@@ -63,7 +66,7 @@ install_range_handlers = ->
 
 build_checkbox_handler = (checkbox) ->
   mockup = mock_element_for(checkbox)
-  css_attr_name = checkbox.data('css-attr-name')
+  css_attr_name = css_name_for(checkbox)
   css_attr_value = checkbox.data('css-attr-value')
   display = build_display_element(css_attr_name, css_attr_value)
   checkbox.before(display)
@@ -92,7 +95,7 @@ install_checkbox_handlers = ->
 
 build_hidden = (hidden) ->
   mockup = mock_element_for(hidden)
-  css_attr_name = hidden.data('css-attr-name')
+  css_attr_name = css_name_for(hidden)
   css_attr_value = hidden.data('css-attr-value')
   display = build_display_element(css_attr_name, css_attr_value)
   hidden.before(display)
