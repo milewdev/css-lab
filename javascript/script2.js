@@ -1,5 +1,5 @@
 (function() {
-  var RangeConverters, build_checkbox_handler, build_display_element, build_display_text, build_hidden, build_range_handler, css_name_for, install_button_handlers, install_checkbox_handlers, install_hidden_labels, install_range_handlers, mock_element_for, refresh, reset, reset_checkboxes, reset_ranges;
+  var RangeConverters, build_checkbox_handler, build_display_element, build_display_text, build_hidden, build_range_handler, css_name_for, css_value_for, install_button_handlers, install_checkbox_handlers, install_hidden_labels, install_range_handlers, mock_element_for, refresh, reset, reset_checkboxes, reset_ranges;
 
   build_display_text = function(css_attr_name, css_attr_value) {
     return "" + css_attr_name + ": " + css_attr_value + ";";
@@ -15,6 +15,10 @@
 
   css_name_for = function(element) {
     return element.data('css-attr-name');
+  };
+
+  css_value_for = function(element) {
+    return element.data('css-attr-value');
   };
 
   refresh = function() {
@@ -82,7 +86,7 @@
     var css_attr_name, css_attr_value, display, mockup;
     mockup = mock_element_for(checkbox);
     css_attr_name = css_name_for(checkbox);
-    css_attr_value = checkbox.data('css-attr-value');
+    css_attr_value = css_value_for(checkbox);
     display = build_display_element(css_attr_name, css_attr_value);
     checkbox.before(display);
     checkbox.on('input change', function() {
@@ -117,7 +121,7 @@
     var css_attr_name, css_attr_value, display, mockup;
     mockup = mock_element_for(hidden);
     css_attr_name = css_name_for(hidden);
-    css_attr_value = hidden.data('css-attr-value');
+    css_attr_value = css_value_for(hidden);
     display = build_display_element(css_attr_name, css_attr_value);
     hidden.before(display);
     return mockup.css(css_attr_name, css_attr_value);

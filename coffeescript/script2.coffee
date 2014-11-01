@@ -10,6 +10,9 @@ mock_element_for = (element) ->
 css_name_for = (element) ->
   element.data('css-attr-name')
 
+css_value_for = (element) ->
+  element.data('css-attr-value')
+
 refresh = ->
   $('input').trigger('refresh')
 
@@ -67,7 +70,7 @@ install_range_handlers = ->
 build_checkbox_handler = (checkbox) ->
   mockup = mock_element_for(checkbox)
   css_attr_name = css_name_for(checkbox)
-  css_attr_value = checkbox.data('css-attr-value')
+  css_attr_value = css_value_for(checkbox)
   display = build_display_element(css_attr_name, css_attr_value)
   checkbox.before(display)
   checkbox.on 'input change', ->
@@ -96,7 +99,7 @@ install_checkbox_handlers = ->
 build_hidden = (hidden) ->
   mockup = mock_element_for(hidden)
   css_attr_name = css_name_for(hidden)
-  css_attr_value = hidden.data('css-attr-value')
+  css_attr_value = css_value_for(hidden)
   display = build_display_element(css_attr_name, css_attr_value)
   hidden.before(display)
   mockup.css(css_attr_name, css_attr_value)
