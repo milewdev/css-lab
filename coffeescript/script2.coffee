@@ -48,6 +48,7 @@ extract_and_save_range_attributes = (range) ->
   $range = $(range)
   range.mockup_element = $($range.data('mockup-element'))
   range.css_name = $range.data('css-attr-name')
+  range.css_default_value = $range.data('default-value')
 
 build_range_refresh_function = (display) ->
   ->
@@ -59,7 +60,7 @@ build_range_refresh_function = (display) ->
 build_range_reset_function = ->
   ->
     $this = $(this)
-    $this.val($this.css_default_value())
+    $this.val(this.css_default_value)
     $this.trigger('change')
 
 # Use 'input' and 'change'; see http://stackoverflow.com/a/19067260

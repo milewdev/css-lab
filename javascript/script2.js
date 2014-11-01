@@ -71,7 +71,8 @@
     var $range;
     $range = $(range);
     range.mockup_element = $($range.data('mockup-element'));
-    return range.css_name = $range.data('css-attr-name');
+    range.css_name = $range.data('css-attr-name');
+    return range.css_default_value = $range.data('default-value');
   };
 
   build_range_refresh_function = function(display) {
@@ -88,7 +89,7 @@
     return function() {
       var $this;
       $this = $(this);
-      $this.val($this.css_default_value());
+      $this.val(this.css_default_value);
       return $this.trigger('change');
     };
   };
