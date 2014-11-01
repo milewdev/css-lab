@@ -50,6 +50,11 @@ extract_and_save_range_attributes = (range) ->
   range.css_name = $range.data('css-attr-name')
   range.css_default_value = $range.data('default-value')
 
+create_and_insert_range_display = (range) ->
+  $range = $(range)
+  range.display = build_display_element(range.css_name)
+  $range.before(range.display)
+
 build_range_refresh_function = ->
   ->
     $this = $(this)
@@ -67,8 +72,7 @@ build_range_reset_function = ->
 build_range_handler = (range) ->
   $range = $(range)
   extract_and_save_range_attributes(range)
-  range.display = build_display_element(range.css_name)
-  $range.before(range.display)
+  create_and_insert_range_display(range)
   $range.on 'input change', ->
     refresh()
   range.refresh = build_range_refresh_function()

@@ -1,5 +1,5 @@
 (function() {
-  var RangeConverters, build_checkbox_handler, build_display_element, build_display_text, build_hidden, build_range_handler, build_range_refresh_function, build_range_reset_function, extract_and_save_range_attributes, install_button_handlers, install_checkbox_handlers, install_hidden_labels, install_range_handlers, refresh, reset;
+  var RangeConverters, build_checkbox_handler, build_display_element, build_display_text, build_hidden, build_range_handler, build_range_refresh_function, build_range_reset_function, create_and_insert_range_display, extract_and_save_range_attributes, install_button_handlers, install_checkbox_handlers, install_hidden_labels, install_range_handlers, refresh, reset;
 
   build_display_text = function(css_attr_name, css_attr_value) {
     return "" + css_attr_name + ": " + (css_attr_value != null ? css_attr_value : '') + ";";
@@ -75,6 +75,13 @@
     return range.css_default_value = $range.data('default-value');
   };
 
+  create_and_insert_range_display = function(range) {
+    var $range;
+    $range = $(range);
+    range.display = build_display_element(range.css_name);
+    return $range.before(range.display);
+  };
+
   build_range_refresh_function = function() {
     return function() {
       var $this, css_value;
@@ -98,8 +105,7 @@
     var $range;
     $range = $(range);
     extract_and_save_range_attributes(range);
-    range.display = build_display_element(range.css_name);
-    $range.before(range.display);
+    create_and_insert_range_display(range);
     $range.on('input change', function() {
       return refresh();
     });
