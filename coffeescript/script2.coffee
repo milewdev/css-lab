@@ -51,6 +51,12 @@ build_range_refresh_function = (mockup_element, display) ->
     mockup_element.css($this.css_name(), css_value)
     display.text(build_display_text($this.css_name(), css_value))
 
+build_range_reset_function = ->
+  ->
+    $this = $(this)
+    $this.val($this.css_default_value())
+    $this.trigger('change')
+
 # Use 'input' and 'change'; see http://stackoverflow.com/a/19067260
 build_range_handler = (range) ->
   $range = $(range)
@@ -62,10 +68,7 @@ build_range_handler = (range) ->
   $range.on 'input change', ->
     refresh()
   range.refresh = build_range_refresh_function(mockup_element, display)
-  range.reset = ->
-    $this = $(this)
-    $this.val($this.css_default_value())
-    $this.trigger('change')
+  range.reset = build_range_reset_function()
 
 install_range_handlers = ->
   $("input[type='range']").each ->

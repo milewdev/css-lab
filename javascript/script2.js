@@ -1,5 +1,5 @@
 (function() {
-  var RangeConverters, build_checkbox_handler, build_display_element, build_display_text, build_hidden, build_range_handler, build_range_refresh_function, install_button_handlers, install_checkbox_handlers, install_hidden_labels, install_range_handlers, refresh, reset;
+  var RangeConverters, build_checkbox_handler, build_display_element, build_display_text, build_hidden, build_range_handler, build_range_refresh_function, build_range_reset_function, install_button_handlers, install_checkbox_handlers, install_hidden_labels, install_range_handlers, refresh, reset;
 
   build_display_text = function(css_attr_name, css_attr_value) {
     return "" + css_attr_name + ": " + css_attr_value + ";";
@@ -77,6 +77,15 @@
     };
   };
 
+  build_range_reset_function = function() {
+    return function() {
+      var $this;
+      $this = $(this);
+      $this.val($this.css_default_value());
+      return $this.trigger('change');
+    };
+  };
+
   build_range_handler = function(range) {
     var $range, css_attr_name, css_attr_value, display, mockup_element;
     $range = $(range);
@@ -89,12 +98,7 @@
       return refresh();
     });
     range.refresh = build_range_refresh_function(mockup_element, display);
-    return range.reset = function() {
-      var $this;
-      $this = $(this);
-      $this.val($this.css_default_value());
-      return $this.trigger('change');
-    };
+    return range.reset = build_range_reset_function();
   };
 
   install_range_handlers = function() {
