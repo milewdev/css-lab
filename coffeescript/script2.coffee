@@ -56,14 +56,14 @@ build_range_handler = (range) ->
     css_value = RangeConverters.convert(css_attr_name, this.value)
     mockup_element.css(css_attr_name, css_value)
     display.text(build_display_text(css_attr_name, css_value))
+  range.reset = ->
+    $this = $(this)
+    $this.val($this.data('default-value'))
+    $this.trigger('change')
 
 install_range_handlers = ->
   $("input[type='range']").each ->
     build_range_handler(this)
-    this.reset = ->
-      $this = $(this)
-      $this.val($this.data('default-value'))
-      $this.trigger('change')
 
 
 #

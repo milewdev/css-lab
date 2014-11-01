@@ -73,23 +73,23 @@
     $range.on('input change', function() {
       return refresh();
     });
-    return $range.on('refresh', function() {
+    $range.on('refresh', function() {
       var css_value;
       css_value = RangeConverters.convert(css_attr_name, this.value);
       mockup_element.css(css_attr_name, css_value);
       return display.text(build_display_text(css_attr_name, css_value));
     });
+    return range.reset = function() {
+      var $this;
+      $this = $(this);
+      $this.val($this.data('default-value'));
+      return $this.trigger('change');
+    };
   };
 
   install_range_handlers = function() {
     return $("input[type='range']").each(function() {
-      build_range_handler(this);
-      return this.reset = function() {
-        var $this;
-        $this = $(this);
-        $this.val($this.data('default-value'));
-        return $this.trigger('change');
-      };
+      return build_range_handler(this);
     });
   };
 
