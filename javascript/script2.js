@@ -76,10 +76,11 @@
       return refresh();
     });
     range.refresh = function() {
-      var css_value;
-      css_value = RangeConverters.convert(css_attr_name, this.value);
-      mockup_element.css(css_attr_name, css_value);
-      return display.text(build_display_text(css_attr_name, css_value));
+      var $this, css_value;
+      $this = $(this);
+      css_value = RangeConverters.convert($this.css_name(), this.value);
+      mockup_element.css($this.css_name(), css_value);
+      return display.text(build_display_text($this.css_name(), css_value));
     };
     return range.reset = function() {
       var $this;

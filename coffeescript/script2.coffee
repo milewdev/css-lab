@@ -54,9 +54,10 @@ build_range_handler = (range) ->
   $range.on 'input change', ->
     refresh()
   range.refresh = ->
-    css_value = RangeConverters.convert(css_attr_name, this.value)
-    mockup_element.css(css_attr_name, css_value)
-    display.text(build_display_text(css_attr_name, css_value))
+    $this = $(this)
+    css_value = RangeConverters.convert($this.css_name(), this.value)
+    mockup_element.css($this.css_name(), css_value)
+    display.text(build_display_text($this.css_name(), css_value))
   range.reset = ->
     $this = $(this)
     $this.val($this.data('default-value'))
