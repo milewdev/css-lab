@@ -78,7 +78,12 @@
     return $("input[type='range']").each(function() {
       var $this;
       $this = $(this);
-      return build_range_handler($this);
+      build_range_handler($this);
+      return this.reset = function() {
+        $this = $(this);
+        $this.val($this.data('default-value'));
+        return $this.trigger('change');
+      };
     });
   };
 
@@ -150,8 +155,7 @@
     return $('input[data-default-value]').each(function() {
       var $this;
       $this = $(this);
-      $this.val($this.data('default-value'));
-      return $this.trigger('change');
+      return this.reset();
     });
   };
 

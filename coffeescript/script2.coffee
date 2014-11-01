@@ -56,6 +56,10 @@ install_range_handlers = ->
   $("input[type='range']").each ->
     $this = $(this)
     build_range_handler($this)
+    this.reset = ->
+      $this = $(this)
+      $this.val($this.data('default-value'))
+      $this.trigger('change')
 
 
 #
@@ -126,8 +130,7 @@ install_button_handlers = ->
 reset_ranges = ->
   $('input[data-default-value]').each ->
     $this = $(this)
-    $this.val($this.data('default-value'))
-    $this.trigger('change')
+    this.reset()
 
 reset_checkboxes = ->
   $("input[type='checkbox']").each ->
