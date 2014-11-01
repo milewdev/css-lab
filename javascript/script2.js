@@ -168,8 +168,9 @@
   };
 
   reset = function() {
-    reset_ranges();
-    return reset_checkboxes();
+    return $('input').each(function() {
+      return typeof this.reset === "function" ? this.reset() : void 0;
+    });
   };
 
   install_range_handlers();

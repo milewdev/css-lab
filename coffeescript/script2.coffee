@@ -138,8 +138,8 @@ reset_checkboxes = ->
     this.reset()
 
 reset = ->
-  reset_ranges()
-  reset_checkboxes()
+  $('input').each ->
+    this.reset?()
 
 
 #
