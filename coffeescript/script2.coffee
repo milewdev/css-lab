@@ -72,12 +72,13 @@ install_range_handlers = ->
 #
 
 build_checkbox_handler = (checkbox) ->
-  mockup_element = checkbox.mockup_element()
-  css_attr_name = checkbox.css_name()
-  css_attr_value = checkbox.css_value()
+  $checkbox = $(checkbox)
+  mockup_element = $checkbox.mockup_element()
+  css_attr_name = $checkbox.css_name()
+  css_attr_value = $checkbox.css_value()
   display = build_display_element(css_attr_name, css_attr_value)
-  checkbox.before(display)
-  checkbox.on 'input change', ->
+  $checkbox.before(display)
+  $checkbox.on 'input change', ->
     checked = $(this).prop('checked')
     if checked
       display.css('text-decoration', '')
@@ -85,15 +86,14 @@ build_checkbox_handler = (checkbox) ->
       mockup_element.css(css_attr_name, '')
       display.css('text-decoration', 'line-through')
     refresh()
-  checkbox.on 'refresh', ->
+  $checkbox.on 'refresh', ->
     checked = $(this).prop('checked')
     if checked
       mockup_element.css(css_attr_name, css_attr_value)
 
 install_checkbox_handlers = ->
   $("input[type='checkbox']").each ->
-    $this = $(this)
-    build_checkbox_handler($this)
+    build_checkbox_handler(this)
     this.reset = ->
       $this = $(this)
       $this.prop('checked', true)

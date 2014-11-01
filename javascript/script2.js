@@ -94,13 +94,14 @@
   };
 
   build_checkbox_handler = function(checkbox) {
-    var css_attr_name, css_attr_value, display, mockup_element;
-    mockup_element = checkbox.mockup_element();
-    css_attr_name = checkbox.css_name();
-    css_attr_value = checkbox.css_value();
+    var $checkbox, css_attr_name, css_attr_value, display, mockup_element;
+    $checkbox = $(checkbox);
+    mockup_element = $checkbox.mockup_element();
+    css_attr_name = $checkbox.css_name();
+    css_attr_value = $checkbox.css_value();
     display = build_display_element(css_attr_name, css_attr_value);
-    checkbox.before(display);
-    checkbox.on('input change', function() {
+    $checkbox.before(display);
+    $checkbox.on('input change', function() {
       var checked;
       checked = $(this).prop('checked');
       if (checked) {
@@ -111,7 +112,7 @@
       }
       return refresh();
     });
-    return checkbox.on('refresh', function() {
+    return $checkbox.on('refresh', function() {
       var checked;
       checked = $(this).prop('checked');
       if (checked) {
@@ -122,10 +123,9 @@
 
   install_checkbox_handlers = function() {
     return $("input[type='checkbox']").each(function() {
-      var $this;
-      $this = $(this);
-      build_checkbox_handler($this);
+      build_checkbox_handler(this);
       return this.reset = function() {
+        var $this;
         $this = $(this);
         $this.prop('checked', true);
         return $this.trigger('change');
