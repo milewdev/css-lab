@@ -43,15 +43,15 @@ class RangeConverters
 
 
 # Use 'input' and 'change'; see http://stackoverflow.com/a/19067260
-build_range_handler = (range) ->
-  mockup_element = range.mockup_element()
-  css_attr_name = range.css_name()
+build_range_handler = ($range) ->
+  mockup_element = $range.mockup_element()
+  css_attr_name = $range.css_name()
   css_attr_value = this.value
   display = build_display_element(css_attr_name, css_attr_value)
-  range.before(display)
-  range.on 'input change', ->
+  $range.before(display)
+  $range.on 'input change', ->
     refresh()
-  range.on 'refresh', ->
+  $range.on 'refresh', ->
     css_value = RangeConverters.convert(css_attr_name, this.value)
     mockup_element.css(css_attr_name, css_value)
     display.text(build_display_text(css_attr_name, css_value))

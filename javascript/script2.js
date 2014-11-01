@@ -62,17 +62,17 @@
 
   })();
 
-  build_range_handler = function(range) {
+  build_range_handler = function($range) {
     var css_attr_name, css_attr_value, display, mockup_element;
-    mockup_element = range.mockup_element();
-    css_attr_name = range.css_name();
+    mockup_element = $range.mockup_element();
+    css_attr_name = $range.css_name();
     css_attr_value = this.value;
     display = build_display_element(css_attr_name, css_attr_value);
-    range.before(display);
-    range.on('input change', function() {
+    $range.before(display);
+    $range.on('input change', function() {
       return refresh();
     });
-    return range.on('refresh', function() {
+    return $range.on('refresh', function() {
       var css_value;
       css_value = RangeConverters.convert(css_attr_name, this.value);
       mockup_element.css(css_attr_name, css_value);
