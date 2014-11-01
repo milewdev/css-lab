@@ -127,16 +127,6 @@ install_button_handlers = ->
 # Provide the means to reset all controls to their initial values.
 #
 
-reset_ranges = ->
-  $('input[data-default-value]').each ->
-    $this = $(this)
-    this.reset()
-
-reset_checkboxes = ->
-  $("input[type='checkbox']").each ->
-    $this = $(this)
-    this.reset()
-
 reset = ->
   $('input').each ->
     this.reset?()

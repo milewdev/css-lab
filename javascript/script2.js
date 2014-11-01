@@ -1,5 +1,5 @@
 (function() {
-  var RangeConverters, build_checkbox_handler, build_display_element, build_display_text, build_hidden, build_range_handler, install_button_handlers, install_checkbox_handlers, install_hidden_labels, install_range_handlers, refresh, reset, reset_checkboxes, reset_ranges;
+  var RangeConverters, build_checkbox_handler, build_display_element, build_display_text, build_hidden, build_range_handler, install_button_handlers, install_checkbox_handlers, install_hidden_labels, install_range_handlers, refresh, reset;
 
   build_display_text = function(css_attr_name, css_attr_value) {
     return "" + css_attr_name + ": " + css_attr_value + ";";
@@ -148,22 +148,6 @@
   install_button_handlers = function() {
     return $('#reset').on('click', function() {
       return reset();
-    });
-  };
-
-  reset_ranges = function() {
-    return $('input[data-default-value]').each(function() {
-      var $this;
-      $this = $(this);
-      return this.reset();
-    });
-  };
-
-  reset_checkboxes = function() {
-    return $("input[type='checkbox']").each(function() {
-      var $this;
-      $this = $(this);
-      return this.reset();
     });
   };
 
