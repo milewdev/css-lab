@@ -59,7 +59,7 @@ class Range
     range.o = this
     @range = range
     @$range = $(range)
-    @extract_and_save_range_attributes()
+    @extract_and_save_attributes()
     @create_and_insert_range_display()
     @install_change_handler()
 
@@ -74,7 +74,7 @@ class Range
 
   # private
 
-  extract_and_save_range_attributes: ->
+  extract_and_save_attributes: ->
     @mockup_element = $(@$range.data('mockup-element'))
     @css_name = @$range.data('css-attr-name')
     @css_default_value = @$range.data('default-value')
@@ -89,6 +89,7 @@ class Range
       refresh_all()
 
 
+# TODO: rename to something better
 install_range_handlers = ->
   $("input[type='range']").each ->
     new Range(this)

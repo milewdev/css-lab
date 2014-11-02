@@ -80,7 +80,7 @@
       range.o = this;
       this.range = range;
       this.$range = $(range);
-      this.extract_and_save_range_attributes();
+      this.extract_and_save_attributes();
       this.create_and_insert_range_display();
       this.install_change_handler();
     }
@@ -97,7 +97,7 @@
       return this.$range.trigger('change');
     };
 
-    Range.prototype.extract_and_save_range_attributes = function() {
+    Range.prototype.extract_and_save_attributes = function() {
       this.mockup_element = $(this.$range.data('mockup-element'));
       this.css_name = this.$range.data('css-attr-name');
       return this.css_default_value = this.$range.data('default-value');
