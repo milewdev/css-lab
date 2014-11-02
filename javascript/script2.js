@@ -1,5 +1,5 @@
 (function() {
-  var RangeConverters, build_checkbox_handler, build_display_element, build_display_text, build_hidden, build_range_handler, build_range_refresh_function, build_range_reset_function, create_and_insert_range_display, extract_and_save_range_attributes, install_button_handlers, install_checkbox_handlers, install_hidden_labels, install_range_handlers, refresh, reset;
+  var Range, RangeConverters, build_checkbox_handler, build_display_element, build_display_text, build_hidden, install_button_handlers, install_checkbox_handlers, install_hidden_labels, install_range_handlers, refresh_all, reset;
 
   build_display_text = function(css_attr_name, css_attr_value) {
     return "" + css_attr_name + ": " + (css_attr_value != null ? css_attr_value : '') + ";";
@@ -9,15 +9,23 @@
     return $("<span class='css-code'>" + (build_display_text(css_attr_name, css_attr_value)) + "</span>");
   };
 
-  refresh = function() {
+  refresh_all = function() {
     return $('input').each(function() {
-      return typeof this.refresh === "function" ? this.refresh() : void 0;
+      if (this.o != null) {
+        return this.o.refresh();
+      } else {
+        return typeof this.refresh === "function" ? this.refresh() : void 0;
+      }
     });
   };
 
   reset = function() {
     return $('input').each(function() {
-      return typeof this.reset === "function" ? this.reset() : void 0;
+      if (this.o != null) {
+        return this.o.reset();
+      } else {
+        return typeof this.reset === "function" ? this.reset() : void 0;
+      }
     });
   };
 
@@ -67,55 +75,48 @@
 
   })();
 
-  extract_and_save_range_attributes = function(range) {
-    var $range;
-    $range = $(range);
-    range.mockup_element = $($range.data('mockup-element'));
-    range.css_name = $range.data('css-attr-name');
-    return range.css_default_value = $range.data('default-value');
-  };
+  Range = (function() {
+    function Range(range) {
+      range.o = this;
+      this.range = range;
+      this.$range = $(range);
+      this.extract_and_save_range_attributes();
+      this.create_and_insert_range_display();
+      this.$range.on('input change', function() {
+        return refresh_all();
+      });
+    }
 
-  create_and_insert_range_display = function(range) {
-    var $range;
-    $range = $(range);
-    range.display = build_display_element(range.css_name);
-    return $range.before(range.display);
-  };
-
-  build_range_refresh_function = function() {
-    return function() {
-      var $this, css_value;
-      $this = $(this);
-      css_value = RangeConverters.convert(this.css_name, this.value);
+    Range.prototype.refresh = function() {
+      var css_value;
+      css_value = RangeConverters.convert(this.css_name, this.range.value);
       this.mockup_element.css(this.css_name, css_value);
       return this.display.text(build_display_text(this.css_name, css_value));
     };
-  };
 
-  build_range_reset_function = function() {
-    return function() {
-      var $this;
-      $this = $(this);
-      $this.val(this.css_default_value);
-      return $this.trigger('change');
+    Range.prototype.reset = function() {
+      this.$range.val(this.css_default_value);
+      return this.$range.trigger('change');
     };
-  };
 
-  build_range_handler = function(range) {
-    var $range;
-    $range = $(range);
-    extract_and_save_range_attributes(range);
-    create_and_insert_range_display(range);
-    $range.on('input change', function() {
-      return refresh();
-    });
-    range.refresh = build_range_refresh_function();
-    return range.reset = build_range_reset_function();
-  };
+    Range.prototype.extract_and_save_range_attributes = function() {
+      this.mockup_element = $(this.$range.data('mockup-element'));
+      this.css_name = this.$range.data('css-attr-name');
+      return this.css_default_value = this.$range.data('default-value');
+    };
+
+    Range.prototype.create_and_insert_range_display = function() {
+      this.display = build_display_element(this.css_name);
+      return this.$range.before(this.display);
+    };
+
+    return Range;
+
+  })();
 
   install_range_handlers = function() {
     return $("input[type='range']").each(function() {
-      return build_range_handler(this);
+      return new Range(this);
     });
   };
 
@@ -136,7 +137,7 @@
         mockup_element.css(css_attr_name, '');
         display.css('text-decoration', 'line-through');
       }
-      return refresh();
+      return refresh_all();
     });
     checkbox.refresh = function() {
       var checked;

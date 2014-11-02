@@ -4,13 +4,22 @@ build_display_text = (css_attr_name, css_attr_value) ->
 build_display_element = (css_attr_name, css_attr_value) ->
   $("<span class='css-code'>#{build_display_text(css_attr_name, css_attr_value)}</span>")
 
-refresh = ->
+refresh_all = ->
   $('input').each ->
-    this.refresh?()
+    # TODO: remove this 'if'
+    if this.o?
+      this.o.refresh()
+    else
+      this.refresh?()
 
+# TODO: rename to reset_all
 reset = ->
   $('input').each ->
-    this.reset?()
+    # TODO: remove this 'if'
+    if this.o?
+      this.o.reset()
+    else
+      this.reset?()
 
 $.fn.extend
   mockup_element: -> $(this.data('mockup-element'))
@@ -44,43 +53,42 @@ class RangeConverters
   @range_to_width: @range_to_em
 
 
-extract_and_save_range_attributes = (range) ->
-  $range = $(range)
-  range.mockup_element = $($range.data('mockup-element'))
-  range.css_name = $range.data('css-attr-name')
-  range.css_default_value = $range.data('default-value')
+class Range
 
-create_and_insert_range_display = (range) ->
-  $range = $(range)
-  range.display = build_display_element(range.css_name)
-  $range.before(range.display)
+  constructor: (range) ->
+    range.o = this
+    @range = range
+    @$range = $(range)
+    @extract_and_save_range_attributes()
+    @create_and_insert_range_display()
+    # Use 'input' and 'change'; see http://stackoverflow.com/a/19067260
+    @$range.on 'input change', ->
+      refresh_all()
 
-build_range_refresh_function = ->
-  ->
-    $this = $(this)
-    css_value = RangeConverters.convert(this.css_name, this.value)
-    this.mockup_element.css(this.css_name, css_value)
-    this.display.text(build_display_text(this.css_name, css_value))
+  refresh: ->
+    css_value = RangeConverters.convert(@css_name, @range.value)
+    @mockup_element.css(@css_name, css_value)
+    @display.text(build_display_text(@css_name, css_value))
 
-build_range_reset_function = ->
-  ->
-    $this = $(this)
-    $this.val(this.css_default_value)
-    $this.trigger('change')
+  reset: ->
+    @$range.val(@css_default_value)
+    @$range.trigger('change')
 
-# Use 'input' and 'change'; see http://stackoverflow.com/a/19067260
-build_range_handler = (range) ->
-  $range = $(range)
-  extract_and_save_range_attributes(range)
-  create_and_insert_range_display(range)
-  $range.on 'input change', ->
-    refresh()
-  range.refresh = build_range_refresh_function()
-  range.reset = build_range_reset_function()
+  # private
+
+  extract_and_save_range_attributes: ->
+    @mockup_element = $(@$range.data('mockup-element'))
+    @css_name = @$range.data('css-attr-name')
+    @css_default_value = @$range.data('default-value')
+
+  create_and_insert_range_display: ->
+    @display = build_display_element(@css_name)
+    @$range.before(@display)
+
 
 install_range_handlers = ->
   $("input[type='range']").each ->
-    build_range_handler(this)
+    new Range(this)
 
 
 #
@@ -102,7 +110,7 @@ build_checkbox_handler = (checkbox) ->
     else
       mockup_element.css(css_attr_name, '')
       display.css('text-decoration', 'line-through')
-    refresh()
+    refresh_all()
   checkbox.refresh = ->
     checked = $(this).prop('checked')
     if checked
