@@ -60,7 +60,7 @@ class Range
     @range = range
     @$range = $(range)
     @extract_and_save_attributes()
-    @create_and_insert_range_display()
+    @create_and_insert_display()
     @install_change_handler()
 
   refresh: ->
@@ -79,7 +79,7 @@ class Range
     @css_name = @$range.data('css-attr-name')
     @css_default_value = @$range.data('default-value')
 
-  create_and_insert_range_display: ->
+  create_and_insert_display: ->
     @display = build_display_element(@css_name)
     @$range.before(@display)
 

@@ -81,7 +81,7 @@
       this.range = range;
       this.$range = $(range);
       this.extract_and_save_attributes();
-      this.create_and_insert_range_display();
+      this.create_and_insert_display();
       this.install_change_handler();
     }
 
@@ -103,7 +103,7 @@
       return this.css_default_value = this.$range.data('default-value');
     };
 
-    Range.prototype.create_and_insert_range_display = function() {
+    Range.prototype.create_and_insert_display = function() {
       this.display = build_display_element(this.css_name);
       return this.$range.before(this.display);
     };
