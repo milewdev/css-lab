@@ -100,33 +100,54 @@ install_range_handlers = ->
 # user to turn on and off rather than setting a particular value.
 #
 
-build_checkbox_handler = (checkbox) ->
-  $checkbox = $(checkbox)
-  mockup_element = $checkbox.mockup_element()
-  css_attr_name = $checkbox.css_name()
-  css_attr_value = $checkbox.css_value()
-  display = build_display_element(css_attr_name, css_attr_value)
-  $checkbox.before(display)
-  $checkbox.on 'input change', ->
-    checked = $(this).prop('checked')
-    if checked
-      display.css('text-decoration', '')
-    else
-      mockup_element.css(css_attr_name, '')
-      display.css('text-decoration', 'line-through')
-    refresh_all()
-  checkbox.refresh = ->
-    checked = $(this).prop('checked')
-    if checked
-      mockup_element.css(css_attr_name, css_attr_value)
-  checkbox.reset = ->
-    $this = $(this)
-    $this.prop('checked', true)
-    $this.trigger('change')
+class Checkbox
 
+  constructor: (checkbox) ->
+    checkbox.o = this
+    @checkbox = checkbox
+    @$checkbox = $(checkbox)
+    @extract_and_save_attributes()
+    @create_and_insert_display()
+    @install_change_handler()
+
+  refresh: ->
+    checked = @$checkbox.prop('checked')
+    @mockup_element.css(@css_name, @css_value) if checked
+
+  reset: ->
+    @$checkbox.prop('checked', true)
+    @$checkbox.trigger('change')
+
+  # private
+
+  extract_and_save_attributes: ->
+    @mockup_element = $(@$checkbox.data('mockup-element'))
+    @css_name = @$checkbox.data('css-attr-name')
+    @css_value = @$checkbox.data('css-attr-value')
+
+  create_and_insert_display: ->
+    @display = build_display_element(@css_name, @css_value)
+    @$checkbox.before(@display)
+
+  install_change_handler: ->
+    @$checkbox.on 'input change', ->
+      this.o.on_change()
+
+  on_change: ->
+    checked = @$checkbox.prop('checked')  # TODO: extract method checked()
+    if checked
+      @display.css('text-decoration', '') # TODO: extract method strikeout(bool)
+    else
+      @mockup_element.css(@css_name, '')  # TODO: document why we do this and why only once
+      @display.css('text-decoration', 'line-through')
+    refresh_all()
+
+
+# TODO: rename to something better
 install_checkbox_handlers = ->
   $("input[type='checkbox']").each ->
-    build_checkbox_handler(this)
+    new Checkbox(this)
+    # build_checkbox_handler(this)
 
 
 #

@@ -1,5 +1,5 @@
 (function() {
-  var Range, RangeConverters, build_checkbox_handler, build_display_element, build_display_text, build_hidden, install_button_handlers, install_checkbox_handlers, install_hidden_labels, install_range_handlers, refresh_all, reset;
+  var Checkbox, Range, RangeConverters, build_display_element, build_display_text, build_hidden, install_button_handlers, install_checkbox_handlers, install_hidden_labels, install_range_handlers, refresh_all, reset;
 
   build_display_text = function(css_attr_name, css_attr_value) {
     return "" + css_attr_name + ": " + (css_attr_value != null ? css_attr_value : '') + ";";
@@ -124,43 +124,65 @@
     });
   };
 
-  build_checkbox_handler = function(checkbox) {
-    var $checkbox, css_attr_name, css_attr_value, display, mockup_element;
-    $checkbox = $(checkbox);
-    mockup_element = $checkbox.mockup_element();
-    css_attr_name = $checkbox.css_name();
-    css_attr_value = $checkbox.css_value();
-    display = build_display_element(css_attr_name, css_attr_value);
-    $checkbox.before(display);
-    $checkbox.on('input change', function() {
+  Checkbox = (function() {
+    function Checkbox(checkbox) {
+      checkbox.o = this;
+      this.checkbox = checkbox;
+      this.$checkbox = $(checkbox);
+      this.extract_and_save_attributes();
+      this.create_and_insert_display();
+      this.install_change_handler();
+    }
+
+    Checkbox.prototype.refresh = function() {
       var checked;
-      checked = $(this).prop('checked');
+      checked = this.$checkbox.prop('checked');
       if (checked) {
-        display.css('text-decoration', '');
+        return this.mockup_element.css(this.css_name, this.css_value);
+      }
+    };
+
+    Checkbox.prototype.reset = function() {
+      this.$checkbox.prop('checked', true);
+      return this.$checkbox.trigger('change');
+    };
+
+    Checkbox.prototype.extract_and_save_attributes = function() {
+      this.mockup_element = $(this.$checkbox.data('mockup-element'));
+      this.css_name = this.$checkbox.data('css-attr-name');
+      return this.css_value = this.$checkbox.data('css-attr-value');
+    };
+
+    Checkbox.prototype.create_and_insert_display = function() {
+      this.display = build_display_element(this.css_name, this.css_value);
+      return this.$checkbox.before(this.display);
+    };
+
+    Checkbox.prototype.install_change_handler = function() {
+      return this.$checkbox.on('input change', function() {
+        return this.o.on_change();
+      });
+    };
+
+    Checkbox.prototype.on_change = function() {
+      var checked;
+      checked = this.$checkbox.prop('checked');
+      if (checked) {
+        this.display.css('text-decoration', '');
       } else {
-        mockup_element.css(css_attr_name, '');
-        display.css('text-decoration', 'line-through');
+        this.mockup_element.css(this.css_name, '');
+        this.display.css('text-decoration', 'line-through');
       }
       return refresh_all();
-    });
-    checkbox.refresh = function() {
-      var checked;
-      checked = $(this).prop('checked');
-      if (checked) {
-        return mockup_element.css(css_attr_name, css_attr_value);
-      }
     };
-    return checkbox.reset = function() {
-      var $this;
-      $this = $(this);
-      $this.prop('checked', true);
-      return $this.trigger('change');
-    };
-  };
+
+    return Checkbox;
+
+  })();
 
   install_checkbox_handlers = function() {
     return $("input[type='checkbox']").each(function() {
-      return build_checkbox_handler(this);
+      return new Checkbox(this);
     });
   };
 
