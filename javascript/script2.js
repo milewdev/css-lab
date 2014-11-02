@@ -82,9 +82,7 @@
       this.$range = $(range);
       this.extract_and_save_range_attributes();
       this.create_and_insert_range_display();
-      this.$range.on('input change', function() {
-        return refresh_all();
-      });
+      this.install_change_handler();
     }
 
     Range.prototype.refresh = function() {
@@ -108,6 +106,12 @@
     Range.prototype.create_and_insert_range_display = function() {
       this.display = build_display_element(this.css_name);
       return this.$range.before(this.display);
+    };
+
+    Range.prototype.install_change_handler = function() {
+      return this.$range.on('input change', function() {
+        return refresh_all();
+      });
     };
 
     return Range;

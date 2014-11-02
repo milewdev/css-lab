@@ -61,9 +61,7 @@ class Range
     @$range = $(range)
     @extract_and_save_range_attributes()
     @create_and_insert_range_display()
-    # Use 'input' and 'change'; see http://stackoverflow.com/a/19067260
-    @$range.on 'input change', ->
-      refresh_all()
+    @install_change_handler()
 
   refresh: ->
     css_value = RangeConverters.convert(@css_name, @range.value)
@@ -84,6 +82,11 @@ class Range
   create_and_insert_range_display: ->
     @display = build_display_element(@css_name)
     @$range.before(@display)
+
+  install_change_handler: ->
+    # Use 'input' and 'change'; see http://stackoverflow.com/a/19067260
+    @$range.on 'input change', ->
+      refresh_all()
 
 
 install_range_handlers = ->
