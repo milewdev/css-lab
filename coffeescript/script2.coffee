@@ -69,7 +69,7 @@ class Range
     @display.text(build_display_text(@css_name, css_value))
 
   reset: ->
-    @$range.val(@css_default_value)
+    @range.value = @css_default_value
     @$range.trigger('change')
 
   # private

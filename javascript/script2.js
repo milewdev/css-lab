@@ -93,7 +93,7 @@
     };
 
     Range.prototype.reset = function() {
-      this.$range.val(this.css_default_value);
+      this.range.value = this.css_default_value;
       return this.$range.trigger('change');
     };
 
