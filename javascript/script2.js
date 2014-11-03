@@ -69,7 +69,7 @@
 
     Range.prototype.refresh = function() {
       var css_value;
-      css_value = RangeConverters.convert(this.css_name, this.range.value);
+      css_value = this.calc_css_value(this.range.value);
       this.mockup_dom_element.css(this.css_name, css_value);
       return this.display.set_value(css_value);
     };
@@ -98,6 +98,10 @@
       return this.$range.on('input change', function() {
         return refresh_all();
       });
+    };
+
+    Range.prototype.calc_css_value = function(range_value) {
+      return RangeConverters.convert(this.css_name, range_value);
     };
 
     return Range;

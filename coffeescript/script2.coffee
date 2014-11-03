@@ -53,7 +53,7 @@ class Range
     @install_change_handler()
 
   refresh: ->
-    css_value = RangeConverters.convert(@css_name, @range.value)
+    css_value = @calc_css_value(@range.value)
     @mockup_dom_element.css(@css_name, css_value)
     @display.set_value(css_value)
 
@@ -79,6 +79,9 @@ class Range
     # Use 'input' and 'change'; see http://stackoverflow.com/a/19067260
     @$range.on 'input change', ->
       refresh_all()
+
+  calc_css_value: (range_value) ->
+    RangeConverters.convert(@css_name, range_value)
 
 
 #
