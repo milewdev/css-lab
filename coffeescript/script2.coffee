@@ -2,19 +2,18 @@ class CssAttributeView
 
   constructor: (css_name, css_value) ->
     @css_name = css_name
-    @$element = @create_element()
+    @$dom_element = @create_dom_element()
     @set_value(css_value) if css_value?
 
-  # TODO: rename to dom_element?
-  element: ->
-    @$element
+  dom_element: ->
+    @$dom_element
 
   set_value: (value) ->
-    @$element.text("#{@css_name}: #{value};")
+    @$dom_element.text("#{@css_name}: #{value};")
 
   # private
 
-  create_element: ->
+  create_dom_element: ->
     $("<span class='css-code'></span>")
 
 
@@ -55,7 +54,7 @@ class Range
 
   refresh: ->
     css_value = RangeConverters.convert(@css_name, @range.value)
-    @mockup_element.css(@css_name, css_value)
+    @mockup_dom_element.css(@css_name, css_value)
     @display.set_value(css_value)
 
   reset: ->
@@ -65,13 +64,13 @@ class Range
   # private
 
   extract_and_save_attributes: ->
-    @mockup_element = $(@$range.data('mockup-element'))
+    @mockup_dom_element = $(@$range.data('mockup-dom-element'))
     @css_name = @$range.data('css-attr-name')
     @css_default_value = @$range.data('default-value')
 
   create_and_insert_display: ->
     @display = new CssAttributeView(@css_name)
-    @$range.before(@display.element())
+    @$range.before(@display.dom_element())
 
   install_change_handler: ->
     # Use 'input' and 'change'; see http://stackoverflow.com/a/19067260
@@ -96,7 +95,7 @@ class Checkbox
 
   refresh: ->
     checked = @$checkbox.prop('checked')
-    @mockup_element.css(@css_name, @css_value) if checked
+    @mockup_dom_element.css(@css_name, @css_value) if checked
 
   reset: ->
     @$checkbox.prop('checked', true)
@@ -105,13 +104,13 @@ class Checkbox
   # private
 
   extract_and_save_attributes: ->
-    @mockup_element = $(@$checkbox.data('mockup-element'))
+    @mockup_dom_element = $(@$checkbox.data('mockup-dom-element'))
     @css_name = @$checkbox.data('css-attr-name')
     @css_value = @$checkbox.data('css-attr-value')
 
   create_and_insert_display: ->
     @display = new CssAttributeView(@css_name, @css_value)
-    @$checkbox.before(@display.element())
+    @$checkbox.before(@display.dom_element())
 
   install_change_handler: ->
     @$checkbox.on 'input change', ->
@@ -120,10 +119,10 @@ class Checkbox
   on_change: ->
     checked = @$checkbox.prop('checked')  # TODO: extract method checked()
     if checked
-      @display.element().css('text-decoration', '') # TODO: extract method strikeout(bool)
+      @display.dom_element().css('text-decoration', '') # TODO: extract method strikeout(bool)
     else
-      @mockup_element.css(@css_name, '')  # TODO: document why we do this and why only once
-      @display.element().css('text-decoration', 'line-through')
+      @mockup_dom_element.css(@css_name, '')  # TODO: document why we do this and why only once
+      @display.dom_element().css('text-decoration', 'line-through')
     refresh_all()
 
 
@@ -140,7 +139,7 @@ class Hidden
     @create_and_insert_display()
 
   refresh: ->
-    @mockup_element.css(@css_name, @css_value)
+    @mockup_dom_element.css(@css_name, @css_value)
 
   reset: ->
     # readonly so nothing to do
@@ -148,13 +147,13 @@ class Hidden
   # private
 
   extract_and_save_attributes: ->
-    @mockup_element = $(@$hidden.data('mockup-element'))
+    @mockup_dom_element = $(@$hidden.data('mockup-dom-element'))
     @css_name = @$hidden.data('css-attr-name')
     @css_value = @$hidden.data('css-attr-value')
 
   create_and_insert_display: ->
     display = new CssAttributeView(@css_name, @css_value)
-    @$hidden.before(display.element())
+    @$hidden.before(display.dom_element())
 
 
 # TODO: rename to something better

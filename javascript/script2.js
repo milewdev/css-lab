@@ -4,21 +4,21 @@
   CssAttributeView = (function() {
     function CssAttributeView(css_name, css_value) {
       this.css_name = css_name;
-      this.$element = this.create_element();
+      this.$dom_element = this.create_dom_element();
       if (css_value != null) {
         this.set_value(css_value);
       }
     }
 
-    CssAttributeView.prototype.element = function() {
-      return this.$element;
+    CssAttributeView.prototype.dom_element = function() {
+      return this.$dom_element;
     };
 
     CssAttributeView.prototype.set_value = function(value) {
-      return this.$element.text("" + this.css_name + ": " + value + ";");
+      return this.$dom_element.text("" + this.css_name + ": " + value + ";");
     };
 
-    CssAttributeView.prototype.create_element = function() {
+    CssAttributeView.prototype.create_dom_element = function() {
       return $("<span class='css-code'></span>");
     };
 
@@ -70,7 +70,7 @@
     Range.prototype.refresh = function() {
       var css_value;
       css_value = RangeConverters.convert(this.css_name, this.range.value);
-      this.mockup_element.css(this.css_name, css_value);
+      this.mockup_dom_element.css(this.css_name, css_value);
       return this.display.set_value(css_value);
     };
 
@@ -80,14 +80,14 @@
     };
 
     Range.prototype.extract_and_save_attributes = function() {
-      this.mockup_element = $(this.$range.data('mockup-element'));
+      this.mockup_dom_element = $(this.$range.data('mockup-dom-element'));
       this.css_name = this.$range.data('css-attr-name');
       return this.css_default_value = this.$range.data('default-value');
     };
 
     Range.prototype.create_and_insert_display = function() {
       this.display = new CssAttributeView(this.css_name);
-      return this.$range.before(this.display.element());
+      return this.$range.before(this.display.dom_element());
     };
 
     Range.prototype.install_change_handler = function() {
@@ -114,7 +114,7 @@
       var checked;
       checked = this.$checkbox.prop('checked');
       if (checked) {
-        return this.mockup_element.css(this.css_name, this.css_value);
+        return this.mockup_dom_element.css(this.css_name, this.css_value);
       }
     };
 
@@ -124,14 +124,14 @@
     };
 
     Checkbox.prototype.extract_and_save_attributes = function() {
-      this.mockup_element = $(this.$checkbox.data('mockup-element'));
+      this.mockup_dom_element = $(this.$checkbox.data('mockup-dom-element'));
       this.css_name = this.$checkbox.data('css-attr-name');
       return this.css_value = this.$checkbox.data('css-attr-value');
     };
 
     Checkbox.prototype.create_and_insert_display = function() {
       this.display = new CssAttributeView(this.css_name, this.css_value);
-      return this.$checkbox.before(this.display.element());
+      return this.$checkbox.before(this.display.dom_element());
     };
 
     Checkbox.prototype.install_change_handler = function() {
@@ -144,10 +144,10 @@
       var checked;
       checked = this.$checkbox.prop('checked');
       if (checked) {
-        this.display.element().css('text-decoration', '');
+        this.display.dom_element().css('text-decoration', '');
       } else {
-        this.mockup_element.css(this.css_name, '');
-        this.display.element().css('text-decoration', 'line-through');
+        this.mockup_dom_element.css(this.css_name, '');
+        this.display.dom_element().css('text-decoration', 'line-through');
       }
       return refresh_all();
     };
@@ -165,13 +165,13 @@
     }
 
     Hidden.prototype.refresh = function() {
-      return this.mockup_element.css(this.css_name, this.css_value);
+      return this.mockup_dom_element.css(this.css_name, this.css_value);
     };
 
     Hidden.prototype.reset = function() {};
 
     Hidden.prototype.extract_and_save_attributes = function() {
-      this.mockup_element = $(this.$hidden.data('mockup-element'));
+      this.mockup_dom_element = $(this.$hidden.data('mockup-dom-element'));
       this.css_name = this.$hidden.data('css-attr-name');
       return this.css_value = this.$hidden.data('css-attr-value');
     };
@@ -179,7 +179,7 @@
     Hidden.prototype.create_and_insert_display = function() {
       var display;
       display = new CssAttributeView(this.css_name, this.css_value);
-      return this.$hidden.before(display.element());
+      return this.$hidden.before(display.dom_element());
     };
 
     return Hidden;
