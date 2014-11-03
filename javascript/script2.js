@@ -71,7 +71,7 @@
       var css_value;
       css_value = this.calc_css_value(this.range.value);
       this.update_mockup_dom_element(css_value);
-      return this.display.set_value(css_value);
+      return this.update_css_attribute_view(css_value);
     };
 
     Range.prototype.reset = function() {
@@ -106,6 +106,10 @@
 
     Range.prototype.update_mockup_dom_element = function(css_value) {
       return this.mockup_dom_element.css(this.css_name, css_value);
+    };
+
+    Range.prototype.update_css_attribute_view = function(css_value) {
+      return this.display.set_value(css_value);
     };
 
     return Range;

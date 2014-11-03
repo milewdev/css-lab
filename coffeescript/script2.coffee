@@ -55,7 +55,7 @@ class Range
   refresh: ->
     css_value = @calc_css_value(@range.value)
     @update_mockup_dom_element(css_value)
-    @display.set_value(css_value)
+    @update_css_attribute_view(css_value)
 
   reset: ->
     @range.value = @css_default_value
@@ -85,6 +85,9 @@ class Range
 
   update_mockup_dom_element: (css_value) ->
     @mockup_dom_element.css(@css_name, css_value)
+
+  update_css_attribute_view: (css_value) ->
+    @display.set_value(css_value)
 
 
 #
