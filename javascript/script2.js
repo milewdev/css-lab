@@ -158,20 +158,29 @@
 
   Hidden = (function() {
     function Hidden(hidden) {
-      var $hidden, css_name, css_value, display, mockup_element;
+      var display;
       hidden.o = this;
-      $hidden = $(hidden);
-      css_name = $hidden.data('css-attr-name');
-      css_value = $hidden.data('css-attr-value');
-      display = new CssAttributeView(css_name, css_value);
-      $hidden.before(display.element());
-      mockup_element = $($hidden.data('mockup-element'));
-      mockup_element.css(css_name, css_value);
+      this.$hidden = $(hidden);
+      display = new CssAttributeView(this.css_name(), this.css_value());
+      this.$hidden.before(display.element());
+      this.mockup_element().css(this.css_name(), this.css_value());
     }
 
     Hidden.prototype.refresh = function() {};
 
     Hidden.prototype.reset = function() {};
+
+    Hidden.prototype.mockup_element = function() {
+      return $(this.$hidden.data('mockup-element'));
+    };
+
+    Hidden.prototype.css_name = function() {
+      return this.$hidden.data('css-attr-name');
+    };
+
+    Hidden.prototype.css_value = function() {
+      return this.$hidden.data('css-attr-value');
+    };
 
     return Hidden;
 
