@@ -21,12 +21,6 @@ reset = ->
     else
       this.reset?()
 
-$.fn.extend
-  mockup_element: -> $(this.data('mockup-element'))
-  css_name: -> this.data('css-attr-name')
-  css_value: -> this.data('css-attr-value')
-  css_default_value: -> this.data('default-value')
-
 
 #
 # CSS attribute ranges - these are attributes where we allow the user

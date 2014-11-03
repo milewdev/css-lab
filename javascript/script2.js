@@ -29,21 +29,6 @@
     });
   };
 
-  $.fn.extend({
-    mockup_element: function() {
-      return $(this.data('mockup-element'));
-    },
-    css_name: function() {
-      return this.data('css-attr-name');
-    },
-    css_value: function() {
-      return this.data('css-attr-value');
-    },
-    css_default_value: function() {
-      return this.data('default-value');
-    }
-  });
-
   RangeConverters = (function() {
     function RangeConverters() {}
 
