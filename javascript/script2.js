@@ -1,13 +1,5 @@
 (function() {
-  var Checkbox, CssAttributeView, Hidden, Range, RangeConverters, build_display_element, build_display_text, install_button_handlers, install_checkbox_handlers, install_hidden_labels, install_range_handlers, refresh_all, reset_all;
-
-  build_display_text = function(css_attr_name, css_attr_value) {
-    return "" + css_attr_name + ": " + (css_attr_value != null ? css_attr_value : '') + ";";
-  };
-
-  build_display_element = function(css_attr_name, css_attr_value) {
-    return $("<span class='css-code'>" + (build_display_text(css_attr_name, css_attr_value)) + "</span>");
-  };
+  var Checkbox, CssAttributeView, Hidden, Range, RangeConverters, install_button_handlers, install_checkbox_handlers, install_hidden_labels, install_range_handlers, refresh_all, reset_all;
 
   CssAttributeView = (function() {
     function CssAttributeView(css_name) {

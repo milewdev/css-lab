@@ -1,10 +1,3 @@
-build_display_text = (css_attr_name, css_attr_value) ->
-  "#{css_attr_name}: #{css_attr_value ? ''};"
-
-build_display_element = (css_attr_name, css_attr_value) ->
-  $("<span class='css-code'>#{build_display_text(css_attr_name, css_attr_value)}</span>")
-
-
 class CssAttributeView
 
   constructor: (css_name) ->
