@@ -8,8 +8,7 @@ refresh_all = ->
   $('input').each ->
     this.o.refresh()
 
-# TODO: rename to reset_all
-reset = ->
+reset_all = ->
   $('input').each ->
     this.o.reset()
 
@@ -180,7 +179,7 @@ install_hidden_labels = ->
 
 install_button_handlers = ->
   $('#reset').on 'click', ->
-    reset()
+    reset_all()
 
 
 #
@@ -191,4 +190,4 @@ install_range_handlers()
 install_checkbox_handlers()
 install_hidden_labels()
 install_button_handlers()
-reset()
+reset_all()
