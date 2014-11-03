@@ -59,9 +59,9 @@
 
   Range = (function() {
     function Range(range) {
-      this.link_dom_element_to_wrapper(range);
       this.range = range;
       this.$range = $(range);
+      this.link_dom_element_to_wrapper(range);
       this.extract_and_save_attributes();
       this.create_and_insert_display();
       this.install_change_handler();
@@ -106,9 +106,9 @@
 
   Checkbox = (function() {
     function Checkbox(checkbox) {
-      this.link_dom_element_to_wrapper(checkbox);
       this.checkbox = checkbox;
       this.$checkbox = $(checkbox);
+      this.link_dom_element_to_wrapper(checkbox);
       this.extract_and_save_attributes();
       this.create_and_insert_display();
       this.install_change_handler();
@@ -166,8 +166,8 @@
 
   Hidden = (function() {
     function Hidden(hidden) {
-      this.link_dom_element_to_wrapper(hidden);
       this.$hidden = $(hidden);
+      this.link_dom_element_to_wrapper(hidden);
       this.extract_and_save_attributes();
       this.create_and_insert_display();
     }

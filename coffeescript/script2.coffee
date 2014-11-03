@@ -45,9 +45,9 @@ class RangeConverters
 class Range
 
   constructor: (range) ->
-    @link_dom_element_to_wrapper(range)
     @range = range
     @$range = $(range)
+    @link_dom_element_to_wrapper(range)
     @extract_and_save_attributes()
     @create_and_insert_display()
     @install_change_handler()
@@ -89,9 +89,9 @@ class Range
 class Checkbox
 
   constructor: (checkbox) ->
-    @link_dom_element_to_wrapper(checkbox)
     @checkbox = checkbox
     @$checkbox = $(checkbox)
+    @link_dom_element_to_wrapper(checkbox)
     @extract_and_save_attributes()
     @create_and_insert_display()
     @install_change_handler()
@@ -139,8 +139,8 @@ class Checkbox
 class Hidden
 
   constructor: (hidden) ->
-    @link_dom_element_to_wrapper(hidden)
     @$hidden = $(hidden)
+    @link_dom_element_to_wrapper(hidden)
     @extract_and_save_attributes()
     @create_and_insert_display()
 
