@@ -130,7 +130,7 @@
       var checked;
       checked = this.$checkbox.prop('checked');
       if (checked) {
-        return this.mockup_dom_element.css(this.css_name, this.css_value);
+        return this.update_mockup_dom_element(this.css_value);
       }
     };
 
@@ -170,6 +170,10 @@
         this.display.dom_element().css('text-decoration', 'line-through');
       }
       return refresh_all();
+    };
+
+    Checkbox.prototype.update_mockup_dom_element = function(css_value) {
+      return this.mockup_dom_element.css(this.css_name, css_value);
     };
 
     return Checkbox;

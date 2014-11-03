@@ -107,7 +107,7 @@ class Checkbox
 
   refresh: ->
     checked = @$checkbox.prop('checked')
-    @mockup_dom_element.css(@css_name, @css_value) if checked
+    @update_mockup_dom_element(@css_value) if checked
 
   reset: ->
     @$checkbox.prop('checked', true)
@@ -139,6 +139,9 @@ class Checkbox
       @mockup_dom_element.css(@css_name, '')  # TODO: document why we do this and why only once
       @display.dom_element().css('text-decoration', 'line-through')
     refresh_all()
+
+  update_mockup_dom_element: (css_value) ->
+    @mockup_dom_element.css(@css_name, css_value)
 
 
 #
