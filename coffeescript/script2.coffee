@@ -4,14 +4,6 @@ build_display_text = (css_attr_name, css_attr_value) ->
 build_display_element = (css_attr_name, css_attr_value) ->
   $("<span class='css-code'>#{build_display_text(css_attr_name, css_attr_value)}</span>")
 
-refresh_all = ->
-  $('input').each ->
-    this.o.refresh()
-
-reset_all = ->
-  $('input').each ->
-    this.o.reset()
-
 
 #
 # CSS attribute ranges - these are attributes where we allow the user
@@ -74,12 +66,6 @@ class Range
       refresh_all()
 
 
-# TODO: rename to something better
-install_range_handlers = ->
-  $("input[type='range']").each ->
-    new Range(this)
-
-
 #
 # CSS attribute switches - these are attributes that we allow the
 # user to turn on and off rather than setting a particular value.
@@ -128,13 +114,6 @@ class Checkbox
     refresh_all()
 
 
-# TODO: rename to something better
-install_checkbox_handlers = ->
-  $("input[type='checkbox']").each ->
-    new Checkbox(this)
-    # build_checkbox_handler(this)
-
-
 #
 # Readonly css attributes.
 #
@@ -147,7 +126,7 @@ class Hidden
     @$hidden = $(hidden)
     @extract_and_save_attributes()
     @create_and_insert_display()
-    @mockup_element.css(@css_name, @css_value)                # TODO: should this go into refresh()?
+    @mockup_element.css(@css_name, @css_value)            # TODO: should this go into refresh()?
 
   refresh: ->
     # do nothing
@@ -158,7 +137,7 @@ class Hidden
   # private
 
   extract_and_save_attributes: ->
-    @mockup_element = $(@$hidden.data('mockup-element'))    # TODO: extract method data()?
+    @mockup_element = $(@$hidden.data('mockup-element'))  # TODO: extract method data()?
     @css_name = @$hidden.data('css-attr-name')
     @css_value = @$hidden.data('css-attr-value')
 
@@ -168,22 +147,35 @@ class Hidden
 
 
 # TODO: rename to something better
+install_range_handlers = ->
+  $("input[type='range']").each ->
+    new Range(this)
+
+# TODO: rename to something better
+install_checkbox_handlers = ->
+  $("input[type='checkbox']").each ->
+    new Checkbox(this)
+
+# TODO: rename to something better
 install_hidden_labels = ->
   $("input[type='hidden']").each ->
     new Hidden(this)
-
-
-#
-# Handlers for button click events.
-#
 
 install_button_handlers = ->
   $('#reset').on 'click', ->
     reset_all()
 
+refresh_all = ->
+  $('input').each ->
+    this.o.refresh()
+
+reset_all = ->
+  $('input').each ->
+    this.o.reset()
+
 
 #
-# Code that runs when this script is loaded.
+# This code runs when this script is loaded.
 #
 
 install_range_handlers()

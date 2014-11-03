@@ -9,18 +9,6 @@
     return $("<span class='css-code'>" + (build_display_text(css_attr_name, css_attr_value)) + "</span>");
   };
 
-  refresh_all = function() {
-    return $('input').each(function() {
-      return this.o.refresh();
-    });
-  };
-
-  reset_all = function() {
-    return $('input').each(function() {
-      return this.o.reset();
-    });
-  };
-
   RangeConverters = (function() {
     function RangeConverters() {}
 
@@ -95,12 +83,6 @@
 
   })();
 
-  install_range_handlers = function() {
-    return $("input[type='range']").each(function() {
-      return new Range(this);
-    });
-  };
-
   Checkbox = (function() {
     function Checkbox(checkbox) {
       checkbox.o = this;
@@ -157,12 +139,6 @@
 
   })();
 
-  install_checkbox_handlers = function() {
-    return $("input[type='checkbox']").each(function() {
-      return new Checkbox(this);
-    });
-  };
-
   Hidden = (function() {
     function Hidden(hidden) {
       hidden.o = this;
@@ -192,6 +168,18 @@
 
   })();
 
+  install_range_handlers = function() {
+    return $("input[type='range']").each(function() {
+      return new Range(this);
+    });
+  };
+
+  install_checkbox_handlers = function() {
+    return $("input[type='checkbox']").each(function() {
+      return new Checkbox(this);
+    });
+  };
+
   install_hidden_labels = function() {
     return $("input[type='hidden']").each(function() {
       return new Hidden(this);
@@ -201,6 +189,18 @@
   install_button_handlers = function() {
     return $('#reset').on('click', function() {
       return reset_all();
+    });
+  };
+
+  refresh_all = function() {
+    return $('input').each(function() {
+      return this.o.refresh();
+    });
+  };
+
+  reset_all = function() {
+    return $('input').each(function() {
+      return this.o.reset();
     });
   };
 
