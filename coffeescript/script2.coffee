@@ -154,18 +154,38 @@ install_checkbox_handlers = ->
 # Readonly css attributes.
 #
 
-build_hidden = (hidden) ->
-  mockup_element = hidden.mockup_element()
-  css_attr_name = hidden.css_name()
-  css_attr_value = hidden.css_value()
-  display = build_display_element(css_attr_name, css_attr_value)
-  hidden.before(display)
-  mockup_element.css(css_attr_name, css_attr_value)
+class Hidden
 
+  constructor: (hidden) ->
+    hidden.o = this
+    @hidden = hidden
+    @$hidden = $(hidden)
+    @extract_and_save_attributes()
+    @create_and_insert_display()
+    @mockup_element.css(@css_name, @css_value)                # TODO: should this go into refresh()?
+
+  refresh: ->
+    # do nothing
+
+  reset: ->
+    # do nothing
+
+  # private
+
+  extract_and_save_attributes: ->
+    @mockup_element = $(@$hidden.data('mockup-element'))    # TODO: extract method data()?
+    @css_name = @$hidden.data('css-attr-name')
+    @css_value = @$hidden.data('css-attr-value')
+
+  create_and_insert_display: ->
+    @display = build_display_element(@css_name, @css_value)
+    @$hidden.before(@display)
+
+
+# TODO: rename to something better
 install_hidden_labels = ->
   $("input[type='hidden']").each ->
-    $this = $(this)
-    build_hidden($this)
+    new Hidden(this)
 
 
 #

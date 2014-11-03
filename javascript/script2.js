@@ -1,5 +1,5 @@
 (function() {
-  var Checkbox, Range, RangeConverters, build_display_element, build_display_text, build_hidden, install_button_handlers, install_checkbox_handlers, install_hidden_labels, install_range_handlers, refresh_all, reset;
+  var Checkbox, Hidden, Range, RangeConverters, build_display_element, build_display_text, install_button_handlers, install_checkbox_handlers, install_hidden_labels, install_range_handlers, refresh_all, reset;
 
   build_display_text = function(css_attr_name, css_attr_value) {
     return "" + css_attr_name + ": " + (css_attr_value != null ? css_attr_value : '') + ";";
@@ -186,21 +186,38 @@
     });
   };
 
-  build_hidden = function(hidden) {
-    var css_attr_name, css_attr_value, display, mockup_element;
-    mockup_element = hidden.mockup_element();
-    css_attr_name = hidden.css_name();
-    css_attr_value = hidden.css_value();
-    display = build_display_element(css_attr_name, css_attr_value);
-    hidden.before(display);
-    return mockup_element.css(css_attr_name, css_attr_value);
-  };
+  Hidden = (function() {
+    function Hidden(hidden) {
+      hidden.o = this;
+      this.hidden = hidden;
+      this.$hidden = $(hidden);
+      this.extract_and_save_attributes();
+      this.create_and_insert_display();
+      this.mockup_element.css(this.css_name, this.css_value);
+    }
+
+    Hidden.prototype.refresh = function() {};
+
+    Hidden.prototype.reset = function() {};
+
+    Hidden.prototype.extract_and_save_attributes = function() {
+      this.mockup_element = $(this.$hidden.data('mockup-element'));
+      this.css_name = this.$hidden.data('css-attr-name');
+      return this.css_value = this.$hidden.data('css-attr-value');
+    };
+
+    Hidden.prototype.create_and_insert_display = function() {
+      this.display = build_display_element(this.css_name, this.css_value);
+      return this.$hidden.before(this.display);
+    };
+
+    return Hidden;
+
+  })();
 
   install_hidden_labels = function() {
     return $("input[type='hidden']").each(function() {
-      var $this;
-      $this = $(this);
-      return build_hidden($this);
+      return new Hidden(this);
     });
   };
 
