@@ -54,7 +54,7 @@ class Range
 
   refresh: ->
     css_value = @calc_css_value(@range.value)
-    @mockup_dom_element.css(@css_name, css_value)
+    @update_mockup_dom_element(css_value)
     @display.set_value(css_value)
 
   reset: ->
@@ -82,6 +82,9 @@ class Range
 
   calc_css_value: (range_value) ->
     RangeConverters.convert(@css_name, range_value)
+
+  update_mockup_dom_element: (css_value) ->
+    @mockup_dom_element.css(@css_name, css_value)
 
 
 #

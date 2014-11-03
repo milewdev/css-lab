@@ -70,7 +70,7 @@
     Range.prototype.refresh = function() {
       var css_value;
       css_value = this.calc_css_value(this.range.value);
-      this.mockup_dom_element.css(this.css_name, css_value);
+      this.update_mockup_dom_element(css_value);
       return this.display.set_value(css_value);
     };
 
@@ -102,6 +102,10 @@
 
     Range.prototype.calc_css_value = function(range_value) {
       return RangeConverters.convert(this.css_name, range_value);
+    };
+
+    Range.prototype.update_mockup_dom_element = function(css_value) {
+      return this.mockup_dom_element.css(this.css_name, css_value);
     };
 
     return Range;
