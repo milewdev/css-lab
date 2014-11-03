@@ -59,7 +59,7 @@
 
   Range = (function() {
     function Range(range) {
-      range.o = this;
+      this.link_dom_element_to_wrapper(range);
       this.range = range;
       this.$range = $(range);
       this.extract_and_save_attributes();
@@ -77,6 +77,10 @@
     Range.prototype.reset = function() {
       this.range.value = this.css_default_value;
       return this.$range.trigger('change');
+    };
+
+    Range.prototype.link_dom_element_to_wrapper = function(dom_element) {
+      return dom_element.o = this;
     };
 
     Range.prototype.extract_and_save_attributes = function() {
@@ -102,7 +106,7 @@
 
   Checkbox = (function() {
     function Checkbox(checkbox) {
-      checkbox.o = this;
+      this.link_dom_element_to_wrapper(checkbox);
       this.checkbox = checkbox;
       this.$checkbox = $(checkbox);
       this.extract_and_save_attributes();
@@ -121,6 +125,10 @@
     Checkbox.prototype.reset = function() {
       this.$checkbox.prop('checked', true);
       return this.$checkbox.trigger('change');
+    };
+
+    Checkbox.prototype.link_dom_element_to_wrapper = function(dom_element) {
+      return dom_element.o = this;
     };
 
     Checkbox.prototype.extract_and_save_attributes = function() {
@@ -158,7 +166,7 @@
 
   Hidden = (function() {
     function Hidden(hidden) {
-      hidden.o = this;
+      this.link_dom_element_to_wrapper(hidden);
       this.$hidden = $(hidden);
       this.extract_and_save_attributes();
       this.create_and_insert_display();
@@ -169,6 +177,10 @@
     };
 
     Hidden.prototype.reset = function() {};
+
+    Hidden.prototype.link_dom_element_to_wrapper = function(dom_element) {
+      return dom_element.o = this;
+    };
 
     Hidden.prototype.extract_and_save_attributes = function() {
       this.mockup_dom_element = $(this.$hidden.data('mockup-dom-element'));

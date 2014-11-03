@@ -45,7 +45,7 @@ class RangeConverters
 class Range
 
   constructor: (range) ->
-    range.o = this
+    @link_dom_element_to_wrapper(range)
     @range = range
     @$range = $(range)
     @extract_and_save_attributes()
@@ -62,6 +62,9 @@ class Range
     @$range.trigger('change')
 
   # private
+
+  link_dom_element_to_wrapper: (dom_element) ->
+    dom_element.o = this
 
   extract_and_save_attributes: ->
     @mockup_dom_element = $(@$range.data('mockup-dom-element'))
@@ -86,7 +89,7 @@ class Range
 class Checkbox
 
   constructor: (checkbox) ->
-    checkbox.o = this
+    @link_dom_element_to_wrapper(checkbox)
     @checkbox = checkbox
     @$checkbox = $(checkbox)
     @extract_and_save_attributes()
@@ -102,6 +105,9 @@ class Checkbox
     @$checkbox.trigger('change')
 
   # private
+
+  link_dom_element_to_wrapper: (dom_element) ->
+    dom_element.o = this
 
   extract_and_save_attributes: ->
     @mockup_dom_element = $(@$checkbox.data('mockup-dom-element'))
@@ -133,7 +139,7 @@ class Checkbox
 class Hidden
 
   constructor: (hidden) ->
-    hidden.o = this
+    @link_dom_element_to_wrapper(hidden)
     @$hidden = $(hidden)
     @extract_and_save_attributes()
     @create_and_insert_display()
@@ -145,6 +151,9 @@ class Hidden
     # readonly so nothing to do
 
   # private
+
+  link_dom_element_to_wrapper: (dom_element) ->
+    dom_element.o = this
 
   extract_and_save_attributes: ->
     @mockup_dom_element = $(@$hidden.data('mockup-dom-element'))
