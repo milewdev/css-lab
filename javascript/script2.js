@@ -1,5 +1,5 @@
 (function() {
-  var Checkbox, Hidden, Range, RangeConverters, build_display_element, build_display_text, install_button_handlers, install_checkbox_handlers, install_hidden_labels, install_range_handlers, refresh_all, reset_all;
+  var Checkbox, CssAttributeView, Hidden, Range, RangeConverters, build_display_element, build_display_text, install_button_handlers, install_checkbox_handlers, install_hidden_labels, install_range_handlers, refresh_all, reset_all;
 
   build_display_text = function(css_attr_name, css_attr_value) {
     return "" + css_attr_name + ": " + (css_attr_value != null ? css_attr_value : '') + ";";
@@ -8,6 +8,28 @@
   build_display_element = function(css_attr_name, css_attr_value) {
     return $("<span class='css-code'>" + (build_display_text(css_attr_name, css_attr_value)) + "</span>");
   };
+
+  CssAttributeView = (function() {
+    function CssAttributeView(css_name) {
+      this.css_name = css_name;
+      this.$element = this.create_element();
+    }
+
+    CssAttributeView.prototype.element = function() {
+      return this.$element;
+    };
+
+    CssAttributeView.prototype.set_value = function(value) {
+      return this.$element.text("" + this.css_name + ": " + value + ";");
+    };
+
+    CssAttributeView.prototype.create_element = function() {
+      return $("<span class='css-code'></span>");
+    };
+
+    return CssAttributeView;
+
+  })();
 
   RangeConverters = (function() {
     function RangeConverters() {}
@@ -54,7 +76,7 @@
       var css_value;
       css_value = RangeConverters.convert(this.css_name, this.range.value);
       this.mockup_element.css(this.css_name, css_value);
-      return this.display.text(build_display_text(this.css_name, css_value));
+      return this.display.set_value(css_value);
     };
 
     Range.prototype.reset = function() {
@@ -69,8 +91,8 @@
     };
 
     Range.prototype.create_and_insert_display = function() {
-      this.display = build_display_element(this.css_name);
-      return this.$range.before(this.display);
+      this.display = new CssAttributeView(this.css_name);
+      return this.$range.before(this.display.element());
     };
 
     Range.prototype.install_change_handler = function() {
@@ -113,8 +135,9 @@
     };
 
     Checkbox.prototype.create_and_insert_display = function() {
-      this.display = build_display_element(this.css_name, this.css_value);
-      return this.$checkbox.before(this.display);
+      this.display = new CssAttributeView(this.css_name);
+      this.display.set_value(this.css_value);
+      return this.$checkbox.before(this.display.element());
     };
 
     Checkbox.prototype.install_change_handler = function() {
@@ -127,10 +150,10 @@
       var checked;
       checked = this.$checkbox.prop('checked');
       if (checked) {
-        this.display.css('text-decoration', '');
+        this.display.element().css('text-decoration', '');
       } else {
         this.mockup_element.css(this.css_name, '');
-        this.display.css('text-decoration', 'line-through');
+        this.display.element().css('text-decoration', 'line-through');
       }
       return refresh_all();
     };
@@ -160,8 +183,9 @@
     };
 
     Hidden.prototype.create_and_insert_display = function() {
-      this.display = build_display_element(this.css_name, this.css_value);
-      return this.$hidden.before(this.display);
+      this.display = new CssAttributeView(this.css_name);
+      this.display.set_value(this.css_value);
+      return this.$hidden.before(this.display.element());
     };
 
     return Hidden;

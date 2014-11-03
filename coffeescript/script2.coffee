@@ -5,6 +5,25 @@ build_display_element = (css_attr_name, css_attr_value) ->
   $("<span class='css-code'>#{build_display_text(css_attr_name, css_attr_value)}</span>")
 
 
+class CssAttributeView
+
+  constructor: (css_name) ->
+    @css_name = css_name
+    @$element = @create_element()
+
+  # TODO: rename to dom_element?
+  element: ->
+    @$element
+
+  set_value: (value) ->
+    @$element.text("#{@css_name}: #{value};")
+
+  # private
+
+  create_element: ->
+    $("<span class='css-code'></span>")
+
+
 #
 # CSS attribute ranges - these are attributes where we allow the user
 # to select a value from a range via a range bar.
@@ -43,7 +62,7 @@ class Range
   refresh: ->
     css_value = RangeConverters.convert(@css_name, @range.value)
     @mockup_element.css(@css_name, css_value)
-    @display.text(build_display_text(@css_name, css_value))
+    @display.set_value(css_value)
 
   reset: ->
     @range.value = @css_default_value
@@ -57,8 +76,8 @@ class Range
     @css_default_value = @$range.data('default-value')
 
   create_and_insert_display: ->
-    @display = build_display_element(@css_name)
-    @$range.before(@display)
+    @display = new CssAttributeView(@css_name)
+    @$range.before(@display.element())
 
   install_change_handler: ->
     # Use 'input' and 'change'; see http://stackoverflow.com/a/19067260
@@ -97,8 +116,9 @@ class Checkbox
     @css_value = @$checkbox.data('css-attr-value')
 
   create_and_insert_display: ->
-    @display = build_display_element(@css_name, @css_value)
-    @$checkbox.before(@display)
+    @display = new CssAttributeView(@css_name)
+    @display.set_value(@css_value)
+    @$checkbox.before(@display.element())
 
   install_change_handler: ->
     @$checkbox.on 'input change', ->
@@ -107,10 +127,10 @@ class Checkbox
   on_change: ->
     checked = @$checkbox.prop('checked')  # TODO: extract method checked()
     if checked
-      @display.css('text-decoration', '') # TODO: extract method strikeout(bool)
+      @display.element().css('text-decoration', '') # TODO: extract method strikeout(bool)
     else
       @mockup_element.css(@css_name, '')  # TODO: document why we do this and why only once
-      @display.css('text-decoration', 'line-through')
+      @display.element().css('text-decoration', 'line-through')
     refresh_all()
 
 
@@ -142,8 +162,9 @@ class Hidden
     @css_value = @$hidden.data('css-attr-value')
 
   create_and_insert_display: ->
-    @display = build_display_element(@css_name, @css_value)
-    @$hidden.before(@display)
+    @display = new CssAttributeView(@css_name)
+    @display.set_value(@css_value)
+    @$hidden.before(@display.element())
 
 
 # TODO: rename to something better
