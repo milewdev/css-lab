@@ -158,28 +158,28 @@
 
   Hidden = (function() {
     function Hidden(hidden) {
-      var display;
       hidden.o = this;
       this.$hidden = $(hidden);
-      display = new CssAttributeView(this.css_name(), this.css_value());
-      this.$hidden.before(display.element());
-      this.mockup_element().css(this.css_name(), this.css_value());
+      this.extract_and_save_attributes();
+      this.create_and_insert_display();
     }
 
-    Hidden.prototype.refresh = function() {};
+    Hidden.prototype.refresh = function() {
+      return this.mockup_element.css(this.css_name, this.css_value);
+    };
 
     Hidden.prototype.reset = function() {};
 
-    Hidden.prototype.mockup_element = function() {
-      return $(this.$hidden.data('mockup-element'));
+    Hidden.prototype.extract_and_save_attributes = function() {
+      this.mockup_element = $(this.$hidden.data('mockup-element'));
+      this.css_name = this.$hidden.data('css-attr-name');
+      return this.css_value = this.$hidden.data('css-attr-value');
     };
 
-    Hidden.prototype.css_name = function() {
-      return this.$hidden.data('css-attr-name');
-    };
-
-    Hidden.prototype.css_value = function() {
-      return this.$hidden.data('css-attr-value');
+    Hidden.prototype.create_and_insert_display = function() {
+      var display;
+      display = new CssAttributeView(this.css_name, this.css_value);
+      return this.$hidden.before(display.element());
     };
 
     return Hidden;

@@ -136,26 +136,25 @@ class Hidden
   constructor: (hidden) ->
     hidden.o = this
     @$hidden = $(hidden)
-    display = new CssAttributeView(@css_name(), @css_value())
-    @$hidden.before(display.element())
-    @mockup_element().css(@css_name(), @css_value())            # TODO: should this go into refresh()?
+    @extract_and_save_attributes()
+    @create_and_insert_display()
 
   refresh: ->
-    # do nothing
+    @mockup_element.css(@css_name, @css_value)
 
   reset: ->
-    # do nothing
+    # readonly so nothing to do
 
   # private
 
-  mockup_element: ->
-    $( @$hidden.data('mockup-element') )
+  extract_and_save_attributes: ->
+    @mockup_element = $(@$hidden.data('mockup-element'))
+    @css_name = @$hidden.data('css-attr-name')
+    @css_value = @$hidden.data('css-attr-value')
 
-  css_name: ->
-    @$hidden.data('css-attr-name')
-
-  css_value: ->
-    @$hidden.data('css-attr-value')
+  create_and_insert_display: ->
+    display = new CssAttributeView(@css_name, @css_value)
+    @$hidden.before(display.element())
 
 
 # TODO: rename to something better
