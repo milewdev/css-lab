@@ -6,20 +6,12 @@ build_display_element = (css_attr_name, css_attr_value) ->
 
 refresh_all = ->
   $('input').each ->
-    # TODO: remove this 'if'
-    if this.o?
-      this.o.refresh()
-    else
-      this.refresh?()
+    this.o.refresh()
 
 # TODO: rename to reset_all
 reset = ->
   $('input').each ->
-    # TODO: remove this 'if'
-    if this.o?
-      this.o.reset()
-    else
-      this.reset?()
+    this.o.reset()
 
 
 #

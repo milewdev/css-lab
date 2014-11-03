@@ -11,21 +11,13 @@
 
   refresh_all = function() {
     return $('input').each(function() {
-      if (this.o != null) {
-        return this.o.refresh();
-      } else {
-        return typeof this.refresh === "function" ? this.refresh() : void 0;
-      }
+      return this.o.refresh();
     });
   };
 
   reset = function() {
     return $('input').each(function() {
-      if (this.o != null) {
-        return this.o.reset();
-      } else {
-        return typeof this.reset === "function" ? this.reset() : void 0;
-      }
+      return this.o.reset();
     });
   };
 
