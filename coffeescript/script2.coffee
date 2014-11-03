@@ -1,8 +1,9 @@
 class CssAttributeView
 
-  constructor: (css_name) ->
+  constructor: (css_name, css_value) ->
     @css_name = css_name
     @$element = @create_element()
+    @set_value(css_value) if css_value?
 
   # TODO: rename to dom_element?
   element: ->
@@ -109,8 +110,7 @@ class Checkbox
     @css_value = @$checkbox.data('css-attr-value')
 
   create_and_insert_display: ->
-    @display = new CssAttributeView(@css_name)
-    @display.set_value(@css_value)
+    @display = new CssAttributeView(@css_name, @css_value)
     @$checkbox.before(@display.element())
 
   install_change_handler: ->
@@ -155,8 +155,7 @@ class Hidden
     @css_value = @$hidden.data('css-attr-value')
 
   create_and_insert_display: ->
-    @display = new CssAttributeView(@css_name)
-    @display.set_value(@css_value)
+    @display = new CssAttributeView(@css_name, @css_value)
     @$hidden.before(@display.element())
 
 

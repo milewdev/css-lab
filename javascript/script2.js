@@ -2,9 +2,12 @@
   var Checkbox, CssAttributeView, Hidden, Range, RangeConverters, install_button_handlers, install_checkbox_handlers, install_hidden_labels, install_range_handlers, refresh_all, reset_all;
 
   CssAttributeView = (function() {
-    function CssAttributeView(css_name) {
+    function CssAttributeView(css_name, css_value) {
       this.css_name = css_name;
       this.$element = this.create_element();
+      if (css_value != null) {
+        this.set_value(css_value);
+      }
     }
 
     CssAttributeView.prototype.element = function() {
@@ -127,8 +130,7 @@
     };
 
     Checkbox.prototype.create_and_insert_display = function() {
-      this.display = new CssAttributeView(this.css_name);
-      this.display.set_value(this.css_value);
+      this.display = new CssAttributeView(this.css_name, this.css_value);
       return this.$checkbox.before(this.display.element());
     };
 
@@ -175,8 +177,7 @@
     };
 
     Hidden.prototype.create_and_insert_display = function() {
-      this.display = new CssAttributeView(this.css_name);
-      this.display.set_value(this.css_value);
+      this.display = new CssAttributeView(this.css_name, this.css_value);
       return this.$hidden.before(this.display.element());
     };
 
