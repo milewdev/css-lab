@@ -42,7 +42,7 @@ module.exports = function (grunt) {
         livereload: '<%= connect.options.livereload %>'
       },
       html: {
-        files: ['*.html']       // so that changes causes a livereload
+        files: ['*.html', 'html/*.html']       // so that changes causes a livereload
       },
       scss: {
         files: ['scss/*.scss'],
