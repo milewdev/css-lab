@@ -20,7 +20,8 @@ body {
   width: 41em;
 
   h1 {
-    margin: 1em 0 2em 0;  // t r b l
+    font-size: 1.5em;
+    margin: 1em 0 1.5em 0;  // t r b l
     text-align: center;
   }
 }
@@ -32,23 +33,16 @@ body {
 
   .mockup-page {
     box-shadow: 0 0 5px 0px #999;
+    font-family: serif;
+    font-size: 0.8em;
     margin: 0 auto;         // t+b l+r
-    padding: 0.001em;       // prevent t+b margin collapse
-
-    section {
-      border: solid 1px #ccc;
-      color: #999;
-      font-family: serif;
-      font-size: 0.8em;
-      margin: 0.4em;
-      padding: 0.2em 0.4em; // t+b l+r
-    }
+    padding: 0.01em;       // prevent t+b margin collapse
   }
 }
 
 .right-column {
   display: inline-block;
-  padding: 0 2em;           // t+b l+r    Why does margin not work here?
+  padding: 0 0 0 1em;       // t r b l    Why does margin not work here?
   text-align: left;
   vertical-align: top;
   width: 20em;
@@ -72,11 +66,36 @@ body {
 
   .css-code {
     display: inline-block;
-    width: 12em;
+    width: 14em;
   }
 }
 
 button {
   margin-top: 4em;
   padding: 0.4em 1.4em;     // t+b l+r
+}
+
+body#ul-and-li-margins-and-padding {
+  .mockup-page {
+    // Something embedded in the li, to show alignment of, say, boxes of text, images, etc.
+    aside {
+      border: 1px solid #999;
+      font-family: monospace;
+      margin-top: 0.6em;
+      margin-bottom: 0.6em;
+      padding: 0.4em;
+      vertical-align: middle;
+    }
+  }
+}
+
+body#side-by-side-blocks {
+  .mockup-page {
+    section {
+      border: solid 1px #ccc;
+      color: #999;
+      margin: 0.4em;
+      padding: 0.2em 0.4em; // t+b l+r
+    }
+  }
 }

@@ -51,6 +51,22 @@
 
     RangeConverters.range_to_margin_top = RangeConverters.range_to_em;
 
+    RangeConverters.range_to_margin_bottom = RangeConverters.range_to_em;
+
+    RangeConverters.range_to_margin_left = RangeConverters.range_to_em;
+
+    RangeConverters.range_to_margin_right = RangeConverters.range_to_em;
+
+    RangeConverters.range_to_padding = RangeConverters.range_to_em;
+
+    RangeConverters.range_to_padding_top = RangeConverters.range_to_em;
+
+    RangeConverters.range_to_padding_bottom = RangeConverters.range_to_em;
+
+    RangeConverters.range_to_padding_left = RangeConverters.range_to_em;
+
+    RangeConverters.range_to_padding_right = RangeConverters.range_to_em;
+
     RangeConverters.range_to_width = RangeConverters.range_to_em;
 
     return RangeConverters;

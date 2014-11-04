@@ -39,6 +39,14 @@ class RangeConverters
 
   @range_to_margin: @range_to_em
   @range_to_margin_top: @range_to_em
+  @range_to_margin_bottom: @range_to_em
+  @range_to_margin_left: @range_to_em
+  @range_to_margin_right: @range_to_em
+  @range_to_padding: @range_to_em
+  @range_to_padding_top: @range_to_em
+  @range_to_padding_bottom: @range_to_em
+  @range_to_padding_left: @range_to_em
+  @range_to_padding_right: @range_to_em
   @range_to_width: @range_to_em
 
 

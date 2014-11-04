@@ -13,7 +13,8 @@ body {
   text-align: center;
   width: 41em; }
   body h1 {
-    margin: 1em 0 2em 0;
+    font-size: 1.5em;
+    margin: 1em 0 1.5em 0;
     text-align: center; }
 
 .left-column {
@@ -22,19 +23,14 @@ body {
   width: 20em; }
   .left-column .mockup-page {
     box-shadow: 0 0 5px 0px #999;
+    font-family: serif;
+    font-size: 0.8em;
     margin: 0 auto;
-    padding: 0.001em; }
-    .left-column .mockup-page section {
-      border: solid 1px #ccc;
-      color: #999;
-      font-family: serif;
-      font-size: 0.8em;
-      margin: 0.4em;
-      padding: 0.2em 0.4em; }
+    padding: 0.01em; }
 
 .right-column {
   display: inline-block;
-  padding: 0 2em;
+  padding: 0 0 0 1em;
   text-align: left;
   vertical-align: top;
   width: 20em; }
@@ -51,8 +47,22 @@ body {
       width: 5em; }
   .right-column .css-code {
     display: inline-block;
-    width: 12em; }
+    width: 14em; }
 
 button {
   margin-top: 4em;
   padding: 0.4em 1.4em; }
+
+body#ul-and-li-margins-and-padding .mockup-page aside {
+  border: 1px solid #999;
+  font-family: monospace;
+  margin-top: 0.6em;
+  margin-bottom: 0.6em;
+  padding: 0.4em;
+  vertical-align: middle; }
+
+body#side-by-side-blocks .mockup-page section {
+  border: solid 1px #ccc;
+  color: #999;
+  margin: 0.4em;
+  padding: 0.2em 0.4em; }
