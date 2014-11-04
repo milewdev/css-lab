@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset='utf-8'>
+    <title>Side-by-Side Blocks</title>
+    <link rel='stylesheet' href='/css/side-by-side.css'>
+  </head>
+
+  <body>
+
+    <h1>Fixed Width Left Column</h1>
+
+    <section class='left-column'>
+      <div class='mockup-page'>
+        <section class='above'>above</section>
+        <section class='left'>
+          fixed width column
+        </section>
+        <section class='right'>
+          variable width column
+        </section>
+        <section class='below'>below</section>
+      </div>
+    </section>
+
+    <section class='right-column'>
+      <pre>
+body {
+  <input type='range' min='10' max='20' data-mockup-dom-element='.mockup-page' data-css-attr-name='width' data-default-value='15'></input>
+}
+
+.mockup-page section {
+  <input type='range' min='0' max='0.5' step='0.1' data-mockup-dom-element='.mockup-page section' data-css-attr-name='margin' data-default-value='0.4'></input>
+}
+
+.above {
+  <input type='hidden' data-mockup-dom-element='.above' data-css-attr-name='display' data-css-attr-value='block'></input>
+}
+
+.left {
+  <input type='range' min='0' max='3' data-mockup-dom-element='.left' data-css-attr-name='display' data-default-value='3'></input>
+  <input type='checkbox' checked data-mockup-dom-element='.left' data-css-attr-name='float' data-css-attr-value='left'></input>
+  <input type='checkbox' checked data-mockup-dom-element='.left' data-css-attr-name='margin-top' data-css-attr-value='0em'></input>
+  <input type='hidden' data-mockup-dom-element='.left' data-css-attr-name='width' data-css-attr-value='5em'></input>
+}
+
+.right {
+  <input type='range' min='0' max='3' data-mockup-dom-element='.right' data-css-attr-name='display' data-default-value='3'></input>
+  <input type='checkbox' checked data-mockup-dom-element='.right' data-css-attr-name='overflow' data-css-attr-value='hidden'></input>
+}
+
+.below {
+  <input type='checkbox' checked data-mockup-dom-element='.below' data-css-attr-name='clear' data-css-attr-value='left'></input>
+  <input type='hidden' data-mockup-dom-element='.below' data-css-attr-name='display' data-css-attr-value='block'></input>
+}</pre>
+    </section>
+
+    <button type='button' id='reset'>Reset</button>
+
+    <script src="/javascript/jquery.min.js"></script>
+    <script src="/javascript/script2.js"></script>
+  </body>
+</html>

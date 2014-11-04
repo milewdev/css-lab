@@ -1,0 +1,82 @@
+* {
+  // border: 1px solid red;
+  margin: 0;
+  padding: 0;
+}
+
+// See http://www.paulirish.com/2012/box-sizing-border-box-ftw/
+// apply a natural box layout model to all elements, but allowing components to change
+html {
+  box-sizing: border-box;
+}
+
+*, *:before, *:after {
+  box-sizing: inherit;
+}
+
+body {
+  margin: 0 auto;         // t+b l+r
+  text-align: center;
+  width: 41em;
+
+  h1 {
+    margin: 1em 0 2em 0;  // t r b l
+    text-align: center;
+  }
+}
+
+.left-column {
+  display: inline-block;
+  text-align: left;
+  width: 20em;
+
+  .mockup-page {
+    box-shadow: 0 0 5px 0px #999;
+    margin: 0 auto;         // t+b l+r
+    padding: 0.001em;       // prevent t+b margin collapse
+
+    section {
+      border: solid 1px #ccc;
+      color: #999;
+      font-family: serif;
+      font-size: 0.8em;
+      margin: 0.4em;
+      padding: 0.2em 0.4em; // t+b l+r
+    }
+  }
+}
+
+.right-column {
+  display: inline-block;
+  padding: 0 2em;           // t+b l+r    Why does margin not work here?
+  text-align: left;
+  vertical-align: top;
+  width: 20em;
+
+  pre {
+    font-size: 0.9em;
+    overflow: auto;
+    margin: 0 auto;         // t+b l+r
+    padding: 0;
+  }
+
+  input {
+    left: 3em;
+    position: relative;
+    top: 0.5em;
+
+    &[type='range'] {
+      width: 5em;
+    }
+  }
+
+  .css-code {
+    display: inline-block;
+    width: 12em;
+  }
+}
+
+button {
+  margin-top: 4em;
+  padding: 0.4em 1.4em;     // t+b l+r
+}

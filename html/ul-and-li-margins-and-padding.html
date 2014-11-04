@@ -1,0 +1,89 @@
+<!doctype html>
+<html lang="en">
+
+  <head>
+    <meta charset="utf-8">
+    <title>CSS Lab: ul &amp; li</title>
+    <link rel="stylesheet" href="/css/style.css">
+  </head>
+
+  <body>
+
+    <header>
+      <h1>css lab: ul &amp; li margins and padding</h1>
+    </header>
+
+    <section id="css-settings">
+      <article>
+        body {
+          <!--
+            Children are added to these setting placeholder divs at page load time (see script.js) so that they become:
+
+              <div data-element="div" data-attribute="padding" data-preset-value="1">
+                <label>padding:</label>
+                <input type="text" readonly>
+                <label>em;</label>
+                <input type="range" min="-4" max="4">
+              </div>
+
+          -->
+          <div data-element="div" data-attribute="padding" data-preset-value="1"></div>
+        }
+      </article>
+      <article>
+        ul {
+          <div data-element="ul" data-attribute="margin-top"></div>
+          <div data-element="ul" data-attribute="margin-bottom" data-preset-value="2"></div>
+          <div data-element="ul" data-attribute="margin-left" data-preset-value="2"></div>
+          <div data-element="ul" data-attribute="margin-right" data-preset-value="2"></div>
+          <div data-element="ul" data-attribute="padding-top"></div>
+          <div data-element="ul" data-attribute="padding-bottom"></div>
+          <div data-element="ul" data-attribute="padding-left"></div>
+          <div data-element="ul" data-attribute="padding-right"></div>
+        }
+      </article>
+      <article>
+        li {
+          <div data-element="li" data-attribute="margin-top" data-preset-value="2"></div>
+          <div data-element="li" data-attribute="margin-bottom"></div>
+          <div data-element="li" data-attribute="margin-left"></div>
+          <div data-element="li" data-attribute="margin-right"></div>
+          <div data-element="li" data-attribute="padding-top"></div>
+          <div data-element="li" data-attribute="padding-bottom"></div>
+          <div data-element="li" data-attribute="padding-left"></div>
+          <div data-element="li" data-attribute="padding-right"></div>
+          <div data-element="li" data-attribute="text-indent"></div>
+        }
+      </article>
+      <article class="buttons">
+        <input type="button" value="Preset" id="preset-button">
+        <input type="button" value="Reset" id="reset-button">
+      </article>
+    </section>
+
+    <section id="example">
+      <div>   <!-- this div is used to emulate a <body> element -->
+        <ul>
+          <li>
+            Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+            <aside>Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</aside>
+            Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.
+          </li>
+          <li>
+            Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+            <aside>Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</aside>
+            Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.
+          </li>
+        </ul>
+      </div>
+    </section>
+
+    <footer>
+      <span class="source-link"><a href="https://github.com/milewdev/css-lab">Source on github</a></span>
+    </footer>
+
+    <script src="/javascript/jquery.min.js"></script>
+    <script src="/javascript/script.js"></script>
+
+  </body>
+</html>

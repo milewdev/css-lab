@@ -19,8 +19,20 @@ module.exports = function (grunt) {
           expand: true,
           cwd: '.tmp/',
           src: ['*.css'],
-          dest: 'stylesheets/',
+          dest: 'css/',
           ext: '.css'
+        }]
+      }
+    },
+
+    coffee: {
+      compile: {
+        files: [{
+          expand: true,
+          cwd: 'coffeescript/',
+          src: ['*.coffee'],
+          dest: 'javascript/',
+          ext: '.js'
         }]
       }
     },
@@ -30,11 +42,15 @@ module.exports = function (grunt) {
         livereload: '<%= connect.options.livereload %>'
       },
       html: {
-        files: ['index.html']   // so that it causes a livereload
+        files: ['*.html', 'html/*.html']       // so that changes causes a livereload
       },
-      styles: {
+      scss: {
         files: ['scss/*.scss'],
-        tasks: ['build']
+        tasks: ['sass', 'autoprefixer']
+      },
+      coffeescript: {
+        files: ['coffeescript/*.coffee'],
+        tasks: ['coffee']
       }
     },
 
@@ -53,12 +69,12 @@ module.exports = function (grunt) {
 
   });
 
-  grunt.loadNpmTasks('grunt-contrib-sass');
   grunt.loadNpmTasks('grunt-autoprefixer');
-  grunt.loadNpmTasks('grunt-contrib-watch');
+  grunt.loadNpmTasks('grunt-contrib-coffee');
   grunt.loadNpmTasks('grunt-contrib-connect');
+  grunt.loadNpmTasks('grunt-contrib-sass');
+  grunt.loadNpmTasks('grunt-contrib-watch');
 
-  grunt.registerTask('build', ['sass', 'autoprefixer']);
   grunt.registerTask('serve', function (target) {
     grunt.task.run(['connect:livereload', 'watch']);
   });
