@@ -26,7 +26,7 @@ body {
   }
 }
 
-.left-column {
+.mockup-page-column {
   display: inline-block;
   text-align: left;
   width: 20em;
@@ -40,7 +40,7 @@ body {
   }
 }
 
-.right-column {
+.css-column {
   display: inline-block;
   padding: 0 0 0 1em;       // t r b l    Why does margin not work here?
   text-align: left;

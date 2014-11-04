@@ -17,35 +17,35 @@ body {
     margin: 1em 0 1.5em 0;
     text-align: center; }
 
-.left-column {
+.mockup-page-column {
   display: inline-block;
   text-align: left;
   width: 20em; }
-  .left-column .mockup-page {
+  .mockup-page-column .mockup-page {
     box-shadow: 0 0 5px 0px #999;
     font-family: serif;
     font-size: 0.8em;
     margin: 0 auto;
     padding: 0.01em; }
 
-.right-column {
+.css-column {
   display: inline-block;
   padding: 0 0 0 1em;
   text-align: left;
   vertical-align: top;
   width: 20em; }
-  .right-column pre {
+  .css-column pre {
     font-size: 0.9em;
     overflow: auto;
     margin: 0 auto;
     padding: 0; }
-  .right-column input {
+  .css-column input {
     left: 3em;
     position: relative;
     top: 0.5em; }
-    .right-column input[type='range'] {
+    .css-column input[type='range'] {
       width: 5em; }
-  .right-column .css-code {
+  .css-column .css-code {
     display: inline-block;
     width: 14em; }
 
