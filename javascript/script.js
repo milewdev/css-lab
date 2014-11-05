@@ -117,6 +117,10 @@
       return ['flex-start', 'flex-end', 'center', 'space-between', 'space-around'][range_value];
     };
 
+    RangeConverters.range_to_text_align = function(range_value) {
+      return ['left', 'center', 'right', 'justify'][range_value];
+    };
+
     RangeConverters.range_to_em = function(range_value) {
       return range_value + 'em';
     };
@@ -130,6 +134,8 @@
     RangeConverters.range_to_flex_grow = RangeConverters.range_to_number;
 
     RangeConverters.range_to_flex_shrink = RangeConverters.range_to_number;
+
+    RangeConverters.range_to_font_size = RangeConverters.range_to_em;
 
     RangeConverters.range_to_margin = RangeConverters.range_to_em;
 

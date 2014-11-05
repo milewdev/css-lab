@@ -1,5 +1,7 @@
 class VendorPrefix
 
+  # private
+
   values_that_need_prefixing = ['flex', 'inline-flex']
   cached_prefix = null
 
@@ -83,6 +85,9 @@ class RangeConverters
   @range_to_justify_content: (range_value) ->
     ['flex-start', 'flex-end', 'center', 'space-between', 'space-around'][range_value]
 
+  @range_to_text_align: (range_value) ->
+    ['left', 'center', 'right', 'justify'][range_value]
+
   @range_to_em: (range_value) ->
     range_value + 'em'
 
@@ -92,6 +97,7 @@ class RangeConverters
   @range_to_flex_basis: @range_to_em
   @range_to_flex_grow: @range_to_number
   @range_to_flex_shrink: @range_to_number
+  @range_to_font_size: @range_to_em
   @range_to_margin: @range_to_em
   @range_to_margin_top: @range_to_em
   @range_to_margin_bottom: @range_to_em

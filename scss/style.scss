@@ -36,6 +36,7 @@ h1 {
     font-family: serif;
     font-size: 0.8em;
     margin: 0 auto;           // t+b l+r
+    min-height: 10em;
     padding: 0.01em;          // prevent t+b margin collapse
   }
 }
@@ -136,6 +137,26 @@ body#flex {
 
     .child:nth-child(7) {
       background-color: #e0e0ff;
+    }
+  }
+}
+
+body#center-using-flex {
+  .mockup-page {
+    padding: 1.5em;
+
+    .container {
+      background-color: #ffebcc;
+      border: 1px solid #ccc;
+      min-height: 15em;
+    }
+
+    .child {
+      background-color: #c2c2ff;
+      border: 1px solid #999;
+      padding: 0.2em 0.4em;   // t+b l+r
+      margin: 0.4em;
+      max-width: 8em;
     }
   }
 }
