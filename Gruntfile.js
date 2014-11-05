@@ -75,7 +75,13 @@ module.exports = function (grunt) {
   grunt.loadNpmTasks('grunt-contrib-sass');
   grunt.loadNpmTasks('grunt-contrib-watch');
 
+  grunt.registerTask('build', ['clean', 'sass', 'autoprefixer', 'coffee']);
+  grunt.registerTask('clean', 'Remove intermediate build files (delete all files in .tmp/).', function() {
+    if (grunt.file.exists('.tmp')) {
+      grunt.file.delete('.tmp')
+    }
+  });
   grunt.registerTask('serve', function (target) {
-    grunt.task.run(['connect:livereload', 'watch']);
+    grunt.task.run(['clean', 'connect:livereload', 'watch']);
   });
 };
