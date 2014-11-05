@@ -1,0 +1,67 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>flex</title>
+    <link rel="stylesheet" href="../css/style.css">
+  </head>
+
+  <body id='flex'>
+
+    <h1>flex</h1>
+
+    <section class='mockup-page-column'>
+      <div class='mockup-page'>
+        <div class='container'>
+          <div class='child'>1</div>
+          <div class='child'>2</div>
+          <div class='child'>3</div>
+          <div class='child'>4</div>
+          <div class='child'>5</div>
+          <div class='child'>6</div>
+          <div class='child'>7</div>
+        </div>
+      </div>
+    </section>
+
+    <section class='css-column'>
+      <pre>
+body {
+  <input type='range' min='15' max='20' data-mockup-dom-element='.mockup-page' data-css-attr-name='width' data-default-value='17'></input>
+}
+
+.container {
+  <input type='range' min='0' max='5' data-mockup-dom-element='.container' data-css-attr-name='align-content' data-default-value='0'></input>
+  <input type='range' min='0' max='4' data-mockup-dom-element='.container' data-css-attr-name='align-items' data-default-value='0'></input>
+  <input type='range' min='0' max='5' data-mockup-dom-element='.container' data-css-attr-name='display' data-default-value='5'></input>
+  <input type='range' min='0' max='3' data-mockup-dom-element='.container' data-css-attr-name='flex-direction' data-default-value='0'></input>
+  <input type='range' min='0' max='2' data-mockup-dom-element='.container' data-css-attr-name='flex-wrap' data-default-value='1'></input>
+  <input type='range' min='0' max='4' data-mockup-dom-element='.container' data-css-attr-name='justify-content' data-default-value='0'></input>
+}
+
+.child {
+  <input type='checkbox' data-mockup-dom-element='.child' data-css-attr-name='flex-basis' data-css-attr-value='2em'></input>
+  <input type='range' min='0' max='2' data-mockup-dom-element='.child' data-css-attr-name='flex-grow' data-default-value='0'></input>
+  <input type='range' min='0' max='2' data-mockup-dom-element='.child' data-css-attr-name='flex-shrink' data-default-value='1'></input>
+  <input type='range' min='0' max='1' step='0.2' data-mockup-dom-element='.child' data-css-attr-name='margin' data-default-value='0.4'></input>
+}
+
+.child:nth-child(1) {
+  <input type='range' min='0' max='2' data-mockup-dom-element='.child:nth-child(1)' data-css-attr-name='flex-grow' data-default-value='0'></input>
+  <input type='range' min='0' max='3' data-mockup-dom-element='.child:nth-child(1)' data-css-attr-name='flex-shrink' data-default-value='1'></input>
+  <input type='checkbox' data-mockup-dom-element='.child:nth-child(1)' data-css-attr-name='height' data-css-attr-value='3em'></input>
+  <input type='range' min='0' max='2' data-mockup-dom-element='.child:nth-child(1)' data-css-attr-name='order' data-default-value='0'></input>
+}
+
+.child:nth-child(2) {
+  <input type='range' min='0' max='5' data-mockup-dom-element='.child:nth-child(2)' data-css-attr-name='align-self' data-default-value='0'></input>
+  <input type='range' min='0' max='2' data-mockup-dom-element='.child:nth-child(2)' data-css-attr-name='order' data-default-value='0'></input>
+}</pre>
+    </section>
+
+    <button type='button' id='reset'>Reset</button>
+
+    <script src="../javascript/jquery.min.js"></script>
+    <script src="../javascript/script.js"></script>
+  </body>
+</html>

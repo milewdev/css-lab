@@ -1,5 +1,55 @@
 (function() {
-  var Checkbox, CssAttributeView, Hidden, Range, RangeConverters, install_button_handlers, install_checkbox_handlers, install_hidden_labels, install_range_handlers, refresh_all, reset_all;
+  var Checkbox, CssAttributeView, Hidden, Range, RangeConverters, VendorPrefix, install_button_handlers, install_checkbox_handlers, install_hidden_labels, install_range_handlers, refresh_all, reset_all,
+    __indexOf = [].indexOf || function(item) { for (var i = 0, l = this.length; i < l; i++) { if (i in this && this[i] === item) return i; } return -1; };
+
+  VendorPrefix = (function() {
+    var cached_prefix, derive_prefix, needs_prefixing, prefix, prefix_css_value, values_that_need_prefixing;
+
+    function VendorPrefix() {}
+
+    values_that_need_prefixing = ['flex', 'inline-flex'];
+
+    cached_prefix = null;
+
+    prefix_css_value = function(css_value) {
+      if (needs_prefixing(css_value)) {
+        return "" + (prefix()) + css_value;
+      } else {
+        return css_value;
+      }
+    };
+
+    needs_prefixing = function(css_value) {
+      return __indexOf.call(values_that_need_prefixing, css_value) >= 0;
+    };
+
+    prefix = function() {
+      return cached_prefix != null ? cached_prefix : cached_prefix = derive_prefix();
+    };
+
+    derive_prefix = function() {
+      var style;
+      style = $('body').get(0).style;
+      switch (false) {
+        case style.webkitFlex == null:
+          return '-webkit-';
+        case style.mozFlex == null:
+          return '-moz-';
+        case style.msFlex == null:
+          return '-ms-';
+        default:
+          return '';
+      }
+    };
+
+    $.fn.css2 = function(css_name, css_value) {
+      css_value = prefix_css_value(css_value);
+      return this.css(css_name, css_value);
+    };
+
+    return VendorPrefix;
+
+  })();
 
   CssAttributeView = (function() {
     function CssAttributeView(css_name, css_value) {
@@ -31,21 +81,55 @@
 
     RangeConverters.convert = function(css_attr_name, range_value) {
       var convert;
-      convert = RangeConverters["range_to_" + (css_attr_name.replace('-', '_'))];
+      convert = RangeConverters["range_to_" + (css_attr_name.replace(/-/g, '_'))];
       return convert(range_value);
     };
 
+    RangeConverters.range_to_align_content = function(range_value) {
+      return ['flex-start', 'flex-end', 'center', 'space-between', 'space-around', 'stretch'][range_value];
+    };
+
+    RangeConverters.range_to_align_items = function(range_value) {
+      return ['flex-start', 'flex-end', 'center', 'baseline', 'stretch'][range_value];
+    };
+
+    RangeConverters.range_to_align_self = function(range_value) {
+      return ['auto', 'flex-start', 'flex-end', 'center', 'baseline', 'stretch'][range_value];
+    };
+
     RangeConverters.range_to_display = function(range_value) {
-      return ['none', 'inline', 'inline-block', 'block'][range_value];
+      return ['none', 'inline', 'inline-block', 'block', 'inline-flex', 'flex'][range_value];
+    };
+
+    RangeConverters.range_to_flex_direction = function(range_value) {
+      return ['row', 'row-reverse', 'column', 'column-reverse'][range_value];
+    };
+
+    RangeConverters.range_to_flex_wrap = function(range_value) {
+      return ['nowrap', 'wrap', 'wrap-reverse'][range_value];
     };
 
     RangeConverters.range_to_float = function(range_value) {
       return ['none', 'left', 'right'][range_value];
     };
 
+    RangeConverters.range_to_justify_content = function(range_value) {
+      return ['flex-start', 'flex-end', 'center', 'space-between', 'space-around'][range_value];
+    };
+
     RangeConverters.range_to_em = function(range_value) {
       return range_value + 'em';
     };
+
+    RangeConverters.range_to_number = function(range_value) {
+      return range_value;
+    };
+
+    RangeConverters.range_to_flex_basis = RangeConverters.range_to_em;
+
+    RangeConverters.range_to_flex_grow = RangeConverters.range_to_number;
+
+    RangeConverters.range_to_flex_shrink = RangeConverters.range_to_number;
 
     RangeConverters.range_to_margin = RangeConverters.range_to_em;
 
@@ -56,6 +140,8 @@
     RangeConverters.range_to_margin_left = RangeConverters.range_to_em;
 
     RangeConverters.range_to_margin_right = RangeConverters.range_to_em;
+
+    RangeConverters.range_to_order = RangeConverters.range_to_number;
 
     RangeConverters.range_to_padding = RangeConverters.range_to_em;
 
@@ -121,7 +207,7 @@
     };
 
     Range.prototype.update_mockup_dom_element = function(css_value) {
-      return this.mockup_dom_element.css(this.css_name, css_value);
+      return this.mockup_dom_element.css2(this.css_name, css_value);
     };
 
     Range.prototype.update_css_attribute_view = function(css_value) {
@@ -180,16 +266,16 @@
       var checked;
       checked = this.$checkbox.prop('checked');
       if (checked) {
-        this.display.dom_element().css('text-decoration', '');
+        this.display.dom_element().css2('text-decoration', '');
       } else {
-        this.mockup_dom_element.css(this.css_name, '');
-        this.display.dom_element().css('text-decoration', 'line-through');
+        this.mockup_dom_element.css2(this.css_name, '');
+        this.display.dom_element().css2('text-decoration', 'line-through');
       }
       return refresh_all();
     };
 
     Checkbox.prototype.update_mockup_dom_element = function(css_value) {
-      return this.mockup_dom_element.css(this.css_name, css_value);
+      return this.mockup_dom_element.css2(this.css_name, css_value);
     };
 
     return Checkbox;
@@ -205,7 +291,7 @@
     }
 
     Hidden.prototype.refresh = function() {
-      return this.mockup_dom_element.css(this.css_name, this.css_value);
+      return this.mockup_dom_element.css2(this.css_name, this.css_value);
     };
 
     Hidden.prototype.reset = function() {};

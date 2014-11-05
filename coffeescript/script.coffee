@@ -1,3 +1,34 @@
+class VendorPrefix
+
+  values_that_need_prefixing = ['flex', 'inline-flex']
+  cached_prefix = null
+
+  prefix_css_value = (css_value) ->
+    if needs_prefixing(css_value)
+      "#{prefix()}#{css_value}"
+    else
+      css_value
+
+  needs_prefixing = (css_value) ->
+    css_value in values_that_need_prefixing
+
+  prefix = ->
+    cached_prefix ?= derive_prefix()
+
+  derive_prefix = ->
+    style = $('body').get(0).style
+    switch
+      when style.webkitFlex? then '-webkit-'
+      when style.mozFlex? then '-moz-'
+      when style.msFlex? then '-ms-'
+      else ''
+
+  # Note: runs when the class definition is parsed.
+  $.fn.css2 = (css_name, css_value) ->
+    css_value = prefix_css_value(css_value)
+    this.css(css_name, css_value)
+
+
 class CssAttributeView
 
   constructor: (css_name, css_value) ->
@@ -25,23 +56,48 @@ class CssAttributeView
 class RangeConverters
 
   @convert: (css_attr_name, range_value) ->
-    convert = RangeConverters["range_to_#{css_attr_name.replace('-', '_')}"]
+    convert = RangeConverters["range_to_#{css_attr_name.replace(/-/g, '_')}"]
     convert(range_value)
 
+  @range_to_align_content: (range_value) ->
+    ['flex-start', 'flex-end', 'center', 'space-between', 'space-around', 'stretch'][range_value]
+
+  @range_to_align_items: (range_value) ->
+    ['flex-start', 'flex-end', 'center', 'baseline', 'stretch'][range_value]
+
+  @range_to_align_self: (range_value) ->
+    ['auto', 'flex-start', 'flex-end', 'center', 'baseline', 'stretch'][range_value]
+
   @range_to_display: (range_value) ->
-    ['none', 'inline', 'inline-block', 'block'][range_value]
+    ['none', 'inline', 'inline-block', 'block', 'inline-flex', 'flex'][range_value]
+
+  @range_to_flex_direction: (range_value) ->
+    [ 'row', 'row-reverse', 'column', 'column-reverse' ][range_value]
+
+  @range_to_flex_wrap: (range_value) ->
+    [ 'nowrap', 'wrap', 'wrap-reverse' ][range_value]
 
   @range_to_float: (range_value) ->
     ['none', 'left', 'right'][range_value]
 
+  @range_to_justify_content: (range_value) ->
+    ['flex-start', 'flex-end', 'center', 'space-between', 'space-around'][range_value]
+
   @range_to_em: (range_value) ->
     range_value + 'em'
 
+  @range_to_number: (range_value) ->
+    range_value
+
+  @range_to_flex_basis: @range_to_em
+  @range_to_flex_grow: @range_to_number
+  @range_to_flex_shrink: @range_to_number
   @range_to_margin: @range_to_em
   @range_to_margin_top: @range_to_em
   @range_to_margin_bottom: @range_to_em
   @range_to_margin_left: @range_to_em
   @range_to_margin_right: @range_to_em
+  @range_to_order: @range_to_number
   @range_to_padding: @range_to_em
   @range_to_padding_top: @range_to_em
   @range_to_padding_bottom: @range_to_em
@@ -92,7 +148,7 @@ class Range
     RangeConverters.convert(@css_name, range_value)
 
   update_mockup_dom_element: (css_value) ->
-    @mockup_dom_element.css(@css_name, css_value)
+    @mockup_dom_element.css2(@css_name, css_value)
 
   update_css_attribute_view: (css_value) ->
     @display.set_value(css_value)
@@ -142,14 +198,14 @@ class Checkbox
   on_change: ->
     checked = @$checkbox.prop('checked')  # TODO: extract method checked()
     if checked
-      @display.dom_element().css('text-decoration', '') # TODO: extract method strikeout(bool)
+      @display.dom_element().css2('text-decoration', '') # TODO: extract method strikeout(bool)
     else
-      @mockup_dom_element.css(@css_name, '')  # TODO: document why we do this and why only once
-      @display.dom_element().css('text-decoration', 'line-through')
+      @mockup_dom_element.css2(@css_name, '')  # TODO: document why we do this and why only once
+      @display.dom_element().css2('text-decoration', 'line-through')
     refresh_all()
 
   update_mockup_dom_element: (css_value) ->
-    @mockup_dom_element.css(@css_name, css_value)
+    @mockup_dom_element.css2(@css_name, css_value)
 
 
 #
@@ -165,7 +221,7 @@ class Hidden
     @create_and_insert_display()
 
   refresh: ->
-    @mockup_dom_element.css(@css_name, @css_value)
+    @mockup_dom_element.css2(@css_name, @css_value)
 
   reset: ->
     # readonly so nothing to do

@@ -42,7 +42,6 @@ h1 {
 
 .css-column {
   display: inline-block;
-  padding: 0 0 0 1em;         // t r b l    Why does margin not work here?
   text-align: left;
   vertical-align: top;
   width: 20em;
@@ -54,19 +53,15 @@ h1 {
     padding: 0;
   }
 
-  input {
-    left: 3em;
+  input[type='range'] {
     position: relative;
     top: 0.5em;
-
-    &[type='range'] {
-      width: 5em;
-    }
+    width: 5em;
   }
 
   .css-code {
     display: inline-block;
-    width: 14em;
+    width: 20em;
   }
 }
 
@@ -95,6 +90,52 @@ body#side-by-side-blocks {
       border: solid 1px #ccc;
       margin: 0.4em;
       padding: 0.2em 0.4em;   // t+b l+r
+    }
+  }
+}
+
+body#flex {
+  .mockup-page {
+    padding: 1.5em;
+
+    .container {
+      background-color: #ffebcc;
+      border: 1px solid #ccc;
+      min-height: 15em;
+    }
+
+    .child {
+      border: 1px solid #999;
+      padding: 0.2em 0.4em;   // t+b l+r
+      text-align: center;
+    }
+
+    .child:nth-child(1) {
+      background-color: #a3a3ff;
+    }
+
+    .child:nth-child(2) {
+      background-color: #adadff;
+    }
+
+    .child:nth-child(3) {
+      background-color: #b8b8ff;
+    }
+
+    .child:nth-child(4) {
+      background-color: #c2c2ff;
+    }
+
+    .child:nth-child(5) {
+      background-color: #ccccff;
+    }
+
+    .child:nth-child(6) {
+      background-color: #d6d6ff;
+    }
+
+    .child:nth-child(7) {
+      background-color: #e0e0ff;
     }
   }
 }
