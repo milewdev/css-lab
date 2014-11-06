@@ -1,23 +1,19 @@
-* {
-  // border: 1px solid red;
-  margin: 0;
-  padding: 0;
-}
+@import 'library';
 
-// See http://www.paulirish.com/2012/box-sizing-border-box-ftw/
-// apply a natural box layout model to all elements, but allowing components to change
-html {
-  box-sizing: border-box;
-}
-
-*, *:before, *:after {
-  box-sizing: inherit;
-}
+@include reset;
+@include box-sizing-fix;
+// @include debug-show-all-borders;
+@include main-menu-raised;
+@include main-footer;
 
 body {
   margin: 0 auto;             // t+b l+r
   text-align: center;
-  width: 41em;
+
+  .main {
+    margin: 0 auto;           // t+b l+r
+    width: 41em;
+  }
 }
 
 h1 {

@@ -8,10 +8,50 @@ html {
 *, *:before, *:after {
   box-sizing: inherit; }
 
+body > header {
+  background-color: black;
+  height: 2em;
+  padding: 0 2em; }
+  body > header > nav {
+    background: -webkit-linear-gradient(top, #3671e7 0%, #3671e7 20%, #194fd7 80%, #194fd7 100%);
+    background: linear-gradient(to bottom, #3671e7 0%, #3671e7 20%, #194fd7 80%, #194fd7 100%);
+    border-radius: 3px;
+    box-shadow: 0 0 4px 0px #333;
+    position: relative;
+    height: 2em;
+    top: 1em;
+    margin: 0 auto;
+    max-width: 50rem;
+    display: -webkit-box;
+    display: -webkit-flex;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-pack: justify;
+    -webkit-justify-content: space-between;
+        -ms-flex-pack: justify;
+            justify-content: space-between; }
+    body > header > nav > menu {
+      margin: auto 0; }
+      body > header > nav > menu > menuitem {
+        color: white;
+        font-size: 0.8rem;
+        letter-spacing: 1px;
+        margin: 0 0.8em; }
+        body > header > nav > menu > menuitem a {
+          color: inherit;
+          text-decoration: none; }
+          body > header > nav > menu > menuitem a:hover {
+            text-decoration: underline; }
+
+body > footer {
+  background-color: black; }
+
 body {
   margin: 0 auto;
-  text-align: center;
-  width: 41em; }
+  text-align: center; }
+  body .main {
+    margin: 0 auto;
+    width: 41em; }
 
 h1 {
   font-size: 1.5em;
