@@ -9,7 +9,7 @@ html {
   box-sizing: inherit; }
 
 body > header {
-  background-color: black;
+  background-color: #333333;
   height: 2em;
   padding: 0 2em; }
   body > header > nav {
@@ -44,14 +44,22 @@ body > header {
             text-decoration: underline; }
 
 body > footer {
-  background-color: black; }
+  background-color: #333333;
+  color: #cccccc;
+  font-size: 0.8em;
+  min-height: 10em;
+  margin-top: 1.5em;
+  padding-top: 0.5em;
+  padding-bottom: 1em; }
+  body > footer a {
+    color: #cccccc;
+    text-decoration: none; }
+    body > footer a:hover {
+      text-decoration: underline; }
 
 body {
   margin: 0 auto;
   text-align: center; }
-  body .main {
-    margin: 0 auto;
-    width: 41em; }
 
 h1 {
   font-size: 1.5em;
@@ -91,6 +99,10 @@ h1 {
 button {
   margin-top: 4em;
   padding: 0.4em 1.4em; }
+
+body#index section {
+  margin: 0 auto;
+  width: 40em; }
 
 body#ul-and-li-margins-and-padding .mockup-page aside {
   border: 1px solid #999;
@@ -144,14 +156,17 @@ body#center-using-flex .mockup-page {
     max-width: 8em; }
 
 body#elastic-footer .mockup-page {
-  max-height: 2em;
+  height: 10em;
   overflow: auto;
   padding: 0.1em;
   text-align: center; }
-  body#elastic-footer .mockup-page .header, body#elastic-footer .mockup-page .content, body#elastic-footer .mockup-page .footer {
-    padding: 0.5em;
-    height: 2em; }
-  body#elastic-footer .mockup-page .header {
+  body#elastic-footer .mockup-page header, body#elastic-footer .mockup-page section, body#elastic-footer .mockup-page footer {
+    padding: 0.5em; }
+  body#elastic-footer .mockup-page header {
     background-color: #ccc; }
-  body#elastic-footer .mockup-page .footer {
-    background-color: #ccc; }
+  body#elastic-footer .mockup-page footer {
+    background-color: #ccc;
+    display: -webkit-box;
+    display: -webkit-flex;
+    display: -ms-flexbox;
+    display: flex; }

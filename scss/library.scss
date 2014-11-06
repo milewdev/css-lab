@@ -1,3 +1,5 @@
+$main-header-and-footer-background-color: #333;
+
 @mixin reset {
   * {
     margin: 0;
@@ -40,7 +42,7 @@
     $nav-bar-height: 2em;
 
     // A black background bar at the top of the page.
-    background-color: black;
+    background-color: $main-header-and-footer-background-color;
     height: $nav-bar-height;
 
     // Prevent navigation bar from hitting left and right sides of the page
@@ -91,8 +93,24 @@
 }
 
 @mixin main-footer {
+
   body > footer {
-    // A black background bar at the bottom of the page.
-    background-color: black;
+    $color: #ccc;
+    @include link-style($color);
+
+    background-color: $main-header-and-footer-background-color;
+    color: $color;
+    font-size: 0.8em;
+    min-height: 10em;
+
+    // Gap between the last content on the page and the top of the footer bar.
+    margin-top: 1.5em;
+
+    // Gap between the top of the footer bar and the first content in the footer.
+    padding-top: 0.5em;
+
+    // Ensure that the last content of the footer does not hit up against the
+    // bottom of the browser window.
+    padding-bottom: 1em;
   }
 }
