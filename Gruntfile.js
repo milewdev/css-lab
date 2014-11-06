@@ -80,6 +80,9 @@ module.exports = function (grunt) {
     if (grunt.file.exists('.tmp')) {
       grunt.file.delete('.tmp')
     }
+    if (grunt.file.exists('css')) {
+      grunt.file.delete('css')
+    }
   });
   grunt.registerTask('serve', function (target) {
     grunt.task.run(['clean', 'connect:livereload', 'watch']);
