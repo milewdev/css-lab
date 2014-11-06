@@ -98,7 +98,7 @@ body#flex {
     .container {
       background-color: #ffebcc;
       border: 1px solid #ccc;
-      min-height: 15em;
+      min-height: 25em;
     }
 
     .child {
@@ -155,4 +155,26 @@ body#center-using-flex {
       max-width: 8em;
     }
   }
+}
+
+body#elastic-footer {
+    .mockup-page {
+      max-height: 2em;
+      overflow: auto;
+      padding: 0.1em;
+      text-align: center;
+
+      .header, .content, .footer {
+        padding: 0.5em;
+        height: 2em;
+      }
+
+      .header {
+        background-color: #ccc;
+      }
+
+      .footer {
+        background-color: #ccc;
+      }
+    }
 }

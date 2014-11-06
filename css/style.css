@@ -110,7 +110,7 @@ body#flex .mockup-page {
   body#flex .mockup-page .container {
     background-color: #ffebcc;
     border: 1px solid #ccc;
-    min-height: 15em; }
+    min-height: 25em; }
   body#flex .mockup-page .child {
     border: 1px solid #999;
     padding: 0.2em 0.4em;
@@ -142,3 +142,16 @@ body#center-using-flex .mockup-page {
     padding: 0.2em 0.4em;
     margin: 0.4em;
     max-width: 8em; }
+
+body#elastic-footer .mockup-page {
+  max-height: 2em;
+  overflow: auto;
+  padding: 0.1em;
+  text-align: center; }
+  body#elastic-footer .mockup-page .header, body#elastic-footer .mockup-page .content, body#elastic-footer .mockup-page .footer {
+    padding: 0.5em;
+    height: 2em; }
+  body#elastic-footer .mockup-page .header {
+    background-color: #ccc; }
+  body#elastic-footer .mockup-page .footer {
+    background-color: #ccc; }
