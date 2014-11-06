@@ -13,7 +13,7 @@ body {
 
 h1 {
   font-size: 1.5em;
-  margin: 1em 0 1.5em 0;      // t r b l
+  margin: 2em 0 1em 0;      // t r b l
   text-align: center;
 }
 
@@ -64,8 +64,21 @@ button {
 
 body#index {
   section {
+    @include link-style();
+
     margin: 0 auto;
-    width: 40em;
+    max-width: 40em;
+
+    td {
+      padding: 0.6em 2em;
+      text-align: left;
+      vertical-align: top;
+
+      &:first-child {
+        text-align: right;
+        white-space: nowrap;
+      }
+    }
   }
 }
 
@@ -177,7 +190,6 @@ body#elastic-footer {
       footer {
         background-color: #ccc;
         display: flex;
-
       }
     }
 }

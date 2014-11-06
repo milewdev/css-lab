@@ -48,7 +48,7 @@ body > footer {
   color: #cccccc;
   font-size: 0.8em;
   min-height: 10em;
-  margin-top: 1.5em;
+  margin-top: 2em;
   padding-top: 0.5em;
   padding-bottom: 1em; }
   body > footer a {
@@ -63,7 +63,7 @@ body {
 
 h1 {
   font-size: 1.5em;
-  margin: 1em 0 1.5em 0;
+  margin: 2em 0 1em 0;
   text-align: center; }
 
 .mockup-page-column {
@@ -102,7 +102,19 @@ button {
 
 body#index section {
   margin: 0 auto;
-  width: 40em; }
+  max-width: 40em; }
+  body#index section a {
+    color: #6699ff;
+    text-decoration: none; }
+    body#index section a:hover {
+      text-decoration: underline; }
+  body#index section td {
+    padding: 0.6em 2em;
+    text-align: left;
+    vertical-align: top; }
+    body#index section td:first-child {
+      text-align: right;
+      white-space: nowrap; }
 
 body#ul-and-li-margins-and-padding .mockup-page aside {
   border: 1px solid #999;

@@ -53,7 +53,11 @@ $main-header-and-footer-background-color: #333;
 
       // The nav bar has a gradient background, rounded corners, and a shadow.
       // See http://www.cssmatic.com/gradient-generator#'\-moz\-linear\-gradient\%28top\%2C\%20rgba\%2854\%2C113\%2C231\%2C1\%29\%200\%25\%2C\%20rgba\%2854\%2C113\%2C231\%2C1\%29\%2019\%25\%2C\%20rgba\%2825\%2C79\%2C215\%2C1\%29\%2076\%25\%2C\%20rgba\%2825\%2C79\%2C215\%2C1\%29\%20100\%25\%29\%3B'
-      background: linear-gradient(to bottom, rgba(54,113,231,1) 0%, rgba(54,113,231,1) 20%, rgba(25,79,215,1) 80%, rgba(25,79,215,1) 100%);
+      background: linear-gradient(to bottom,
+        rgba(54,113,231,1) 0%,
+        rgba(54,113,231,1) 20%,
+        rgba(25,79,215,1) 80%,
+        rgba(25,79,215,1) 100%);
       border-radius: 3px;
       box-shadow: 0 0 4px 0px #333;
 
@@ -104,7 +108,7 @@ $main-header-and-footer-background-color: #333;
     min-height: 10em;
 
     // Gap between the last content on the page and the top of the footer bar.
-    margin-top: 1.5em;
+    margin-top: 2em;
 
     // Gap between the top of the footer bar and the first content in the footer.
     padding-top: 0.5em;
