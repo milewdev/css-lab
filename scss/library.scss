@@ -1,4 +1,4 @@
-$main-header-and-footer-background-color: #333;
+$main-header-background-color: #595959;
 $body-width: 50em;
 
 @mixin reset {
@@ -43,7 +43,7 @@ $body-width: 50em;
     $nav-bar-height: 2em;
 
     // A black background bar at the top of the page.
-    background-color: $main-header-and-footer-background-color;
+    background-color: $main-header-background-color;
     height: $nav-bar-height;
 
     // Prevent navigation bar from hitting left and right sides of the page
@@ -99,12 +99,15 @@ $body-width: 50em;
 
 @mixin main-footer {
   body > section > footer {
+
+    // A horizontal line to separate the footer from the main content
+    // of the page.
     border-top: 1px solid #ccc;
 
     // The l+r margins ensure that the separator line does not hit up against
     // the sides of the browser window when it is shrunk.
     margin: 3em 2em 0.5em 2em;
-    
+
     padding-top: 0.5em;
     text-align: center;
 
