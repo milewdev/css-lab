@@ -100,7 +100,11 @@ $body-width: 50em;
 @mixin main-footer {
   body > section > footer {
     border-top: 1px solid #ccc;
+
+    // The l+r margins ensure that the separator line does not hit up against
+    // the sides of the browser window when it is shrunk.
     margin: 3em 2em 0.5em 2em;
+    
     padding-top: 0.5em;
     text-align: center;
 

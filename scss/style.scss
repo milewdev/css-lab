@@ -25,7 +25,6 @@ h1 {
 
   // Use flex to place the mockup page and the css
   // editor side by side.
-  align-items: center;
   display: flex;
   flex-direction: row;
   justify-content: space-around;
@@ -36,7 +35,11 @@ h1 {
 }
 
 .mockup-page-column {
-  width: 20em;
+
+  // Bump the mock page down slightly so that it looks properly
+  // aligned with the css code to its right.
+  padding-top: 0.4em;
+  width: 40%;
 
   .mockup-page {
     box-shadow: 0 0 5px 0px #999;
@@ -48,10 +51,12 @@ h1 {
 }
 
 .css-column {
+  width: 40%;
+
   pre {
     font-size: 0.9em;
     overflow: auto;
-    padding: 0.6em;
+    // padding: 0.6em;
   }
 
   input[type='range'] {
@@ -67,7 +72,7 @@ h1 {
 }
 
 nav {
-  margin: 1em 0;
+  margin: 2em 0 1em 0;
   text-align: center;
 
   button {
@@ -178,7 +183,11 @@ body#side-by-side-blocks {
 
 body#ul-and-li-margins-and-padding {
   .mockup-page {
-    // Something embedded in the li, to show alignment of, say, boxes of text, images, etc.
+    height: 25em;
+    padding: 0.5em;
+
+    // Something embedded in the li to show alignment of
+    // boxes of text, images, etc.
     aside {
       border: 1px solid #999;
       font-family: monospace;
@@ -186,6 +195,12 @@ body#ul-and-li-margins-and-padding {
       margin-bottom: 0.6em;
       padding: 0.4em;
       vertical-align: middle;
+    }
+  }
+
+  .css-column {
+    .css-code {
+      width: 15em;
     }
   }
 }
