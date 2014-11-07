@@ -2,47 +2,54 @@
 
 @include reset;
 @include box-sizing-fix;
-// @include debug-show-all-borders;
 @include main-menu-raised;
 @include main-footer;
+// @include debug-show-all-borders;
 
 body {
   margin: 0 auto;             // t+b l+r
-  text-align: center;
 }
 
 h1 {
   font-size: 1.5em;
-  margin: 2em 0 1em 0;      // t r b l
+  margin: 2em 0 1.5em 0;      // t r b l
   text-align: center;
 }
 
+// The sandbox is a container with a mockup page on the left
+// and a css editor on the right.
+.sandbox {
+
+  // Use flex to place the mockup page and the css
+  // editor side by side.
+  align-items: center;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+
+  // Limit the width of the sandbox and center it horizontally
+  // in the browser window.
+  margin: 0 auto;
+  max-width: $body-width;
+}
+
 .mockup-page-column {
-  display: inline-block;
-  text-align: left;
   width: 20em;
 
   .mockup-page {
     box-shadow: 0 0 5px 0px #999;
     font-family: serif;
     font-size: 0.8em;
-    margin: 0 auto;           // t+b l+r
-    min-height: 10em;
-    padding: 0.01em;          // prevent t+b margin collapse
+    margin: auto;
+    text-align: left;
   }
 }
 
 .css-column {
-  display: inline-block;
-  text-align: left;
-  vertical-align: top;
-  width: 20em;
-
   pre {
     font-size: 0.9em;
     overflow: auto;
-    margin: 0 auto;           // t+b l+r
-    padding: 0;
+    padding: 0.6em;
   }
 
   input[type='range'] {
@@ -57,17 +64,18 @@ h1 {
   }
 }
 
-button {
-  margin-top: 4em;
-  padding: 0.4em 1.4em;       // t+b l+r
+nav {
+  margin: 1em 0;
+  text-align: center;
+
+  button {
+    padding: 0.4em 1.4em;       // t+b l+r
+  }
 }
 
 body#index {
   section {
     @include link-style();
-
-    margin: 0 auto;
-    max-width: 40em;
 
     td {
       padding: 0.6em 2em;
@@ -82,26 +90,28 @@ body#index {
   }
 }
 
-body#ul-and-li-margins-and-padding {
+body#center-using-flex {
   .mockup-page {
-    // Something embedded in the li, to show alignment of, say, boxes of text, images, etc.
-    aside {
+    padding: 1.5em;
+
+    .container {
+      background-color: #ffebcc;
+      border: 1px solid #ccc;
+      height: 100%;
+      width: 100%;
+    }
+
+    .child {
+      background-color: #c2c2ff;
       border: 1px solid #999;
-      font-family: monospace;
-      margin-top: 0.6em;
-      margin-bottom: 0.6em;
-      padding: 0.4em;
-      vertical-align: middle;
+      padding: 0.2em 0.4em;   // t+b l+r
+      margin: 0.4em;
     }
   }
-}
 
-body#side-by-side-blocks {
-  .mockup-page {
-    section {
-      border: solid 1px #ccc;
-      margin: 0.4em;
-      padding: 0.2em 0.4em;   // t+b l+r
+  .css-column {
+    .css-code {
+      width: 15em;
     }
   }
 }
@@ -152,44 +162,28 @@ body#flex {
   }
 }
 
-body#center-using-flex {
+body#side-by-side-blocks {
   .mockup-page {
-    padding: 1.5em;
+    padding: 0.01em;          // prevent t+b margin collapse
 
-    .container {
-      background-color: #ffebcc;
-      border: 1px solid #ccc;
-      min-height: 15em;
-    }
-
-    .child {
-      background-color: #c2c2ff;
-      border: 1px solid #999;
-      padding: 0.2em 0.4em;   // t+b l+r
+    section {
+      border: solid 1px #ccc;
       margin: 0.4em;
-      max-width: 8em;
+      padding: 0.2em 0.4em;   // t+b l+r
     }
   }
 }
 
-body#elastic-footer {
-    .mockup-page {
-      height: 10em;
-      overflow: auto;         // allow scrollbars to appear when needed
-      padding: 0.1em;
-      text-align: center;
-
-      header, section, footer {
-        padding: 0.5em;
-      }
-
-      header {
-        background-color: #ccc;
-      }
-
-      footer {
-        background-color: #ccc;
-        display: flex;
-      }
+body#ul-and-li-margins-and-padding {
+  .mockup-page {
+    // Something embedded in the li, to show alignment of, say, boxes of text, images, etc.
+    aside {
+      border: 1px solid #999;
+      font-family: monospace;
+      margin-top: 0.6em;
+      margin-bottom: 0.6em;
+      padding: 0.4em;
+      vertical-align: middle;
     }
+  }
 }

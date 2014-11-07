@@ -137,6 +137,8 @@
 
     RangeConverters.range_to_font_size = RangeConverters.range_to_em;
 
+    RangeConverters.range_to_height = RangeConverters.range_to_em;
+
     RangeConverters.range_to_margin = RangeConverters.range_to_em;
 
     RangeConverters.range_to_margin_top = RangeConverters.range_to_em;
@@ -146,6 +148,8 @@
     RangeConverters.range_to_margin_left = RangeConverters.range_to_em;
 
     RangeConverters.range_to_margin_right = RangeConverters.range_to_em;
+
+    RangeConverters.range_to_max_width = RangeConverters.range_to_em;
 
     RangeConverters.range_to_order = RangeConverters.range_to_number;
 

@@ -7,25 +7,38 @@
   </head>
 
   <body id='flex'>
+    <header>
+      <nav>
+        <menu>
+          <menuitem><a href='/'>Home</a></menuitem>
+        </menu>
+        <menu>
+          <menuitem><a href='https://github.com/milewdev/css-lab'>GitHub</a></menuitem>
+        </menu>
+      </nav>
+    </header>
 
-    <h1>flex</h1>
-
-    <section class='mockup-page-column'>
-      <div class='mockup-page'>
-        <div class='container'>
-          <div class='child'>1</div>
-          <div class='child'>2</div>
-          <div class='child'>3</div>
-          <div class='child'>4</div>
-          <div class='child'>5</div>
-          <div class='child'>6</div>
-          <div class='child'>7</div>
-        </div>
-      </div>
+    <section>
+      <h1>flex</h1>
     </section>
 
-    <section class='css-column'>
-      <pre>
+    <section class='sandbox'>
+      <section class='mockup-page-column'>
+        <div class='mockup-page'>
+          <div class='container'>
+            <div class='child'>1</div>
+            <div class='child'>2</div>
+            <div class='child'>3</div>
+            <div class='child'>4</div>
+            <div class='child'>5</div>
+            <div class='child'>6</div>
+            <div class='child'>7</div>
+          </div>
+        </div>
+      </section>
+
+      <section class='css-column'>
+        <pre>
 body {
   <input type='range' min='15' max='20' data-mockup-dom-element='.mockup-page' data-css-attr-name='width' data-default-value='17'></input>
 }
@@ -57,9 +70,16 @@ body {
   <input type='range' min='0' max='5' data-mockup-dom-element='.child:nth-child(2)' data-css-attr-name='align-self' data-default-value='0'></input>
   <input type='range' min='0' max='2' data-mockup-dom-element='.child:nth-child(2)' data-css-attr-name='order' data-default-value='0'></input>
 }</pre>
+
+        <nav>
+          <button type='button' id='reset'>Reset</button>
+        </nav>
+      </section>
     </section>
 
-    <button type='button' id='reset'>Reset</button>
+    <footer>
+      <p>&copy; 2014 Michael Lewandowski</p>
+    </footer>
 
     <script src="../javascript/jquery.min.js"></script>
     <script src="../javascript/script.js"></script>

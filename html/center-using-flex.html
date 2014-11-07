@@ -7,20 +7,34 @@
   </head>
 
   <body id='center-using-flex'>
+    <header>
+      <nav>
+        <menu>
+          <menuitem><a href='/'>Home</a></menuitem>
+        </menu>
+        <menu>
+          <menuitem><a href='https://github.com/milewdev/css-lab'>GitHub</a></menuitem>
+        </menu>
+      </nav>
+    </header>
 
-    <h1>Center using Flex</h1>
-
-    <section class='mockup-page-column'>
-      <div class='mockup-page'>
-        <div class='container'>
-          <div class='child'>child element inside of parent element</div>
-        </div>
-      </div>
+    <section>
+      <h1>Center using Flex</h1>
     </section>
 
-    <section class='css-column'>
-      <pre>
+    <section class='sandbox'>
+      <section class='mockup-page-column'>
+        <div class='mockup-page'>
+          <div class='container'>
+            <div class='child'>child element inside of parent element</div>
+          </div>
+        </div>
+      </section>
+
+      <section class='css-column'>
+        <pre>
 body {
+  <input type='range' min='15' max='20' data-mockup-dom-element='.mockup-page' data-css-attr-name='height' data-default-value='20'></input>
   <input type='range' min='15' max='20' data-mockup-dom-element='.mockup-page' data-css-attr-name='width' data-default-value='20'></input>
 }
 
@@ -30,15 +44,19 @@ body {
 
 .child {
   <input type='range' min='0.6' max='1.8' step='0.05' data-mockup-dom-element='.child' data-css-attr-name='font-size' data-default-value='1'></input>
-  <input type='checkbox' data-mockup-dom-element='.child' data-css-attr-name='margin-left' data-css-attr-value='auto'></input>
-  <input type='checkbox' data-mockup-dom-element='.child' data-css-attr-name='margin-right' data-css-attr-value='auto'></input>
-  <input type='checkbox' data-mockup-dom-element='.child' data-css-attr-name='margin-top' data-css-attr-value='auto'></input>
-  <input type='checkbox' data-mockup-dom-element='.child' data-css-attr-name='margin-bottom' data-css-attr-value='auto'></input>
+  <input type='checkbox' data-mockup-dom-element='.child' data-css-attr-name='margin' data-css-attr-value='auto'></input>
+  <input type='range' min='4' max='8' data-mockup-dom-element='.child' data-css-attr-name='max-width' data-default-value='6'></input>
 }</pre>
+
+        <nav>
+          <button type='button' id='reset'>Reset</button>
+        </nav>
+      </section>
     </section>
 
-    <button type='button' id='reset'>Reset</button>
-
+    <footer>
+      <p>&copy; 2014 Michael Lewandowski</p>
+    </footer>
 
     <script src="../javascript/jquery.min.js"></script>
     <script src="../javascript/script.js"></script>

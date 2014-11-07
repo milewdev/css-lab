@@ -21,7 +21,7 @@ body > header {
     height: 2em;
     top: 1em;
     margin: 0 auto;
-    max-width: 50rem;
+    max-width: 50em;
     display: -webkit-box;
     display: -webkit-flex;
     display: -ms-flexbox;
@@ -44,90 +44,96 @@ body > header {
             text-decoration: underline; }
 
 body > footer {
-  background-color: #333333;
-  color: #cccccc;
-  font-size: 0.8em;
-  min-height: 10em;
-  margin-top: 2em;
-  padding-top: 0.5em;
-  padding-bottom: 1em; }
-  body > footer a {
-    color: #cccccc;
-    text-decoration: none; }
-    body > footer a:hover {
-      text-decoration: underline; }
+  border-top: 1px solid #ccc;
+  margin: 3em auto 0.5em auto;
+  max-width: 50em;
+  padding-top: 0.5em; }
+  body > footer p {
+    color: #999;
+    font-size: 0.7em; }
 
 body {
-  margin: 0 auto;
-  text-align: center; }
+  margin: 0 auto; }
 
 h1 {
   font-size: 1.5em;
-  margin: 2em 0 1em 0;
+  margin: 2em 0 1.5em 0;
   text-align: center; }
 
+.sandbox {
+  -webkit-box-align: center;
+  -webkit-align-items: center;
+      -ms-flex-align: center;
+          align-items: center;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+  -webkit-flex-direction: row;
+      -ms-flex-direction: row;
+          flex-direction: row;
+  -webkit-justify-content: space-around;
+      -ms-flex-pack: distribute;
+          justify-content: space-around;
+  margin: 0 auto;
+  max-width: 50em; }
+
 .mockup-page-column {
-  display: inline-block;
-  text-align: left;
   width: 20em; }
   .mockup-page-column .mockup-page {
     box-shadow: 0 0 5px 0px #999;
     font-family: serif;
     font-size: 0.8em;
-    margin: 0 auto;
-    min-height: 10em;
-    padding: 0.01em; }
+    margin: auto;
+    text-align: left; }
 
-.css-column {
+.css-column pre {
+  font-size: 0.9em;
+  overflow: auto;
+  padding: 0.6em; }
+.css-column input[type='range'] {
+  position: relative;
+  top: 0.5em;
+  width: 5em; }
+.css-column .css-code {
   display: inline-block;
-  text-align: left;
-  vertical-align: top;
   width: 20em; }
-  .css-column pre {
-    font-size: 0.9em;
-    overflow: auto;
-    margin: 0 auto;
-    padding: 0; }
-  .css-column input[type='range'] {
-    position: relative;
-    top: 0.5em;
-    width: 5em; }
-  .css-column .css-code {
-    display: inline-block;
-    width: 20em; }
 
-button {
-  margin-top: 4em;
-  padding: 0.4em 1.4em; }
+nav {
+  margin: 1em 0;
+  text-align: center; }
+  nav button {
+    padding: 0.4em 1.4em; }
 
-body#index section {
-  margin: 0 auto;
-  max-width: 40em; }
-  body#index section a {
-    color: #6699ff;
-    text-decoration: none; }
-    body#index section a:hover {
-      text-decoration: underline; }
-  body#index section td {
-    padding: 0.6em 2em;
-    text-align: left;
-    vertical-align: top; }
-    body#index section td:first-child {
-      text-align: right;
-      white-space: nowrap; }
+body#index section a {
+  color: #6699ff;
+  text-decoration: none; }
+  body#index section a:hover {
+    text-decoration: underline; }
+body#index section td {
+  padding: 0.6em 2em;
+  text-align: left;
+  vertical-align: top; }
+  body#index section td:first-child {
+    text-align: right;
+    white-space: nowrap; }
 
-body#ul-and-li-margins-and-padding .mockup-page aside {
-  border: 1px solid #999;
-  font-family: monospace;
-  margin-top: 0.6em;
-  margin-bottom: 0.6em;
-  padding: 0.4em;
-  vertical-align: middle; }
-
-body#side-by-side-blocks .mockup-page section {
-  border: solid 1px #ccc;
-  margin: 0.4em;
-  padding: 0.2em 0.4em; }
+body#center-using-flex .mockup-page {
+  padding: 1.5em; }
+  body#center-using-flex .mockup-page .container {
+    background-color: #ffebcc;
+    border: 1px solid #ccc;
+    height: 100%;
+    width: 100%; }
+  body#center-using-flex .mockup-page .child {
+    background-color: #c2c2ff;
+    border: 1px solid #999;
+    padding: 0.2em 0.4em;
+    margin: 0.4em; }
+body#center-using-flex .css-column .css-code {
+  width: 15em; }
 
 body#flex .mockup-page {
   padding: 1.5em; }
@@ -154,31 +160,17 @@ body#flex .mockup-page {
   body#flex .mockup-page .child:nth-child(7) {
     background-color: #e0e0ff; }
 
-body#center-using-flex .mockup-page {
-  padding: 1.5em; }
-  body#center-using-flex .mockup-page .container {
-    background-color: #ffebcc;
-    border: 1px solid #ccc;
-    min-height: 15em; }
-  body#center-using-flex .mockup-page .child {
-    background-color: #c2c2ff;
-    border: 1px solid #999;
-    padding: 0.2em 0.4em;
+body#side-by-side-blocks .mockup-page {
+  padding: 0.01em; }
+  body#side-by-side-blocks .mockup-page section {
+    border: solid 1px #ccc;
     margin: 0.4em;
-    max-width: 8em; }
+    padding: 0.2em 0.4em; }
 
-body#elastic-footer .mockup-page {
-  height: 10em;
-  overflow: auto;
-  padding: 0.1em;
-  text-align: center; }
-  body#elastic-footer .mockup-page header, body#elastic-footer .mockup-page section, body#elastic-footer .mockup-page footer {
-    padding: 0.5em; }
-  body#elastic-footer .mockup-page header {
-    background-color: #ccc; }
-  body#elastic-footer .mockup-page footer {
-    background-color: #ccc;
-    display: -webkit-box;
-    display: -webkit-flex;
-    display: -ms-flexbox;
-    display: flex; }
+body#ul-and-li-margins-and-padding .mockup-page aside {
+  border: 1px solid #999;
+  font-family: monospace;
+  margin-top: 0.6em;
+  margin-bottom: 0.6em;
+  padding: 0.4em;
+  vertical-align: middle; }

@@ -98,11 +98,13 @@ class RangeConverters
   @range_to_flex_grow: @range_to_number
   @range_to_flex_shrink: @range_to_number
   @range_to_font_size: @range_to_em
+  @range_to_height: @range_to_em
   @range_to_margin: @range_to_em
   @range_to_margin_top: @range_to_em
   @range_to_margin_bottom: @range_to_em
   @range_to_margin_left: @range_to_em
   @range_to_margin_right: @range_to_em
+  @range_to_max_width: @range_to_em
   @range_to_order: @range_to_number
   @range_to_padding: @range_to_em
   @range_to_padding_top: @range_to_em

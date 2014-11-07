@@ -1,4 +1,5 @@
 $main-header-and-footer-background-color: #333;
+$body-width: 50em;
 
 @mixin reset {
   * {
@@ -68,7 +69,7 @@ $main-header-and-footer-background-color: #333;
 
       // Limit its width and center it horizontally.
       margin: 0 auto;
-      max-width: 50rem;
+      max-width: $body-width;
 
       // Spread out the various menus evenly horizontally across the page.
       display: flex;
@@ -99,22 +100,14 @@ $main-header-and-footer-background-color: #333;
 @mixin main-footer {
 
   body > footer {
-    $color: #ccc;
-    @include link-style($color);
-
-    background-color: $main-header-and-footer-background-color;
-    color: $color;
-    font-size: 0.8em;
-    min-height: 10em;
-
-    // Gap between the last content on the page and the top of the footer bar.
-    margin-top: 2em;
-
-    // Gap between the top of the footer bar and the first content in the footer.
+    border-top: 1px solid #ccc;
+    margin: 3em auto 0.5em auto;
+    max-width: $body-width;
     padding-top: 0.5em;
 
-    // Ensure that the last content of the footer does not hit up against the
-    // bottom of the browser window.
-    padding-bottom: 1em;
+    p {
+      color: #999;
+      font-size: 0.7em;
+    }
   }
 }
