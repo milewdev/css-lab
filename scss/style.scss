@@ -6,13 +6,16 @@
 @include main-footer;
 // @include debug-show-all-borders;
 
-body {
-  margin: 0 auto;             // t+b l+r
+// Limit the width of all top-level sections
+// and center them on the page.
+body > section {
+  margin: 0 auto;
+  max-width: $body-width;
 }
 
 h1 {
   font-size: 1.5em;
-  margin: 2em 0 1.5em 0;      // t r b l
+  margin: 2em 0 1.5em 0;
   text-align: center;
 }
 
@@ -30,7 +33,6 @@ h1 {
   // Limit the width of the sandbox and center it horizontally
   // in the browser window.
   margin: 0 auto;
-  max-width: $body-width;
 }
 
 .mockup-page-column {

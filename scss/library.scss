@@ -98,12 +98,11 @@ $body-width: 50em;
 }
 
 @mixin main-footer {
-
-  body > footer {
+  body > section > footer {
     border-top: 1px solid #ccc;
-    margin: 3em auto 0.5em auto;
-    max-width: $body-width;
+    margin: 3em 2em 0.5em 2em;
     padding-top: 0.5em;
+    text-align: center;
 
     p {
       color: #999;
