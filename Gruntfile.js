@@ -85,6 +85,6 @@ module.exports = function (grunt) {
     }
   });
   grunt.registerTask('serve', function (target) {
-    grunt.task.run(['clean', 'connect:livereload', 'watch']);
+    grunt.task.run(['build', 'connect:livereload', 'watch']);
   });
 };
