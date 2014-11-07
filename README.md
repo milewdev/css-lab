@@ -1,5 +1,5 @@
 ### What is css-lab?
-A very small interactive CSS playground (currently only ul & li margins and padding):
+A very small interactive CSS playground:
 
 ![CSS lab screenshot](screenshot.jpg)
 
@@ -35,13 +35,28 @@ $ vagrant up --provider=vmware_fusion
 In a terminal window on the vm (guest machine):
 ```
 $ cd ~/Documents/css-lab
-$ ./watch
-Started local web server at http://localhost:4000 and now watching for changes.
-Press Ctrl-C to stop.
+$ ./_run_local_server
+Running "serve" task
 
+Running "clean" task
+
+Running "sass:dist" (sass) task
+
+Running "autoprefixer:dist" (autoprefixer) task
+File css/library.css created.
+File css/style.css created.
+
+Running "coffee:compile" (coffee) task
+>> 1 files created.
+
+Running "connect:livereload" (connect) task
+Started connect web server on http://localhost:8000
+
+Running "watch" task
+Waiting...
 ```
 
-Open a browser on the vm and go to http://localhost:4000.
+Open a browser on the vm and go to http://localhost:8000.
 
 
 #####Uninstall:
@@ -60,19 +75,9 @@ $ rm -r ~/work/css-lab    # and possibly rm -r ~/work if it is now empty
 
 #####Development Notes:
 
-- ./watch is a shell script that will launch both Sass and Jekyll in watch mode.  Run ./watch and
-launch a browser pointing to http://localhost:4000.  As you make and save changes to the source
-files (e.g. index.html, script.js, style.scss), simply refresh the browser (Command-R, etc.)
-to immediately see the results of your changes.
+- ./_build will build the site by running CoffeeScript and SASS compilers.
 
-- You can launch a browser on the vm and point to http://localhost:4000 but you can also launch
-a browser on the host and point to http://localhost:4000.  This is due to some port mapping that
-is done in the Vagrantfile.  More useful is that you can point to your host machine from your
-tablet's browser to see how the site looks from there.  In this case the address will be something
-like http://192.168.1.123:4000.
-
-- ./build will invoke Sass to convert .scss files to .css files.  If you do not use ./watch, make
-sure you use ./build instead otherwise the .css files will get out of sync with the .scss files.
+- ./_run_local_server will launch a webserver at localhost:8000.
 
 - If you wish to modify the Vagrantfile, it is best to do so on the host machine (~/work/css-lab/Vagrantfile)
 so that you can easily do an edit/vagrant up/vagrant destroy cycle.  Once you have finished making
@@ -93,8 +98,11 @@ changes, vagrant up and then in a terminal window on the vm do something like:
 ### Thanks
 
 - [Apple](http://www.apple.com)
-- [GitHub](https://github.com) and [GitHub pages](http://pages.github.com)
+- [Atom](https://atom.io)
 - [Bundler](http://bundler.io)
+- [CoffeeScript](http://coffeescript.org)
+- [GitHub](https://github.com) and [GitHub pages](http://pages.github.com)
+- [Grunt](http://gruntjs.com)
 - [Jekyll](http://jekyllrb.com)
 - [jQuery](http://jquery.com)
 - [Sass](http://sass-lang.com)
