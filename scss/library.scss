@@ -1,5 +1,8 @@
-$main-header-background-color: #595959;
+@import url(http://fonts.googleapis.com/css?family=Lato|Roboto+Slab:300&subset=latin,latin-ext);
+
+$main-header-background-color: #abc;
 $body-width: 50em;
+$nav-bar-height: 2.6em;
 
 @mixin reset {
   * {
@@ -36,36 +39,17 @@ $body-width: 50em;
   }
 }
 
-@mixin main-menu-raised {
+@mixin main-header {
 
   body > header {
-
-    $nav-bar-height: 2em;
-
-    // A black background bar at the top of the page.
     background-color: $main-header-background-color;
-    height: $nav-bar-height;
 
     // Prevent navigation bar from hitting left and right sides of the page
     // when the page shrinks in width to less than the nav bar's max-width.
     padding: 0 2em;
 
     & > nav {
-
-      // The nav bar has a gradient background, rounded corners, and a shadow.
-      // See http://www.cssmatic.com/gradient-generator#'\-moz\-linear\-gradient\%28top\%2C\%20rgba\%2854\%2C113\%2C231\%2C1\%29\%200\%25\%2C\%20rgba\%2854\%2C113\%2C231\%2C1\%29\%2019\%25\%2C\%20rgba\%2825\%2C79\%2C215\%2C1\%29\%2076\%25\%2C\%20rgba\%2825\%2C79\%2C215\%2C1\%29\%20100\%25\%29\%3B'
-      background: linear-gradient(to bottom,
-        rgba(54,113,231,1) 0%,
-        rgba(54,113,231,1) 20%,
-        rgba(25,79,215,1) 80%,
-        rgba(25,79,215,1) 100%);
-      border-radius: 3px;
-      box-shadow: 0 0 4px 0px #333;
-
-      // Same height as black background bar but offset down by half its height.
-      position: relative;
       height: $nav-bar-height;
-      top: $nav-bar-height / 2;
 
       // Limit its width and center it horizontally.
       margin: 0 auto;
@@ -83,7 +67,8 @@ $body-width: 50em;
         & > menuitem {
           @include link-style(inherit);
 
-          color: white;
+          // color: white;
+          font-family: 'Lato', sans-serif;
           font-size: 0.8rem;
 
           // make the small letters more visible
@@ -98,22 +83,31 @@ $body-width: 50em;
 }
 
 @mixin main-footer {
-  body > section > footer {
+  body > footer {
 
-    // A horizontal line to separate the footer from the main content
-    // of the page.
-    border-top: 1px solid #ccc;
+  // Prevent footer from hitting left and right sides of the page
+  // when the page shrinks in width to less than the footer's max-width.
+  padding: 0 2em;
 
-    // The l+r margins ensure that the separator line does not hit up against
-    // the sides of the browser window when it is shrunk.
-    margin: 3em 2em 0.5em 2em;
+    & > section {
 
-    padding-top: 0.5em;
-    text-align: center;
+      // Limit its width and center it horizontally.
+      margin: 3em auto 2.5em auto;
+      max-width: $body-width;
 
-    p {
-      color: #999;
-      font-size: 0.7em;
+      // A horizontal line to separate the footer from the main content
+      // of the page.
+      border-top: 1px solid #ccc;
+
+      // Gap between horizontal line and top of footer content.
+      padding-top: 0.5em;
+
+      text-align: center;
+
+      p {
+        color: #999;
+        font-size: 0.7em;
+      }
     }
   }
 }

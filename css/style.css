@@ -1,3 +1,4 @@
+@import url(http://fonts.googleapis.com/css?family=Lato|Roboto+Slab:300&subset=latin,latin-ext);
 * {
   margin: 0;
   padding: 0; }
@@ -9,17 +10,10 @@ html {
   box-sizing: inherit; }
 
 body > header {
-  background-color: #595959;
-  height: 2em;
+  background-color: #aabbcc;
   padding: 0 2em; }
   body > header > nav {
-    background: -webkit-linear-gradient(top, #3671e7 0%, #3671e7 20%, #194fd7 80%, #194fd7 100%);
-    background: linear-gradient(to bottom, #3671e7 0%, #3671e7 20%, #194fd7 80%, #194fd7 100%);
-    border-radius: 3px;
-    box-shadow: 0 0 4px 0px #333;
-    position: relative;
-    height: 2em;
-    top: 1em;
+    height: 2.6em;
     margin: 0 auto;
     max-width: 50em;
     display: -webkit-box;
@@ -33,7 +27,7 @@ body > header {
     body > header > nav > menu {
       margin: auto 0; }
       body > header > nav > menu > menuitem {
-        color: white;
+        font-family: 'Lato', sans-serif;
         font-size: 0.8rem;
         letter-spacing: 1px;
         margin: 0 0.8em; }
@@ -43,22 +37,33 @@ body > header {
           body > header > nav > menu > menuitem a:hover {
             text-decoration: underline; }
 
-body > section > footer {
-  border-top: 1px solid #ccc;
-  margin: 3em 2em 0.5em 2em;
-  padding-top: 0.5em;
-  text-align: center; }
-  body > section > footer p {
-    color: #999;
-    font-size: 0.7em; }
+body > footer {
+  padding: 0 2em; }
+  body > footer > section {
+    margin: 3em auto 2.5em auto;
+    max-width: 50em;
+    border-top: 1px solid #ccc;
+    padding-top: 0.5em;
+    text-align: center; }
+    body > footer > section p {
+      color: #999;
+      font-size: 0.7em; }
 
-body > section {
-  margin: 0 auto;
-  max-width: 50em; }
+body {
+  font-family: 'Roboto Slab', serif;
+  font-weight: 300; }
+  body p, body td {
+    line-height: 1.4em;
+    word-spacing: 0.08em; }
+  body > section {
+    margin: 0 auto;
+    max-width: 50em; }
 
 h1 {
-  font-size: 1.5em;
-  margin: 2em 0 1.5em 0;
+  font-family: 'Lato', sans-serif;
+  font-size: 2em;
+  font-weight: normal;
+  margin: 1.5em 0 0.5em 0;
   text-align: center; }
 
 .sandbox {
@@ -111,7 +116,7 @@ body#index section a {
   body#index section a:hover {
     text-decoration: underline; }
 body#index section td {
-  padding: 0.6em 2em;
+  padding: 0.6em 1em;
   text-align: left;
   vertical-align: top; }
   body#index section td:first-child {

@@ -2,20 +2,32 @@
 
 @include reset;
 @include box-sizing-fix;
-@include main-menu-raised;
+@include main-header;
 @include main-footer;
 // @include debug-show-all-borders;
 
-// Limit the width of all top-level sections
-// and center them on the page.
-body > section {
-  margin: 0 auto;
-  max-width: $body-width;
+body {
+  font-family: 'Roboto Slab', serif;
+  font-weight: 300;
+
+  p, td {
+    line-height: 1.4em;
+    word-spacing: 0.08em;
+  }
+
+  // Limit the width of all top-level sections
+  // and center them on the page.
+  & > section {
+    margin: 0 auto;
+    max-width: $body-width;
+  }
 }
 
 h1 {
-  font-size: 1.5em;
-  margin: 2em 0 1.5em 0;
+  font-family: 'Lato', sans-serif;
+  font-size: 2em;
+  font-weight: normal;
+  margin: 1.5em 0 0.5em 0;
   text-align: center;
 }
 
@@ -85,7 +97,7 @@ body#index {
     @include link-style();
 
     td {
-      padding: 0.6em 2em;
+      padding: 0.6em 1em;
       text-align: left;
       vertical-align: top;
 
