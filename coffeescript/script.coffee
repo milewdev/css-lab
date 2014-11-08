@@ -1,23 +1,24 @@
-class VendorPrefix
+class CssValueVendorPrefixer
 
-  # private
+  @install_css2_jquery_plugin: ->
+    prefixer = new CssValueVendorPrefixer()
+    $.fn.css2 = (css_name, css_value) ->
+      css_value = prefixer.add_prefix(css_value)
+      this.css(css_name, css_value)
 
-  values_that_need_prefixing = ['flex', 'inline-flex']
-  cached_prefix = null
+  constructor: ->
+    @values_that_need_prefixing = ['flex', 'inline-flex']
+    @prefix = @derive_prefix()
 
-  prefix_css_value = (css_value) ->
-    if needs_prefixing(css_value)
-      "#{prefix()}#{css_value}"
+  add_prefix: (css_value) ->
+    if @needs_prefix(css_value)
+      "#{@prefix}#{css_value}"
     else
       css_value
 
-  needs_prefixing = (css_value) ->
-    css_value in values_that_need_prefixing
+  # private
 
-  prefix = ->
-    cached_prefix ?= derive_prefix()
-
-  derive_prefix = ->
+  derive_prefix: ->
     style = $('body').get(0).style
     switch
       when style.webkitFlex? then '-webkit-'
@@ -25,10 +26,8 @@ class VendorPrefix
       when style.msFlex? then '-ms-'
       else ''
 
-  # Note: runs when the class definition is parsed.
-  $.fn.css2 = (css_name, css_value) ->
-    css_value = prefix_css_value(css_value)
-    this.css(css_name, css_value)
+  needs_prefix: (css_value) ->
+    css_value in @values_that_need_prefixing
 
 
 class CssAttributeView
@@ -281,6 +280,7 @@ reset_all = ->
 # This code runs when this script is loaded.
 #
 
+CssValueVendorPrefixer.install_css2_jquery_plugin()
 install_range_handlers()
 install_checkbox_handlers()
 install_hidden_labels()

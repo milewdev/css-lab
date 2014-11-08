@@ -1,33 +1,31 @@
 (function() {
-  var Checkbox, CssAttributeView, Hidden, Range, RangeConverters, VendorPrefix, install_button_handlers, install_checkbox_handlers, install_hidden_labels, install_range_handlers, refresh_all, reset_all,
+  var Checkbox, CssAttributeView, CssValueVendorPrefixer, Hidden, Range, RangeConverters, install_button_handlers, install_checkbox_handlers, install_hidden_labels, install_range_handlers, refresh_all, reset_all,
     __indexOf = [].indexOf || function(item) { for (var i = 0, l = this.length; i < l; i++) { if (i in this && this[i] === item) return i; } return -1; };
 
-  VendorPrefix = (function() {
-    var cached_prefix, derive_prefix, needs_prefixing, prefix, prefix_css_value, values_that_need_prefixing;
+  CssValueVendorPrefixer = (function() {
+    CssValueVendorPrefixer.install_css2_jquery_plugin = function() {
+      var prefixer;
+      prefixer = new CssValueVendorPrefixer();
+      return $.fn.css2 = function(css_name, css_value) {
+        css_value = prefixer.add_prefix(css_value);
+        return this.css(css_name, css_value);
+      };
+    };
 
-    function VendorPrefix() {}
+    function CssValueVendorPrefixer() {
+      this.values_that_need_prefixing = ['flex', 'inline-flex'];
+      this.prefix = this.derive_prefix();
+    }
 
-    values_that_need_prefixing = ['flex', 'inline-flex'];
-
-    cached_prefix = null;
-
-    prefix_css_value = function(css_value) {
-      if (needs_prefixing(css_value)) {
-        return "" + (prefix()) + css_value;
+    CssValueVendorPrefixer.prototype.add_prefix = function(css_value) {
+      if (this.needs_prefix(css_value)) {
+        return "" + this.prefix + css_value;
       } else {
         return css_value;
       }
     };
 
-    needs_prefixing = function(css_value) {
-      return __indexOf.call(values_that_need_prefixing, css_value) >= 0;
-    };
-
-    prefix = function() {
-      return cached_prefix != null ? cached_prefix : cached_prefix = derive_prefix();
-    };
-
-    derive_prefix = function() {
+    CssValueVendorPrefixer.prototype.derive_prefix = function() {
       var style;
       style = $('body').get(0).style;
       switch (false) {
@@ -42,12 +40,11 @@
       }
     };
 
-    $.fn.css2 = function(css_name, css_value) {
-      css_value = prefix_css_value(css_value);
-      return this.css(css_name, css_value);
+    CssValueVendorPrefixer.prototype.needs_prefix = function(css_value) {
+      return __indexOf.call(this.values_that_need_prefixing, css_value) >= 0;
     };
 
-    return VendorPrefix;
+    return CssValueVendorPrefixer;
 
   })();
 
@@ -361,6 +358,8 @@
       return this.o.reset();
     });
   };
+
+  CssValueVendorPrefixer.install_css2_jquery_plugin();
 
   install_range_handlers();
 
