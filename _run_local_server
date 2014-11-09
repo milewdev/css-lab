@@ -1,1 +1,1 @@
-grunt serve
+gulp run_local_server

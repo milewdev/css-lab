@@ -75,7 +75,15 @@ $ rm -r ~/work/css-lab    # and possibly rm -r ~/work if it is now empty
 
 #####Development Notes:
 
-- ./_build will build the site by running CoffeeScript and SASS compilers.
+- **WARNING**: always run ./_build_prod before committing to git and pushing to
+GitHub because the push is effectively a deploy to production.
+
+- /_build_dev will build the site assets by running the source files through
+a build pipeline that runs CoffeeScript and SASS compilers, injects vendor
+prefixes on CSS attribute names and values, etc.
+
+- ./_build_prod does the same as _build_dev except that it also does CSS and JS
+inlining and minifying.
 
 - ./_run_local_server will launch a webserver at localhost:8000.
 
