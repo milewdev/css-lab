@@ -1,6 +1,4 @@
 /.sass-cache/*
 /.tmp/*
-/css/*
-/javascript/*
 /node_modules/*
 *.DS_Store
