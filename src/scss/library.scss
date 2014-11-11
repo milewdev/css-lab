@@ -4,6 +4,7 @@ $main-header-background-color: #abc;
 $body-width: 50em;
 $nav-bar-height: 2.6em;
 
+// Reset everyone's margins and padding to zero.
 @mixin reset {
   * {
     margin: 0;
@@ -11,12 +12,14 @@ $nav-bar-height: 2.6em;
   }
 }
 
+// Changes everyone to have a red border.  Useful for debugging.
 @mixin debug-show-all-borders {
   * {
     border: 1px solid red;
   }
 }
 
+// Set links color and decoration.
 @mixin link-style($color: #69f) {
   a {
     color: $color;
@@ -28,17 +31,19 @@ $nav-bar-height: 2.6em;
   }
 }
 
+// See http://www.paulirish.com/2012/box-sizing-border-box-ftw/
 @mixin box-sizing-fix {
-  // See http://www.paulirish.com/2012/box-sizing-border-box-ftw/
   // apply a natural box layout model to all elements, but allowing components to change
   html {
     box-sizing: border-box;
   }
+
   *, *:before, *:after {
     box-sizing: inherit;
   }
 }
 
+// The header at the top of every page.  It contains a navigation bar/menu.
 @mixin main-header {
 
   body > header {
@@ -75,19 +80,23 @@ $nav-bar-height: 2.6em;
           letter-spacing: 1px;
 
           // Spacing between menu items.
-          margin: 0 0.8em;
+          & + menuitem {
+            margin-left: 0.8em;
+          }
         }
       }
     }
   }
 }
 
+// The footer at the bottom of every page.
 @mixin main-footer {
   body > footer {
+    text-align: center;
 
-  // Prevent footer from hitting left and right sides of the page
-  // when the page shrinks in width to less than the footer's max-width.
-  padding: 0 2em;
+    // Prevent footer from hitting left and right sides of the page
+    // when the page shrinks in width to less than the footer's max-width.
+    padding: 0 2em;
 
     & > section {
 
@@ -101,8 +110,6 @@ $nav-bar-height: 2.6em;
 
       // Gap between horizontal line and top of footer content.
       padding-top: 0.5em;
-
-      text-align: center;
 
       p {
         color: #999;

@@ -10,16 +10,28 @@ body {
   font-family: 'Roboto Slab', serif;
   font-weight: 300;
 
-  p, td {
-    line-height: 1.4em;
-    word-spacing: 0.08em;
-  }
-
-  // Limit the width of all top-level sections
-  // and center them on the page.
   & > section {
-    margin: 0 auto;
-    max-width: $body-width;
+
+    // Prevent page contents from hitting left and right sides of the page
+    // when the page shrinks in width to less than the nav bar's max-width.
+    padding: 0 2em;
+
+    // Limit the width of all top-level sections and center them on the page.
+    & > article {
+      margin: 0 auto;
+      max-width: $body-width;
+
+      // Adjust spacing to give letters and words a little more room.
+      // Revisit this if the font changes.
+      p, td {
+        line-height: 1.4em;
+        word-spacing: 0.08em;
+      }
+
+      p {
+        margin: 0.7em 0;
+      }
+    }
   }
 }
 
@@ -27,8 +39,26 @@ h1 {
   font-family: 'Lato', sans-serif;
   font-size: 2em;
   font-weight: normal;
-  margin: 1.5em 0 0.5em 0;
+  margin: 1.5em 0 0em 0;
   text-align: center;
+}
+
+h2 {
+  font-family: 'Lato', sans-serif;
+  font-size: 1.3em;
+  font-weight: normal;
+  margin: 3em 0 1em 0;
+  text-align: center;
+}
+
+// Do not need so much of a gap between the page and section headers.
+h1 + h2 {
+  margin-top: 1.4em;
+}
+
+// Lato seems to need a bit more space between words.
+h1, h2 {
+  word-spacing: 0.12em;
 }
 
 // The sandbox is a container with a mockup page on the left
@@ -39,26 +69,27 @@ h1 {
   // editor side by side.
   display: flex;
   flex-direction: row;
-  justify-content: space-around;
-
-  // Limit the width of the sandbox and center it horizontally
-  // in the browser window.
-  margin: 0 auto;
+  justify-content: center;
+  margin: 2em 0;
 }
 
 .mockup-page-column {
-
-  // Bump the mock page down slightly so that it looks properly
-  // aligned with the css code to its right.
-  padding-top: 0.4em;
   width: 40%;
+
+  // Use flex so that the mockup page can be centered
+  // horizontally and vertically.
+  display: flex;
+
+  // Add a bit of a gap between the mockup page and the css/
+  margin-right: 1.5em;
 
   .mockup-page {
     box-shadow: 0 0 5px 0px #999;
     font-family: serif;
     font-size: 0.8em;
+
+    // Center the mockup page horizontally and vertically.
     margin: auto;
-    text-align: left;
   }
 }
 
@@ -67,19 +98,22 @@ h1 {
 
   pre {
     font-size: 0.9em;
+
+    // Scroll bars should appear when needed.
     overflow: auto;
-    // padding: 0.6em;
   }
 
   input[type='range'] {
+    width: 5em;
+
+    // Bump range controls down so they align with adjacent text.
     position: relative;
     top: 0.5em;
-    width: 5em;
   }
 
   .css-code {
     display: inline-block;
-    width: 20em;
+    width: 19em;
   }
 }
 
@@ -88,7 +122,7 @@ nav {
   text-align: center;
 
   button {
-    padding: 0.4em 1.4em;       // t+b l+r
+    padding: 0.4em 1.4em;
   }
 }
 
@@ -109,32 +143,6 @@ body#index {
   }
 }
 
-body#center-using-flex {
-  .mockup-page {
-    padding: 1.5em;
-
-    .container {
-      background-color: #ffebcc;
-      border: 1px solid #ccc;
-      height: 100%;
-      width: 100%;
-    }
-
-    .child {
-      background-color: #c2c2ff;
-      border: 1px solid #999;
-      padding: 0.2em 0.4em;   // t+b l+r
-      margin: 0.4em;
-    }
-  }
-
-  .css-column {
-    .css-code {
-      width: 15em;
-    }
-  }
-}
-
 body#flex {
   .mockup-page {
     padding: 1.5em;
@@ -147,7 +155,7 @@ body#flex {
 
     .child {
       border: 1px solid #999;
-      padding: 0.2em 0.4em;   // t+b l+r
+      padding: 0.2em 0.4em;
       text-align: center;
     }
 
@@ -188,7 +196,7 @@ body#side-by-side-blocks {
     section {
       border: solid 1px #ccc;
       margin: 0.4em;
-      padding: 0.2em 0.4em;   // t+b l+r
+      padding: 0.2em 0.4em;
     }
   }
 }
@@ -196,7 +204,7 @@ body#side-by-side-blocks {
 body#ul-and-li-margins-and-padding {
   .mockup-page {
     height: 25em;
-    padding: 0.5em;
+    padding: 2em;
 
     // Something embedded in the li to show alignment of
     // boxes of text, images, etc.

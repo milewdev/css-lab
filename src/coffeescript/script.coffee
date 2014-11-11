@@ -87,6 +87,9 @@ class RangeConverters
   @range_to_text_align: (range_value) ->
     ['left', 'center', 'right', 'justify'][range_value]
 
+  @range_to_vertical_align: (range_value) ->
+    ['baseline', 'sub', 'super', 'text-top', 'text-bottom', 'middle', 'top', 'bottom'][range_value]
+
   @range_to_em: (range_value) ->
     range_value + 'em'
 
@@ -264,15 +267,22 @@ install_hidden_labels = ->
     new Hidden(this)
 
 install_button_handlers = ->
-  $('#reset').on 'click', ->
-    reset_all()
+  $('.reset').on 'click', ->
+    reset($(this).data('mockup-id'))
 
+# TODO: only refresh the inputs related to the changed mockup;
+# no need to refresh all the mockups when only one changes.
 refresh_all = ->
   $('input').each ->
     this.o.refresh()
 
 reset_all = ->
   $('input').each ->
+    this.o.reset()
+
+reset = (mockup_id) ->
+  # TODO: remove the need to prefix the mockup_id with #
+  $("input[data-mockup-dom-element~='##{mockup_id}']").each ->
     this.o.reset()
 
 

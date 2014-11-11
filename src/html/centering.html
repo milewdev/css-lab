@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset='utf-8'>
+    <title>Center using Flex</title>
+    <link rel='stylesheet' href='../css/style.css'>
+  </head>
+
+  <body id='centering'>
+    <header>
+      <nav>
+        <menu>
+          <menuitem><a href='../index.html'>Home</a></menuitem>
+        </menu>
+        <menu>
+          <menuitem><a href='https://github.com/milewdev/css-lab'>GitHub</a></menuitem>
+        </menu>
+      </nav>
+    </header>
+
+    <section>
+      <article>
+        <h1>Centering</h1>
+
+        <h2>Centering a Block Horizontally Within Another Block</h2>
+        <p>
+          Set the left and right <b>margin</b>s of a child block element to
+          <b>auto</b> to center it horizontally within a parent block element.
+          Changing the <b>text-align</b> property of the parent affects the
+          alignment of text in the child element but not the alignment of the
+          child itself as <b>text-align</b> applies to inline&nbsp;elements.
+        </p>
+        <section class='sandbox'>
+          <section class='mockup-page-column'>
+            <div class='mockup-page' id='mp-h-block'>
+              <div class='parent'>
+                <div class='child'>Et harum quidem rerum facilis est et expedita distinctio.</div>
+              </div>
+            </div>
+          </section>
+
+          <section class='css-column'>
+            <pre>
+body {
+  <input type='range' min='15' max='20' data-mockup-dom-element='#mp-h-block' data-css-attr-name='height' data-default-value='20'></input>
+  <input type='range' min='15' max='20' data-mockup-dom-element='#mp-h-block' data-css-attr-name='width' data-default-value='20'></input>
+  <input type='range' min='0' max='2' step='0.5' data-mockup-dom-element='#mp-h-block' data-css-attr-name='padding' data-default-value='1.5'></input>
+}
+
+.parent {
+  <input type='hidden' data-mockup-dom-element='#mp-h-block .parent' data-css-attr-name='background-color' data-css-attr-value='Linen'></input>
+  <input type='hidden' data-mockup-dom-element='#mp-h-block .parent' data-css-attr-name='border' data-css-attr-value='1px solid LightGray'></input>
+  <input type='range' min='0' max='5' data-mockup-dom-element='#mp-h-block .parent' data-css-attr-name='display' data-default-value='3'></input>
+  <input type='hidden' data-mockup-dom-element='#mp-h-block .parent' data-css-attr-name='height' data-css-attr-value='100%'></input>
+  <input type='hidden' data-mockup-dom-element='#mp-h-block .parent' data-css-attr-name='width' data-css-attr-value='100%'></input>
+  <input type='range' min='0' max='3' data-mockup-dom-element='#mp-h-block .parent' data-css-attr-name='text-align' data-default-value='0'></imput>
+}
+
+.child {
+  <input type='hidden' data-mockup-dom-element='#mp-h-block .child' data-css-attr-name='background-color' data-css-attr-value='Plum'></input>
+  <input type='hidden' data-mockup-dom-element='#mp-h-block .child' data-css-attr-name='border' data-css-attr-value='1px solid DarkGray'></input>
+  <input type='range' min='0' max='5' data-mockup-dom-element='#mp-h-block .child' data-css-attr-name='display' data-default-value='3'></input>
+  <input type='range' min='0.6' max='1.8' step='0.1' data-mockup-dom-element='#mp-h-block .child' data-css-attr-name='font-size' data-default-value='1'></input>
+  <input type='checkbox' data-mockup-dom-element='#mp-h-block .child' data-css-attr-name='margin' data-css-attr-value='0 auto'></input>
+  <input type='range' min='0' max='1' step='0.2' data-mockup-dom-element='#mp-h-block .child' data-css-attr-name='padding' data-default-value='0.4'></input>
+  <input type='range' min='5' max='10' data-mockup-dom-element='#mp-h-block .child' data-css-attr-name='max-width' data-default-value='9'></input>
+}</pre>
+          </section>
+        </section>
+        <nav>
+          <button type='button' class='reset' data-mockup-id='mp-h-block'>Reset</button>
+        </nav>
+
+        <h2>Centering a Block Horizontally and Vertically Within Another Block</h2>
+        <p>
+          Set a parent's <b>display</b> to <b>flex</b> and a child's
+          <b>margin</b>s to <b>auto</b> to center the child horizontally and
+          vertically within the parent. <b>text-align</b> applies to inline
+          elements, not block elements, so the parent's <b>text-align</b> only
+          affects the horizontal alignment of the child's text, not the
+          alignment of the child itself.  Similarly, <b>vertical-align</b> has
+          no effect as it also applies to inline elements (and table cells).
+        </p>
+        <section class='sandbox'>
+          <section class='mockup-page-column'>
+            <div class='mockup-page' id='mp-flex'>
+              <div class='parent'>
+                <div class='child'>Et harum quidem rerum facilis est et expedita distinctio.</div>
+              </div>
+            </div>
+          </section>
+
+          <section class='css-column'>
+            <pre>
+body {
+  <input type='range' min='15' max='20' data-mockup-dom-element='#mp-flex' data-css-attr-name='height' data-default-value='20'></input>
+  <input type='range' min='15' max='20' data-mockup-dom-element='#mp-flex' data-css-attr-name='width' data-default-value='20'></input>
+  <input type='range' min='0' max='2' step='0.5' data-mockup-dom-element='#mp-flex' data-css-attr-name='padding' data-default-value='1.5'></input>
+}
+
+.parent {
+  <input type='hidden' data-mockup-dom-element='#mp-flex .parent' data-css-attr-name='background-color' data-css-attr-value='Linen'></input>
+  <input type='hidden' data-mockup-dom-element='#mp-flex .parent' data-css-attr-name='border' data-css-attr-value='1px solid LightGray'></input>
+  <input type='range' min='0' max='5' data-mockup-dom-element='#mp-flex .parent' data-css-attr-name='display' data-default-value='5'></input>
+  <input type='hidden' data-mockup-dom-element='#mp-flex .parent' data-css-attr-name='height' data-css-attr-value='100%'></input>
+  <input type='hidden' data-mockup-dom-element='#mp-flex .parent' data-css-attr-name='width' data-css-attr-value='100%'></input>
+  <input type='range' min='0' max='3' data-mockup-dom-element='#mp-flex .parent' data-css-attr-name='text-align' data-default-value='0'></imput>
+  <input type='range' min='0' max='7' data-mockup-dom-element='#mp-flex .parent' data-css-attr-name='vertical-align' data-default-value='0'></imput>
+}
+
+.child {
+  <input type='hidden' data-mockup-dom-element='#mp-flex .child' data-css-attr-name='background-color' data-css-attr-value='Plum'></input>
+  <input type='hidden' data-mockup-dom-element='#mp-flex .child' data-css-attr-name='border' data-css-attr-value='1px solid DarkGray'></input>
+  <input type='range' min='0' max='5' data-mockup-dom-element='#mp-flex .child' data-css-attr-name='display' data-default-value='3'></input>
+  <input type='range' min='0.6' max='1.8' step='0.05' data-mockup-dom-element='#mp-flex .child' data-css-attr-name='font-size' data-default-value='1'></input>
+  <input type='checkbox' data-mockup-dom-element='#mp-flex .child' data-css-attr-name='margin' data-css-attr-value='auto'></input>
+  <input type='range' min='0' max='1' step='0.2' data-mockup-dom-element='#mp-flex .child' data-css-attr-name='padding' data-default-value='0.4'></input>
+  <input type='range' min='4' max='8' data-mockup-dom-element='#mp-flex .child' data-css-attr-name='max-width' data-default-value='7'></input>
+}</pre>
+          </section>
+        </section>
+        <nav>
+          <button type='button' class='reset' data-mockup-id='mp-flex'>Reset</button>
+        </nav>
+      </article>
+    </section>
+
+    <footer>
+      <section>
+        <p>&copy; 2014 Michael Lewandowski</p>
+      </section>
+    </footer>
+
+    <script src="../javascript/jquery-2.1.1.js"></script>
+    <script src="../javascript/script.js"></script>
+  </body>
+</html>
