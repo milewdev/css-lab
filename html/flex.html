@@ -26,7 +26,7 @@
       </p>
       <section class='sandbox'>
         <section class='mockup-page-column'>
-          <div class='mockup-page'>
+          <div class='mockup-page' id='mp-flex'>
             <div class='container'>
               <div class='child'>1</div>
               <div class='child'>2</div>
@@ -42,40 +42,40 @@
         <section class='css-column'>
           <pre>
 body {
-  <input type='range' min='15' max='20' data-mockup-dom-element='.mockup-page' data-css-attr-name='width' data-default-value='17'></input>
+  <input type='range' min='15' max='20' data-mockup-dom-element='#mp-flex' data-css-attr-name='width' data-default-value='17'></input>
 }
 
 .container {
-  <input type='range' min='0' max='5' data-mockup-dom-element='.container' data-css-attr-name='align-content' data-default-value='0'></input>
-  <input type='range' min='0' max='4' data-mockup-dom-element='.container' data-css-attr-name='align-items' data-default-value='0'></input>
-  <input type='range' min='0' max='5' data-mockup-dom-element='.container' data-css-attr-name='display' data-default-value='5'></input>
-  <input type='range' min='0' max='3' data-mockup-dom-element='.container' data-css-attr-name='flex-direction' data-default-value='0'></input>
-  <input type='range' min='0' max='2' data-mockup-dom-element='.container' data-css-attr-name='flex-wrap' data-default-value='1'></input>
-  <input type='range' min='0' max='4' data-mockup-dom-element='.container' data-css-attr-name='justify-content' data-default-value='0'></input>
+  <input type='range' min='0' max='5' data-mockup-dom-element='#mp-flex .container' data-css-attr-name='align-content' data-default-value='0'></input>
+  <input type='range' min='0' max='4' data-mockup-dom-element='#mp-flex .container' data-css-attr-name='align-items' data-default-value='0'></input>
+  <input type='range' min='0' max='5' data-mockup-dom-element='#mp-flex .container' data-css-attr-name='display' data-default-value='5'></input>
+  <input type='range' min='0' max='3' data-mockup-dom-element='#mp-flex .container' data-css-attr-name='flex-direction' data-default-value='0'></input>
+  <input type='range' min='0' max='2' data-mockup-dom-element='#mp-flex .container' data-css-attr-name='flex-wrap' data-default-value='1'></input>
+  <input type='range' min='0' max='4' data-mockup-dom-element='#mp-flex .container' data-css-attr-name='justify-content' data-default-value='0'></input>
 }
 
 .child {
-  <input type='checkbox' data-mockup-dom-element='.child' data-css-attr-name='flex-basis' data-css-attr-value='2em'></input>
-  <input type='range' min='0' max='2' data-mockup-dom-element='.child' data-css-attr-name='flex-grow' data-default-value='0'></input>
-  <input type='range' min='0' max='2' data-mockup-dom-element='.child' data-css-attr-name='flex-shrink' data-default-value='1'></input>
-  <input type='range' min='0' max='1' step='0.2' data-mockup-dom-element='.child' data-css-attr-name='margin' data-default-value='0.4'></input>
+  <input type='checkbox' data-mockup-dom-element='#mp-flex .child' data-css-attr-name='flex-basis' data-css-attr-value='2em'></input>
+  <input type='range' min='0' max='2' data-mockup-dom-element='#mp-flex .child' data-css-attr-name='flex-grow' data-default-value='0'></input>
+  <input type='range' min='0' max='2' data-mockup-dom-element='#mp-flex .child' data-css-attr-name='flex-shrink' data-default-value='1'></input>
+  <input type='range' min='0' max='1' step='0.2' data-mockup-dom-element='#mp-flex  .child' data-css-attr-name='margin' data-default-value='0.4'></input>
 }
 
 .child:nth-child(1) {
-  <input type='range' min='0' max='2' data-mockup-dom-element='.child:nth-child(1)' data-css-attr-name='flex-grow' data-default-value='0'></input>
-  <input type='range' min='0' max='3' data-mockup-dom-element='.child:nth-child(1)' data-css-attr-name='flex-shrink' data-default-value='1'></input>
-  <input type='checkbox' data-mockup-dom-element='.child:nth-child(1)' data-css-attr-name='height' data-css-attr-value='3em'></input>
-  <input type='range' min='0' max='2' data-mockup-dom-element='.child:nth-child(1)' data-css-attr-name='order' data-default-value='0'></input>
+  <input type='range' min='0' max='2' data-mockup-dom-element='#mp-flex .child:nth-child(1)' data-css-attr-name='flex-grow' data-default-value='0'></input>
+  <input type='range' min='0' max='3' data-mockup-dom-element='#mp-flex .child:nth-child(1)' data-css-attr-name='flex-shrink' data-default-value='1'></input>
+  <input type='checkbox' data-mockup-dom-element='#mp-flex .child:nth-child(1)' data-css-attr-name='height' data-css-attr-value='3em'></input>
+  <input type='range' min='0' max='2' data-mockup-dom-element='#mp-flex .child:nth-child(1)' data-css-attr-name='order' data-default-value='0'></input>
 }
 
 .child:nth-child(2) {
-  <input type='range' min='0' max='5' data-mockup-dom-element='.child:nth-child(2)' data-css-attr-name='align-self' data-default-value='0'></input>
-  <input type='range' min='0' max='2' data-mockup-dom-element='.child:nth-child(2)' data-css-attr-name='order' data-default-value='0'></input>
+  <input type='range' min='0' max='5' data-mockup-dom-element='#mp-flex .child:nth-child(2)' data-css-attr-name='align-self' data-default-value='0'></input>
+  <input type='range' min='0' max='2' data-mockup-dom-element='#mp-flex .child:nth-child(2)' data-css-attr-name='order' data-default-value='0'></input>
 }</pre>
           </section>
         </section>
         <nav>
-          <button type='button' id='reset'>Reset</button>
+          <button type='button' class='reset' data-mockup-id='mp-flex'>Reset</button>
         </nav>
       </article>
     </section>

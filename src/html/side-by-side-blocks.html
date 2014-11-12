@@ -24,7 +24,7 @@
 
         <section class='sandbox'>
           <section class='mockup-page-column'>
-            <div class='mockup-page'>
+            <div class='mockup-page' id='mp-fixed-left'>
               <section class='above'>.above</section>
               <section class='left'>
                 .left (fixed width)
@@ -39,33 +39,33 @@
           <section class='css-column'>
             <pre>
 body {
-  <input type='range' min='15' max='20' data-mockup-dom-element='.mockup-page' data-css-attr-name='width' data-default-value='20'></input>
+  <input type='range' min='15' max='20' data-mockup-dom-element='#mp-fixed-left' data-css-attr-name='width' data-default-value='20'></input>
 }
 
 .above {
-  <input type='range' min='0' max='3' data-mockup-dom-element='.above' data-css-attr-name='display' data-default-value='3'></input>
+  <input type='range' min='0' max='3' data-mockup-dom-element='#mp-fixed-left .above' data-css-attr-name='display' data-default-value='3'></input>
 }
 
 .left {
-  <input type='range' min='0' max='3' data-mockup-dom-element='.left' data-css-attr-name='display' data-default-value='3'></input>
-  <input type='checkbox' checked data-mockup-dom-element='.left' data-css-attr-name='float' data-css-attr-value='left'></input>
-  <input type='checkbox' checked data-mockup-dom-element='.left' data-css-attr-name='margin-top' data-css-attr-value='0em'></input>
-  <input type='hidden' data-mockup-dom-element='.left' data-css-attr-name='width' data-css-attr-value='6em'></input>
+  <input type='range' min='0' max='3' data-mockup-dom-element='#mp-fixed-left .left' data-css-attr-name='display' data-default-value='3'></input>
+  <input type='checkbox' checked data-mockup-dom-element='#mp-fixed-left .left' data-css-attr-name='float' data-css-attr-value='left'></input>
+  <input type='checkbox' checked data-mockup-dom-element='#mp-fixed-left .left' data-css-attr-name='margin-top' data-css-attr-value='0em'></input>
+  <input type='hidden' data-mockup-dom-element='#mp-fixed-left .left' data-css-attr-name='width' data-css-attr-value='6em'></input>
 }
 
 .right {
-  <input type='range' min='0' max='3' data-mockup-dom-element='.right' data-css-attr-name='display' data-default-value='3'></input>
-  <input type='checkbox' checked data-mockup-dom-element='.right' data-css-attr-name='overflow' data-css-attr-value='hidden'></input>
+  <input type='range' min='0' max='3' data-mockup-dom-element='#mp-fixed-left .right' data-css-attr-name='display' data-default-value='3'></input>
+  <input type='checkbox' checked data-mockup-dom-element='#mp-fixed-left .right' data-css-attr-name='overflow' data-css-attr-value='hidden'></input>
 }
 
 .below {
-  <input type='checkbox' checked data-mockup-dom-element='.below' data-css-attr-name='clear' data-css-attr-value='left'></input>
-  <input type='range' min='0' max='3' data-mockup-dom-element='.below' data-css-attr-name='display' data-default-value='3'></input>
+  <input type='checkbox' checked data-mockup-dom-element='#mp-fixed-left .below' data-css-attr-name='clear' data-css-attr-value='left'></input>
+  <input type='range' min='0' max='3' data-mockup-dom-element='#mp-fixed-left .below' data-css-attr-name='display' data-default-value='3'></input>
 }</pre>
           </section>
         </section>
         <nav>
-          <button type='button' id='reset'>Reset</button>
+          <button type='button' class='reset' data-mockup-id='mp-fixed-left'>Reset</button>
         </nav>
       </article>
     </section>

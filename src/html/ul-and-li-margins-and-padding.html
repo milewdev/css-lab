@@ -24,7 +24,7 @@
 
         <section class='sandbox'>
           <section class='mockup-page-column'>
-            <div class='mockup-page'>
+            <div class='mockup-page' id='mp-ul-li'>
               Content before the list.
               <ul>
                 <li>
@@ -46,30 +46,30 @@
           <section class='css-column'>
             <pre>
 ul {
-  <input type='range' min='-4' max='4' data-mockup-dom-element='.mockup-page ul' data-css-attr-name='margin-top' data-default-value='0'></input>
-  <input type='range' min='-4' max='4' data-mockup-dom-element='.mockup-page ul' data-css-attr-name='margin-bottom' data-default-value='1'></input>
-  <input type='range' min='-4' max='4' data-mockup-dom-element='.mockup-page ul' data-css-attr-name='margin-left' data-default-value='2'></input>
-  <input type='range' min='-4' max='4' data-mockup-dom-element='.mockup-page ul' data-css-attr-name='margin-right' data-default-value='2'></input>
-  <input type='range' min='-4' max='4' data-mockup-dom-element='.mockup-page ul' data-css-attr-name='padding-top' data-default-value='0'></input>
-  <input type='range' min='-4' max='4' data-mockup-dom-element='.mockup-page ul' data-css-attr-name='padding-bottom' data-default-value='0'></input>
-  <input type='range' min='-4' max='4' data-mockup-dom-element='.mockup-page ul' data-css-attr-name='padding-left' data-default-value='0'></input>
-  <input type='range' min='-4' max='4' data-mockup-dom-element='.mockup-page ul' data-css-attr-name='padding-right' data-default-value='0'></input>
+  <input type='range' min='-4' max='4' data-mockup-dom-element='#mp-ul-li ul' data-css-attr-name='margin-top' data-default-value='0'></input>
+  <input type='range' min='-4' max='4' data-mockup-dom-element='#mp-ul-li ul' data-css-attr-name='margin-bottom' data-default-value='1'></input>
+  <input type='range' min='-4' max='4' data-mockup-dom-element='#mp-ul-li ul' data-css-attr-name='margin-left' data-default-value='2'></input>
+  <input type='range' min='-4' max='4' data-mockup-dom-element='#mp-ul-li ul' data-css-attr-name='margin-right' data-default-value='2'></input>
+  <input type='range' min='-4' max='4' data-mockup-dom-element='#mp-ul-li ul' data-css-attr-name='padding-top' data-default-value='0'></input>
+  <input type='range' min='-4' max='4' data-mockup-dom-element='#mp-ul-li ul' data-css-attr-name='padding-bottom' data-default-value='0'></input>
+  <input type='range' min='-4' max='4' data-mockup-dom-element='#mp-ul-li ul' data-css-attr-name='padding-left' data-default-value='0'></input>
+  <input type='range' min='-4' max='4' data-mockup-dom-element='#mp-ul-li ul' data-css-attr-name='padding-right' data-default-value='0'></input>
 }
 
 li {
-  <input type='range' min='-4' max='4' data-mockup-dom-element='.mockup-page li' data-css-attr-name='margin-top' data-default-value='1'></input>
-  <input type='range' min='-4' max='4' data-mockup-dom-element='.mockup-page li' data-css-attr-name='margin-bottom' data-default-value='0'></input>
-  <input type='range' min='-4' max='4' data-mockup-dom-element='.mockup-page li' data-css-attr-name='margin-left' data-default-value='0'></input>
-  <input type='range' min='-4' max='4' data-mockup-dom-element='.mockup-page li' data-css-attr-name='margin-right' data-default-value='0'></input>
-  <input type='range' min='-4' max='4' data-mockup-dom-element='.mockup-page li' data-css-attr-name='padding-top' data-default-value='0'></input>
-  <input type='range' min='-4' max='4' data-mockup-dom-element='.mockup-page li' data-css-attr-name='padding-bottom' data-default-value='0'></input>
-  <input type='range' min='-4' max='4' data-mockup-dom-element='.mockup-page li' data-css-attr-name='padding-left' data-default-value='0'></input>
-  <input type='range' min='-4' max='4' data-mockup-dom-element='.mockup-page li' data-css-attr-name='padding-right' data-default-value='0'></input>
+  <input type='range' min='-4' max='4' data-mockup-dom-element='#mp-ul-li li' data-css-attr-name='margin-top' data-default-value='1'></input>
+  <input type='range' min='-4' max='4' data-mockup-dom-element='#mp-ul-li li' data-css-attr-name='margin-bottom' data-default-value='0'></input>
+  <input type='range' min='-4' max='4' data-mockup-dom-element='#mp-ul-li li' data-css-attr-name='margin-left' data-default-value='0'></input>
+  <input type='range' min='-4' max='4' data-mockup-dom-element='#mp-ul-li li' data-css-attr-name='margin-right' data-default-value='0'></input>
+  <input type='range' min='-4' max='4' data-mockup-dom-element='#mp-ul-li li' data-css-attr-name='padding-top' data-default-value='0'></input>
+  <input type='range' min='-4' max='4' data-mockup-dom-element='#mp-ul-li li' data-css-attr-name='padding-bottom' data-default-value='0'></input>
+  <input type='range' min='-4' max='4' data-mockup-dom-element='#mp-ul-li li' data-css-attr-name='padding-left' data-default-value='0'></input>
+  <input type='range' min='-4' max='4' data-mockup-dom-element='#mp-ul-li li' data-css-attr-name='padding-right' data-default-value='0'></input>
 }</pre>
           </section>
         </section>
         <nav>
-          <button type='button' id='reset'>Reset</button>
+          <button type='button' class='reset' data-mockup-id='mp-ul-li'>Reset</button>
         </nav>
       </article>
     </section>
